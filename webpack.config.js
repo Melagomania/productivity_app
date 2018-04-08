@@ -19,7 +19,7 @@ module.exports = {
     }
   },
   module: {
-    loaders: [
+    loaders: [     
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
@@ -36,6 +36,13 @@ module.exports = {
             name: 'images/[name].[ext]'
           }
         }]
+      },
+      {
+        test: /\.(svg|eot|ttf|woff|woff2)$/,
+        loader: 'file-loader',
+        query: {
+          name: 'fonts/[name].[hash:8].[ext]'
+        }
       }
     ]
   },
