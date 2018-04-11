@@ -1,14 +1,181 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
 .page {
   background-color: @madison-col;
   color: @nepal-col;
+  font-family: "Roboto";
 }
 
 .main-container {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 0 92px;
+  .clearfix;
 }
+
+.hidden {
+  display: none;
+}
+
+.screen-heading {
+  font-size: 28px;
+  font-weight: 500;
+  color:#ffffff;
+  text-align: center;
+  line-height: 23px;
+  margin-bottom: 25px;
+}
+
+.subtitle {
+  color: @nepal-col;
+  font-size: 22px;
+  font-weight: 400;
+  text-align: center;
+}
+
+// start of header 
+
+.header {
+  padding: 56px 0 21px;
+}
+
+.header__logo {
+  float: left;
+}
+
+
+.header__logo-image {
+  width: 242px;
+
+}
+
+.header__menu {
+  float: right;
+  width: auto;
+}
+
+.header__menu-list {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+} 
+
+.header__menu-item {
+  margin-right: 33px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.header__menu-link {
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-family: "Icon";
+  text-decoration: none;
+  color: @nepal-col;
+  
+  &:hover {
+    color: @spray-col;
+  }
+
+  &::after {
+    display: block;
+    font-size: 19px;    
+  }
+
+  &--add::after {
+    content: '\e900';
+  }
+
+  &--remove::after {
+    content: '\e914';
+  }
+
+  &--task-list::after {
+    content: '\e90a';
+  }
+
+  &--reports::after {
+    content: '\e90d';
+  }
+
+  &--settings::after {
+    content: '\e90c';
+  }
+}
+// end of header
+
+// start of settings
+
+
+
+// .settings__inner-wrapper {
+//   display: flex;
+//   align-items: center;
+// }
+
+
+.tabs {
+  font-size: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.tabs--floated {
+  float: right;
+  width: auto; 
+}
+
+.tabs--upper {
+  margin-top: -20px;
+}
+
+.tabs__item {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;  
+  padding-right: 10px;
+  font-size: 16px;
+  font-family: 'PT Sans';
+  
+  &::after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 1px;
+    height: 13px;
+    display: block;
+    content: '';
+    background-color: @nepal-col;
+  }
+
+  &:last-child {
+    margin-right: 0;
+    padding-right: 0;
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.tabs__link {
+  color: @nepal-col;
+  text-decoration: none;
+  line-height: 0px;
+  
+    &:hover {
+      color: @spray-col;
+    }
+}
+
+.tabs__link--active {
+  color: #fff;
+}
+
+// end of settings

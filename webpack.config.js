@@ -18,6 +18,7 @@ module.exports = {
       '@images-root-path': path.resolve(__dirname, 'src/assets/images')            // alias for images path
     }
   },
+  devtool: 'source-map',
   module: {
     loaders: [     
       {
@@ -38,11 +39,13 @@ module.exports = {
         }]
       },
       {
-        test: /\.(svg|eot|ttf|woff|woff2)$/,
-        loader: 'file-loader',
-        query: {
-          name: 'fonts/[name].[hash:8].[ext]'
-        }
+        test:  /\.(svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}  
+          }
+        ]
       }
     ]
   },
