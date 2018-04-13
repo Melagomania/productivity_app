@@ -26,18 +26,71 @@
       </nav>
     </div>
   </header>
-  <section class="settings">
-    <div class="main-container">
-      <h1 class="screen-heading">Settings</h1>
+  <section class="screen  settings-screen">
+    <header class="screen__header">
+      <div class="main-container">
+        <h1 class="screen-heading">Settings</h1>
         <h2 class="subtitle">Pomodoros settings</h2>
         <h2 class="subtitle  hidden">Categories list overview</h2>
         <ul class="tabs  tabs--floated  tabs--upper">
           <li class="tabs__item"><a class="tabs__link  tabs__link--active" href="#">Pomodoros</a></li>
           <li class="tabs__item"><a class="tabs__link" href="#">Categories</a></li> 
         </ul>   
-    </div>
-  </section>
-  <div id="asd"></div>
+      </div>
+    </header>
+    <section class="screen__body  settings-screen__body">
+      <div class="main-container">
+        <section class="pom-settings">
+          <ul class="pom-settings__list">
+            <li class="pom-settings__item  circled">
+              <span class="pom-settings__heading">WORK TIME</span>
+              <div class="pom-settings__input-wrapper">
+                <button class="pom-settings__btn  pom-settings__btn--minus"></button>
+                <button class="pom-settings__btn  pom-settings__btn--plus"></button>
+                <span class="pom-settings__input">25</span>
+              </div>
+              <p class="pom-settings__instruction">Please select a value between 15 and 25 <span class="pom-settings__highlighted">minutes</span></p>
+            </li>
+            <li class="pom-settings__item  circled">
+              <span class="pom-settings__heading">WORK ITERATION</span>
+              <div class="pom-settings__input-wrapper">
+                <button class="pom-settings__btn  pom-settings__btn--minus"></button>
+                <button class="pom-settings__btn  pom-settings__btn--plus"></button>
+                <span class="pom-settings__input">5</span>
+              </div>
+              <p class="pom-settings__instruction">Please select a value between 2 and 5 <span class="pom-settings__highlighted">iterations</span></p>
+            </li>
+            <li class="pom-settings__item  circled">
+              <span class="pom-settings__heading">SHORT BREAK</span>
+              <div class="pom-settings__input-wrapper">
+                <button class="pom-settings__btn  pom-settings__btn--minus"></button>
+                <button class="pom-settings__btn  pom-settings__btn--plus"></button>
+                <span class="pom-settings__input">5</span>
+              </div>
+              <p class="pom-settings__instruction">Please select a value between 3 and 5 <span class="pom-settings__highlighted">minutes</span></p>
+            </li>
+            <li class="pom-settings__item  circled">
+              <span class="pom-settings__heading">LONG BREAK</span>
+              <div class="pom-settings__input-wrapper">
+                <button class="pom-settings__btn  pom-settings__btn--minus"></button>
+                <button class="pom-settings__btn  pom-settings__btn--plus"></button>
+                <span class="pom-settings__input">30</span>
+              </div>
+              <p class="pom-settings__instruction">Please select a value between 15 and 25 <span class="pom-settings__highlighted">minutes</span></p>
+            </li>
+          </ul>
+        </section>
+        <section class="settings-screen__cycle-preview">
+          <h3 class="subtitle2">Your cycle</h3>
+          <img class="settings-screen__cycle-preview-img" src="/Graph.png" alt="">
+        </section>
+        <section class="settings-screen--buttons">
+          <button class="button  button--blue  settings-screen--button">Go to Tasks</button>
+          <button class="button  button--green  settings-screen--button">Save</button>
+        </section>
+      </section>
+      </div>
+    </section>
 <script src="/bundle.js"></script>
 </body>
 </html>
