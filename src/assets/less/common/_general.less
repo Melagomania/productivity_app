@@ -460,6 +460,25 @@
 // start of task list 
 .task-list {
   margin-bottom: 30px;
+  // box-shadow: 0px 2px  10px 0px #222;
+  
+  
+
+  &--hobby {
+    border-color: @amethyst;
+  }
+  &--work {
+    border-color: @selective-yellow;
+  }
+  &--education {
+    border-color: @malibu-col;
+  }
+  &--sport {
+    border-color: @terra-cotta;
+  }
+  &--other {
+    border-color: @dark-turquolse;
+  }
 }
 
 .task-list-screen__add-btn {
@@ -709,6 +728,122 @@
   &:hover {
     color: @spray-col;
   }
+}
+.global-list__tabs-wrapper {
+  .clearfix;  
+  margin-bottom: 33px;
+}
+
+.global-list {
+  // overflow: hidden;
+}
+
+.task-list--categorized {
+  padding-left: 9px;
+  position: relative;
+  margin-bottom: 20px;
+
+  &-hobby {
+    .task-list__decorative-line {
+      background-color: @amethyst;
+    }
+    .task-list__decorative-circle {
+      background-color: @amethyst;
+    }
+  }
+  &-work {
+    .task-list__decorative-line {
+      background-color: @selective-yellow;
+    }
+    .task-list__decorative-circle {
+      background-color:@selective-yellow;
+    }
+  }
+  &-education {
+    .task-list__decorative-line {
+      background-color: @malibu-col;
+    }
+    .task-list__decorative-circle {
+      background-color: @malibu-col;
+    }
+  }
+  &-sport {
+    .task-list__decorative-line {
+      background-color: @terra-cotta;
+    }
+    .task-list__decorative-circle {
+      background-color:@terra-cotta;
+    }
+  }
+  &-other {
+    .task-list__decorative-line {
+      background-color: @dark-turquolse;
+    }
+    .task-list__decorative-circle {
+      background-color: @dark-turquolse;
+    }
+  }
+}
+
+.task-list__decorative-line {
+  position: absolute;
+  width: 9px;
+  height: 100%;
+  background-color: red;
+  display: block;
+  top: 0;
+  left: 0;
+}
+
+.task-list__decorative-circle {
+  position: absolute;
+  top: -2px;
+  left: -50%;
+  width: 17px;
+  height: 17px;
+  background:red;
+  border-radius: 50%;
+}
+
+.task-list__decorative-inner-circle {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  
+  width: 9px;
+  height: 9px;
+  border: 2px solid @madison-col;
+  border-radius: 50%;
+
+}
+
+.task-list__heading {
+  font-family: "Roboto";
+  font-size: 16px;
+  text-transform: uppercase;
+  margin: 0 0 13px 13px;
+
+} 
+.task-list__heading {
+  &--hobby {
+    color: @amethyst;
+  }
+  &--work {
+    color: @selective-yellow;
+  }
+  &--education {
+    color: @malibu-col;
+  }
+  &--sport {
+    color: @terra-cotta;
+  }
+  &--other {
+    color: @dark-turquolse;
+  }
+}
+
+.task-card--no-border {
+  border: none;
 }
 
 
