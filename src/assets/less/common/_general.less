@@ -20,7 +20,7 @@
   display: none;
 }
 
-.screen__header {
+.screen-header {
   margin-bottom: 20px;
 }
 
@@ -152,13 +152,14 @@
   color: @nepal-col;
   text-decoration: none;
   line-height: 0px;
-  
-    &:hover {
-      color: @spray-col;
-    }
-}
+  &:hover,
+  &:focus,
+  &:active {
+    color: @spray-col;
+  }
+  }
 
-.tabs__link--active {
+.tabs__link--current {
   color: #fff;
 }
 
@@ -209,7 +210,9 @@
   text-decoration: none;
   color: @nepal-col;
   
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     color: @spray-col;
   }
 
@@ -382,7 +385,8 @@
   margin-bottom: 40px;
 }
 
-.settings-screen--buttons {
+.settings-screen__buttons {
+  padding-bottom: 50px;
   font-size: 0;
   text-align: center;
 }
