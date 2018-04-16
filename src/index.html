@@ -32,7 +32,7 @@
         <h2 class="screen-heading">Settings</h2>
         <h3 class="subtitle">Pomodoros settings</h3>
         <h3 class="subtitle  hidden">Categories list overview</h3>
-        <ul class="tabs  tabs--floated  tabs--upper  list">
+        <ul class="tabs  tabs--right  tabs--upper  list">
           <li class="tabs__item"><a class="tabs__link  tabs__link--current" href="#">Pomodoros</a></li>
           <li class="tabs__item"><a class="tabs__link" href="#">Categories</a></li> 
         </ul>   
@@ -106,96 +106,129 @@
     <header class="screen-header">
       <div class="main-container">
         <h2 class="screen-heading  task-list-screen__screen-heading">Dalily Task List<button class="task-list-screen__add-btn"></button></h2>
-        <ul class="tabs  tabs--floated  list">
-          <li class="tabs__item"><a class="tabs__link  tabs__link--current" href="#">To Do</a></li>
-          <li class="tabs__item"><a class="tabs__link" href="#">Done</a></li> 
-        </ul>   
+        <div class="today-tasks__tabs-wrapper">
+            <ul class="tabs  tabs--right  list">
+              <li class="tabs__item"><a class="tabs__link  tabs__link--current" href="#">To Do</a></li>
+              <li class="tabs__item"><a class="tabs__link" href="#">Done</a></li> 
+            </ul>   
+            <ul class="tabs  tabs--left  tabs--remove  list">
+              <li class="tabs__item"><a class="tabs__link  tabs__link--current" href="#">Select All</a></li>
+              <li class="tabs__item"><a class="tabs__link" href="#">Deselect all</a></li> 
+            </ul>   
+          </div>
       </div>
     </header>
     <section class="screen-body">
       <div class="main-container">
-        <ul class="task-list  list">
-          <li class="task-card  task-card--hobby  task-card--urgent-priority">
-            <section class="delete-indicator  hidden"></section>            
-            <section class="task-card__date">Today</section>
-            <section class="task-card__task-info">
-              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
-              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-            </section>
-            <section class="task-card__buttons">
-              <section class="task-card__task-adjustsments">
-                <button class="task-card__button  task-card__button--to-daily hidden"></button>
-                <button class="task-card__button  task-card__button--edit"></button>
+        <section class="message-section  hidden">
+          <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+          <p class="message-section__message">Add your first task</p>
+        </section>
+        <section class="message-section  hidden">
+          <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+          <p class="message-section__message">As you visited our site for a first time you can check
+              and customize your default application settings</p>
+          <button class="button  button--blue">Skip</button>
+          <button class="button  button--green">Go to Settings</button>
+        </section>
+        <section class="message-section hidden  ">
+          <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+          <p class="message-section__message">You don’t have any tasks left.<br>
+              Add new tasks to stay productive.</p>
+        </section>
+        <section class="message-section  message-section--compact  hidden">
+            <p class="message-section__message">Task added,<br>
+                drag it to the top 5 in daily task list</p>
+                <span class="message-section__icon">&#xe901;</span>
+        </section>
+        <section class="message-section  message-section--compact  hidden">
+            <p class="message-section__message  message-section__message--done">Excellent,<br>
+                all daily tasks done! :)</p>
+        </section>
+        <section class="today-tasks ">
+          <ul class="task-list  list ">
+            <li class="task-card  task-card--hobby  task-card--urgent-priority  task-card--to-delete">
+              <section class="task-card__delete-indicator  task-card__delete-indicator--active"></section>            
+              <section class="task-card__date">Today</section>
+              <section class="task-card__task-info">
+                <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+                <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
               </section>
-              <button class="task-card__start"></button>
-            </section>
-          </li>
-          <li class="task-card  task-card--sport  task-card--high-priority">
-            <section class="delete-indicator  hidden"></section>            
-            <section class="task-card__date">Today</section>
-            <section class="task-card__task-info">
-              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
-              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-            </section>
-            <section class="task-card__buttons">
-              <section class="task-card__task-adjustsments">
-                <button class="task-card__button  task-card__button--to-daily hidden"></button>
-                <button class="task-card__button  task-card__button--edit"></button>
+              <section class="task-card__buttons">
+                <section class="task-card__task-adjustsments">
+                  <button class="task-card__button  task-card__button--to-daily hidden"></button>
+                  <button class="task-card__button  task-card__button--edit"></button>
+                </section>
+                <button class="task-card__start"></button>
               </section>
-              <button class="task-card__start"></button>
-            </section>
-          </li>
-          <li class="task-card  task-card--work  task-card--middle-priority">
-            <section class="delete-indicator  hidden"></section>            
-            <section class="task-card__date">Today</section>
-            <section class="task-card__task-info">
-              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
-              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-            </section>
-            <section class="task-card__buttons">
-              <section class="task-card__task-adjustsments">
-                <button class="task-card__button  task-card__button--to-daily hidden"></button>
-                <button class="task-card__button  task-card__button--edit"></button>
+            </li>
+            <li class="task-card  task-card--sport  task-card--high-priority">
+              <section class="task-card__delete-indicator"></section>            
+              <section class="task-card__date">Today</section>
+              <section class="task-card__task-info">
+                <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+                <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
               </section>
-              <button class="task-card__start"></button>
-            </section>
-          </li>
-          <li class="task-card  task-card--education  task-card--middle-priority">
-            <section class="delete-indicator  hidden"></section>            
-            <section class="task-card__date">Today</section>
-            <section class="task-card__task-info">
-              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
-              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-            </section>
-            <section class="task-card__buttons">
-              <section class="task-card__task-adjustsments">
-                <button class="task-card__button  task-card__button--to-daily hidden"></button>
-                <button class="task-card__button  task-card__button--edit"></button>
+              <section class="task-card__buttons">
+                <section class="task-card__task-adjustsments">
+                  <button class="task-card__button  task-card__button--to-daily hidden"></button>
+                  <button class="task-card__button  task-card__button--edit"></button>
+                </section>
+                <button class="task-card__start"></button>
               </section>
-              <button class="task-card__start"></button>
-            </section>
-          </li>
-          <li class="task-card  task-card--other  task-card--low-priority">
-            <section class="delete-indicator  hidden"></section>            
-            <section class="task-card__date">Today</section>
-            <section class="task-card__task-info">
-              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
-              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-            </section>
-            <section class="task-card__buttons">
-              <section class="task-card__task-adjustsments">
-                <button class="task-card__button  task-card__button--to-daily hidden"></button>
-                <button class="task-card__button  task-card__button--edit"></button>
+            </li>
+            <li class="task-card  task-card--work  task-card--middle-priority  task-card--to-delete">
+              <section class="task-card__delete-indicator"></section>            
+              <section class="task-card__date">Today</section>
+              <section class="task-card__task-info">
+                <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+                <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
               </section>
-              <button class="task-card__start"></button>
-            </section>
-          </li>
-        </ul>
+              <section class="task-card__buttons">
+                <section class="task-card__task-adjustsments">
+                  <button class="task-card__button  task-card__button--to-daily hidden"></button>
+                  <button class="task-card__button  task-card__button--edit"></button>
+                </section>
+                <button class="task-card__start"></button>
+              </section>
+            </li>
+            <li class="task-card  task-card--education  task-card--middle-priority  task-card--to-delete">
+              <section class="task-card__delete-indicator"></section>            
+              <section class="task-card__date">Today</section>
+              <section class="task-card__task-info">
+                <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+                <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+              </section>
+              <section class="task-card__buttons">
+                <section class="task-card__task-adjustsments">
+                  <button class="task-card__button  task-card__button--to-daily hidden"></button>
+                  <button class="task-card__button  task-card__button--edit"></button>
+                </section>
+                <button class="task-card__start"></button>
+              </section>
+            </li>
+            <li class="task-card  task-card--other  task-card--low-priority">
+              <section class="task-card__delete-indicator"></section>            
+              <section class="task-card__date">Today</section>
+              <section class="task-card__task-info">
+                <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+                <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+              </section>
+              <section class="task-card__buttons">
+                <section class="task-card__task-adjustsments">
+                  <button class="task-card__button  task-card__button--to-daily hidden"></button>
+                  <button class="task-card__button  task-card__button--edit"></button>
+                </section>
+                <button class="task-card__start"></button>
+              </section>
+            </li>
+          </ul>
+        </section>
+        
         <button class="task-list-screen__global-list-toggler">Global list </button>
-
-        <section class="global-list">
+        <section class="global-list  ">          
           <div class="global-list__tabs-wrapper">
-            <ul class="tabs  tabs--floated  list">
+            <ul class="tabs  tabs--right  list">
               <li class="tabs__item"><a class="tabs__link  tabs__link--current" href="#">All</a></li>
               <li class="tabs__item"><a class="tabs__link" href="#">Urgent</a></li>
               <li class="tabs__item"><a class="tabs__link" href="#">High</a></li>
@@ -210,8 +243,8 @@
               </div>
             </div>
             <h3 class="task-list__heading  task-list__heading--work">Work</h3>            
-            <li class="task-card  task-card--work  task-card--high-priority  task-card--no-border">
-              <section class="delete-indicator  hidden"></section>            
+            <li class="task-card  task-card--work  task-card--high-priority  task-card--no-border task-card--to-delete">
+              <section class="task-card__delete-indicator"></section>            
               <section class="task-card__date">Today</section>
               <section class="task-card__task-info">
                 <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
@@ -226,7 +259,7 @@
             </section>
             </li>
             <li class="task-card  task-card--work  task-card--middle-priority  task-card--no-border">
-              <section class="delete-indicator  hidden"></section>            
+              <section class="task-card__delete-indicator"></section>            
               <section class="task-card__date">Today</section>
               <section class="task-card__task-info">
                 <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
@@ -241,7 +274,6 @@
               </section>
             </li>
           </ul>
-
           <ul class="task-list  task-list--categorized  task-list--categorized-education  task-list--work  list">
             <div class="task-list__decorative-line">
               <div class="task-list__decorative-circle">
@@ -249,9 +281,12 @@
               </div>
             </div>
             <h3 class="task-list__heading  task-list__heading--education">Education</h3>
-            <li class="task-card  task-card--education  task-card--low-priority  task-card--no-border">
-              <section class="delete-indicator  hidden"></section>            
-              <section class="task-card__date">Today</section>
+            <li class="task-card  task-card--education  task-card--low-priority  task-card--overdue   task-card--no-border">
+              <section class="task-card__delete-indicator"></section>            
+              <section class="task-card__date">
+                <span class="task-card__day">23</span>
+                <span class="task-card__mounth">may</span>
+              </section>
               <section class="task-card__task-info">
                 <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
                 <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
@@ -268,7 +303,188 @@
         </section>
       </div>
     </section>
+    </section>
+    <section class="modal-win  hidden">
+      <div class="modal-win__buttons-wrapper">
+        <button class="modal-win__btn  modal-win__btn--remove"></button>
+        <section class="modal-win__control-btns">
+          <button class="modal-win__btn  modal-win__btn--close"></button>
+          <button class="modal-win__btn  modal-win__btn--confirm"></button>    
+        </section>
+      </div>
+      <h3 class="modal-win__heading  screen-heading">Add Task</h3>
+      <ul class="task-settings-list  list ">
+        <li class="task-settings-list__item">
+          <h4 class="task-settings-list__heading">Title</h4>
+          <input type="text" class="task-settings-list__text-input" placeholder="Add title here">
+        </li>
+        <li class="task-settings-list__item">
+          <h4 class="task-settings-list__heading">Description</h4>
+          <input type="text" class="task-settings-list__text-input" placeholder="Add description here">
+        </li>
+        <li class="task-settings-list__item">
+          <h4 class="task-settings-list__heading">Category</h4>
+          <section class="task-settings-list__radio-btns">
+            <input id="cat1" class="task-settings-list__radio" name="category" value="Work" type="radio">
+            <label for="cat1" class="task-settings-list__label task-settings-list__label--active">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--work"></span>
+              <span class="task-settings-list__label-text">Work</span>
+            </label>
+            <input id="cat2" class="task-settings-list__radio" name="category" value="Education" type="radio">
+            <label for="cat2" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--education"></span>
+              <span class="task-settings-list__label-text">Education</span>
+            </label>
+            <input id="cat3" class="task-settings-list__radio" name="category" value="Hobby" type="radio">
+            <label for="cat3" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--hobby"></span>
+              <span class="task-settings-list__label-text">Hobby</span>
+            </label>
+            <input id="cat4" class="task-settings-list__radio" name="category" value="Sport" type="radio">
+            <label for="cat4" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--sport"></span>
+              <span class="task-settings-list__label-text">Sport</span>
+            </label>
+            <input id="cat5" class="task-settings-list__radio" name="category" value="Other" type="radio">
+            <label for="cat5" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--other"></span>
+              <span class="task-settings-list__label-text">Other</span>
+            </label>
+          </section>
+        </li>
+        <li class="task-settings-list__item">
+          <h4 class="task-settings-list__heading">Deadline</h4>
+          <input type="text" class="task-settings-list__text-input" placeholder="May, 23, 2018">
+        </li>
+        <li class="task-settings-list__item">
+          <h4 class="task-settings-list__heading">Estimation</h4>
+          <input id="est1" type="radio" name="estimation" class="estimation-radio"><label for="est1" class="estimation-label"></label>
+          <input id="est2" type="radio" name="estimation" class="estimation-radio"><label for="est2" class="estimation-label"></label>
+          <input id="est3" type="radio" name="estimation" class="estimation-radio"><label for="est3" class="estimation-label"></label>
+          <input id="est4" type="radio" name="estimation" class="estimation-radio"><label for="est4" class="estimation-label"></label>
+          <input id="est5" type="radio" name="estimation" class="estimation-radio"><label for="est5" class="estimation-label"></label>
+        </li>
+        <li class="task-settings-list__item">
+          <h4 class="task-settings-list__heading">Priority</h4>
+          <section class="task-settings-list__radio-btns">
+            <input id="prior1"class="task-settings-list__radio" name="prior" value="Work" type="radio">
+            <label for="prior1" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--urgent"></span>
+              <span class="task-settings-list__label-text">Urgent</span>
+            </label>
+            <input id="prior2"class="task-settings-list__radio" name="prior" value="Education" type="radio">
+            <label for="prior2" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--high"></span>
+              <span class="task-settings-list__label-text">High</span>
+            </label>
+            <input id="prior3"class="task-settings-list__radio" name="prior" value="Hobby" type="radio">
+            <label for="prior3" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--middle"></span>
+              <span class="task-settings-list__label-text">Middle</span>
+            </label>
+            <input id="prior4"class="task-settings-list__radio" name="prior" value="Sport" type="radio">
+            <label for="prior4" class="task-settings-list__label">
+              <span class="task-settings-list__label-circle  task-settings-list__label-circle--low"></span>
+              <span class="task-settings-list__label-text">Low</span>
+            </label>
+          </section>
+        </li>
+      </ul>
+    </section>
+    
+    <section class="modal-win  hidden">
+      <div class="modal-win__buttons-wrapper  hidden">
+        <section class="modal-win__control-btns">
+          <button class="modal-win__btn  modal-win__btn--close"></button>
+        </section>
+      </div>
+      <section class="remove-task">
+        <p class="remove-task__message">
+          Are you sure you want to remove selected task(s)?
+        </p>
+        <section class="remove-task__buttons">
+          <button class="button  button--blue">Cancel</button>
+          <button class="button  button--red">Remove</button>
+        </section>
+      </section>
+    </section>
   </section>
+
+  <section class="timer-screen  hidden">
+    <header class="screen-header">
+      <div class="main-container">
+        <h2 class="screen-heading  task-list-screen__screen-heading">1. Creating a New Design</h2>
+        <h3 class="timer-screen__subtitle">Lorem ipsum dolor sit amet consectetur adipiscing</h3>
+      </div>
+    </header>
+    <section class="timer">
+      <section class="timer__iterations">
+        <span class="timer__iteration-pomodora  timer__iteration-pomodora--active"></span>
+        <span class="timer__iteration-pomodora"></span>
+        <span class="timer__iteration-pomodora  timer__iteration-pomodora--failed"></span>
+      </section>
+    </section>
+    <div class="timer__clock  in-process">
+      <div class="timer__inner-clock-circle"></div>
+      <p class="timer__clock-text">
+        <span class="timer__break-word  hidden">Break</span>
+        <span class="timer__time-indicator  hidden">6</span>
+        <span class="timer__min-word  hidden">min</span>
+
+        <span class="timer__notification">Break<br> is over</span>
+        <span class="timer__notification  hidden">Let's do it</span>
+        <span class="timer__notification hidden">You<br> Completed<br> Task</span>        
+      </p>
+      
+    </div>
+    <section class="timer__buttons  hidden">
+      <button class="button button--green">Start</button>
+    </section>
+    <section class="timer__buttons  hidden">
+      <button class="button button--red">Fail Pomodora</button>
+      <button class="button button--green">Finish Pomodora</button>      
+    </section>
+    <section class="timer__buttons">
+      <button class="button button--green">Start Pomodora</button>      
+      <button class="button button--blue">Finish Task</button>
+    </section>
+    <section class="screen-arrows">
+      <a href="#" class="screen-arrow  screen-arrow--left"></a>
+      <a href="#" class="screen-arrow  screen-arrow--right"></a>
+    </section>
+  </section>
+
+  <section class="reports-screen  hidden">
+    <div class="main-container">
+    <header class="screen-header">
+        <h2 class="screen-heading  task-list-screen__screen-heading">Reports</h2>
+        <ul class="tabs   list">
+          <li class="tabs__item"><a class="tabs__link" href="#">Day</a></li>
+          <li class="tabs__item"><a class="tabs__link" href="#">Week</a></li>  
+          <li class="tabs__item"><a class="tabs__link" href="#">Month</a></li>        
+        </ul> 
+      </header>
+      <section class="reports-screen__report">
+        <img src="/chart.png" alt="" class="reports-screen__img">
+      </section>
+      
+      <ul class="tabs  list">
+        <li class="tabs__item"><a class="tabs__link" href="#">Pomodoros</a></li>
+        <li class="tabs__item"><a class="tabs__link" href="#">Task</a></li>  
+      </ul>
+    </div>
+    <section class="screen-arrows">
+      <a href="#" class="screen-arrow  screen-arrow--left"></a>
+      <a href="#" class="screen-arrow  screen-arrow--right"></a>
+    </section>
+  </section>
+
+  <section class="notification  notification--success">
+    <span class="notification__icon"></span>
+    <span class="notification__text">This is just an info notification message!</span>
+    <button class="notification__close-btn"></button>
+  </section>
+  <div class="screen-tint  hidden"></div>
 <script src="/bundle.js"></script>
 </body>
 </html>
