@@ -1,0 +1,134 @@
+.timer-screen {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.timer-screen__subtitle {
+  font-family: "Roboto";
+  font-size: 17px;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+}
+
+.timer__iterations {
+  margin-bottom: 53px;
+  text-align: center;
+  font-size: 0;
+}
+
+.timer__iteration-pomodora {
+  display: inline-block;
+  margin-right: 11px;
+  width: 26px;
+  height: 23px;
+  background: url("/empty-tomato.svg") no-repeat center;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+
+  &--active {
+    background: url("/fill tomato.svg") no-repeat center;
+  }
+
+  &--failed {
+    background: url("/tomato-failed.svg") no-repeat center;
+  }
+}
+
+.timer__clock {
+  position: relative;
+  width: 266px;
+  height: 266px;
+  margin: 0 auto 70px; 
+  border: 5px solid @yellow-orange-col;
+  border-radius: 50%;
+  box-shadow: 0px 0px 90px rgba(0, 0, 0, 0.3);
+}
+
+.timer__clock-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+  font-family: "PT Sans";
+  font-size: 26px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.timer__time-indicator {
+  display: block;
+  font-size: 100px;
+  line-height: 85px;
+  font-family: "Roboto";
+}
+
+.timer__min-word {
+  display: block;
+  font-size: 24px;
+}
+
+.timer__break-word {
+  font-size: 15px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.timer__notification {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+}
+
+.timer__buttons {
+  text-align: center;
+  font-size: 0;
+
+  .button {
+    min-width: 168px;
+  }
+}
+
+.timer__inner-clock-circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 38px solid @nepal-col;
+  width: 240px;
+  height: 240px;
+}
+
+.screen-arrows {
+  padding: 0 30px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  .clearfix;
+}
+
+.screen-arrow {
+  .reset-link;
+  font-family: "Icon";
+  color: @nepal-col;
+  font-size: 40px;
+  
+  &:hover{
+    color: @spray-col;
+  }
+
+  &--left::after {
+    content: "\e902";
+  }
+  &--right::after {
+    content: "\e903";
+    float: right;
+  }
+}

@@ -1,0 +1,231 @@
+.modal-win {
+  z-index: 100;
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  padding: 13px 27px 27px;
+  background-color: @madison-col;
+  font-size: 0;
+}
+
+
+.modal-win__buttons-wrapper {
+  .clearfix;
+}
+
+.modal-win__btn {
+  .reset-btn;
+  margin-right: 14px;
+  font-family: "Icon";
+  color: @nepal-col;
+  font-size: 20px;
+  cursor: pointer;
+
+  &--remove::after {
+    content: "\e914";
+    float: left;
+  }
+  &--close::after {
+    content: "\e906";
+  }
+  &--confirm::after {
+    content: "\e905";
+  }
+
+  &:hover {
+    color: @spray-col;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+}
+
+.modal-win__control-btns {
+  float: right;
+}
+
+.modal-win__heading {
+  margin-bottom: 10px;
+}
+
+.task-settings-list {
+  padding: 17px;
+}
+
+.task-settings-list__item {
+  min-width: 413px;
+  padding: 8px 0;
+  margin-bottom: 33px;
+  border-bottom: 1px solid @categories-list-border-col;
+
+  &:last-child {
+    margin-bottom: 20px;
+  }
+}
+
+.task-settings-list__heading {
+  margin-bottom: 14px;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.task-settings-list__text-input {
+  background-color: @madison-col;
+  color: #fff;
+  font-size: 16px;
+  font-family: "Roboto";
+  border: none;
+}
+.task-settings-list__text-input::-webkit-input-placeholder{
+  color: @nepal-col;
+}
+.task-settings-list__text-input::-moz-placeholder{
+  color: @nepal-col;
+}
+.task-settings-list__text-input:-ms-input-placeholder{
+  color: @nepal-col;
+}
+.task-settings-list__text-input:-moz-placeholder{
+  color: @nepal-col;
+}
+
+.task-settings-list__label {
+  margin-right: 10px;
+  color: @nepal-col;
+  &:hover {
+    color: @spray-col;
+
+    .task-settings-list__label-circle--work {
+      background-color: @selective-yellow;
+    }
+    .task-settings-list__label-circle--education {
+      background-color: @malibu-col;
+    }
+    .task-settings-list__label-circle--hobby {
+      background-color: @amethyst;
+    }
+    .task-settings-list__label-circle--sport {
+      background-color: @terra-cotta;
+    }
+    .task-settings-list__label-circle--other {
+      background-color: @dark-turquolse;
+    }
+
+    .task-settings-list__label-circle--urgent {
+      background-color: @urgent-prior-radio;
+    }
+    .task-settings-list__label-circle--high {
+      background-color: @yellow-orange-col;
+    }
+    .task-settings-list__label-circle--middle {
+      background-color: @gorse;;
+    }
+    .task-settings-list__label-circle--low {
+      background-color:  @mountain-meadow-col;
+    }
+  }
+}
+
+.task-settings-list__radio {
+  display: none;
+}
+
+.task-settings-list__label-circle {
+  vertical-align: top;
+  margin-right: 3px;
+  position: relative;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background-color: @nepal-col;
+}
+
+.task-settings-list__label-text {
+  font-size: 16px;
+} 
+
+.task-settings-list__radio:checked + .task-settings-list__label {
+  color: #fff;
+  .task-settings-list__label-circle {
+    &--work {
+      background-color: @selective-yellow;
+    }
+    &--education {
+      background-color: @malibu-col;
+    }
+    &--hobby {
+      background-color: @amethyst;
+    }
+    &--sport {
+      background-color: @terra-cotta;
+    }
+    &--other {
+      background-color: @dark-turquolse;
+    }
+
+    &--urgent {
+      background-color: @urgent-prior-radio;
+    }
+    &--high {
+      background-color: @yellow-orange-col;
+    }
+    &--middle {
+      background-color: @gorse;;
+    }
+    &--low {
+      background-color:  @mountain-meadow-col;
+    }
+
+    &::after {
+      box-sizing: border-box;
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 9px;
+      height: 9px;
+      border: 2px solid @madison-col;
+      border-radius: 50%;
+    }
+  }
+  &:hover {
+    color: @spray-col;
+  }
+}
+
+
+.estimation-label {
+  margin-right: 9px;
+  display: inline-block;
+  width: 21px;
+  height: 19px;
+  background: url("/empty-tomato.svg") no-repeat center;
+}
+
+.estimation-radio {
+  display: none;
+}
+
+.estimation-radio:checked + .estimation-label {
+  background: url("/fill tomato.svg") no-repeat center;
+}
+
+.remove-task__message {
+  margin-bottom: 42px;
+  padding: 129px 30px;
+  color: @nepal-col;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 300;
+}
+
+.remove-task__buttons {
+  margin-bottom: 25px;
+  text-align: center;
+}

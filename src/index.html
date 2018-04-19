@@ -26,7 +26,7 @@
       </nav>
     </div>
   </header>
-  <section class="settings-screen  hidden">
+  <section class="screen  settings-screen  hidden">
     <header class="screen-header">
       <div class="main-container">
         <h2 class="screen-heading">Settings</h2>
@@ -102,7 +102,7 @@
     </section>
   </section>
 
-  <section class="task-list-screen">
+  <section class="screen  task-list-screen">
     <header class="screen-header">
       <div class="main-container">
         <h2 class="screen-heading  task-list-screen__screen-heading">Dalily Task List<button class="task-list-screen__add-btn"></button></h2>
@@ -145,8 +145,8 @@
             <p class="message-section__message  message-section__message--done">Excellent,<br>
                 all daily tasks done! :)</p>
         </section>
-        <section class="today-tasks ">
-          <ul class="task-list  list ">
+        <section class="today-task">
+          <ul class="task-list  list">
             <li class="task-card  task-card--hobby  task-card--urgent-priority  task-card--to-delete">
               <section class="task-card__delete-indicator  task-card__delete-indicator--active"></section>            
               <section class="task-card__date">Today</section>
@@ -417,46 +417,48 @@
         <h3 class="timer-screen__subtitle">Lorem ipsum dolor sit amet consectetur adipiscing</h3>
       </div>
     </header>
-    <section class="timer">
-      <section class="timer__iterations">
-        <span class="timer__iteration-pomodora  timer__iteration-pomodora--active"></span>
-        <span class="timer__iteration-pomodora"></span>
-        <span class="timer__iteration-pomodora  timer__iteration-pomodora--failed"></span>
+    <section class="screen-body">
+      <section class="timer">
+        <section class="timer__iterations">
+          <span class="timer__iteration-pomodora  timer__iteration-pomodora--active"></span>
+          <span class="timer__iteration-pomodora"></span>
+          <span class="timer__iteration-pomodora  timer__iteration-pomodora--failed"></span>
+        </section>
       </section>
-    </section>
-    <div class="timer__clock  in-process">
-      <div class="timer__inner-clock-circle"></div>
-      <p class="timer__clock-text">
-        <span class="timer__break-word  hidden">Break</span>
-        <span class="timer__time-indicator  hidden">6</span>
-        <span class="timer__min-word  hidden">min</span>
+      <div class="timer__clock  in-process">
+        <div class="timer__inner-clock-circle"></div>
+        <p class="timer__clock-text">
+          <span class="timer__break-word  hidden">Break</span>
+          <span class="timer__time-indicator  hidden">6</span>
+          <span class="timer__min-word  hidden">min</span>
 
-        <span class="timer__notification">Break<br> is over</span>
-        <span class="timer__notification  hidden">Let's do it</span>
-        <span class="timer__notification hidden">You<br> Completed<br> Task</span>        
-      </p>
-      
-    </div>
-    <section class="timer__buttons  hidden">
-      <button class="button button--green">Start</button>
-    </section>
-    <section class="timer__buttons  hidden">
-      <button class="button button--red">Fail Pomodora</button>
-      <button class="button button--green">Finish Pomodora</button>      
-    </section>
-    <section class="timer__buttons">
-      <button class="button button--green">Start Pomodora</button>      
-      <button class="button button--blue">Finish Task</button>
-    </section>
-    <section class="screen-arrows">
-      <a href="#" class="screen-arrow  screen-arrow--left"></a>
-      <a href="#" class="screen-arrow  screen-arrow--right"></a>
+          <span class="timer__notification">Break<br> is over</span>
+          <span class="timer__notification  hidden">Let's do it</span>
+          <span class="timer__notification hidden">You<br> Completed<br> Task</span>        
+        </p>
+        
+      </div>
+      <section class="timer__buttons  hidden">
+        <button class="button button--green">Start</button>
+      </section>
+      <section class="timer__buttons  hidden">
+        <button class="button button--red">Fail Pomodora</button>
+        <button class="button button--green">Finish Pomodora</button>      
+      </section>
+      <section class="timer__buttons">
+        <button class="button button--green">Start Pomodora</button>      
+        <button class="button button--blue">Finish Task</button>
+      </section>
+      <section class="screen-arrows">
+        <a href="#" class="screen-arrow  screen-arrow--left"></a>
+        <a href="#" class="screen-arrow  screen-arrow--right"></a>
+      </section>
     </section>
   </section>
 
-  <section class="reports-screen  hidden">
+  <section class="screen  reports-screen  hidden">
     <div class="main-container">
-    <header class="screen-header">
+      <header class="screen-header">
         <h2 class="screen-heading  task-list-screen__screen-heading">Reports</h2>
         <ul class="tabs   list">
           <li class="tabs__item"><a class="tabs__link" href="#">Day</a></li>
@@ -467,7 +469,6 @@
       <section class="reports-screen__report">
         <img src="/chart.png" alt="" class="reports-screen__img">
       </section>
-      
       <ul class="tabs  list">
         <li class="tabs__item"><a class="tabs__link" href="#">Pomodoros</a></li>
         <li class="tabs__item"><a class="tabs__link" href="#">Task</a></li>  
