@@ -1,6 +1,8 @@
 require('./router');
 
 require('./components/settings/settings');
+require('assets/less/main.less'); // include general styles
+
 
 /* example of including header component */
 require('./components/header/header');
