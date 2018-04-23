@@ -20,7 +20,7 @@ _this.options = {
     },
     'work-iteration-option': {
       current: 5,
-      min: 3,
+      min: 2,
       max: 5,
       step: 1
     },
