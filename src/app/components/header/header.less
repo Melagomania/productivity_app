@@ -1,0 +1,91 @@
+.header {
+  padding: 56px 0 21px;
+  background-color: @madison-col;
+  
+  &--sticky {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    box-shadow: 1px 0px 20px 0px #022;
+    padding: 29px 0 25px;
+
+    .header__sticky-flex-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &::after {
+        display: none;
+      }
+    }
+    .header__logo {
+      display: block;
+    }
+  }
+}
+
+.header__logo {
+  display: none;
+}
+
+.header__logo-image {
+  width: 242px;
+}
+
+.header__menu {
+  float: right;
+  width: auto;
+}
+
+.header__menu-list {
+  display: flex;
+  justify-content: flex-start;
+} 
+
+.header__menu-item {
+  margin-right: 33px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.header__menu-link {
+  .reset-link;  
+  display: block;
+  width: 20px;
+  height: 20px;
+  font-family: "Icon";
+  color: @nepal-col;
+  
+  &:hover,
+  &:focus,
+  &:active {
+    color: @spray-col;
+  }
+
+  &::after {
+    display: block;
+    font-size: 19px;    
+  }
+
+  &--add::after {
+    content: '\e900';
+  }
+
+  &--remove::after {
+    content: '\e914';
+  }
+
+  &--task-list::after {
+    content: '\e90a';
+  }
+
+  &--reports::after {
+    content: '\e90d';
+  }
+
+  &--settings::after {
+    content: '\e90c';
+  }
+}

@@ -9,15 +9,15 @@
 </head>
 <body class="page">
   <header class="header">
-    <div class="main-container">
-      <h1 class="header__logo  hidden">
+    <div class="main-container  header__sticky-flex-wrapper">
+      <h1 class="header__logo">
         <a class="header__logo-link" href="#">
           <img class="header__logo-image" src="/Logo.svg" alt="logo">
         </a>
       </h1>
       <nav class="header__menu">
         <ul class="header__menu-list list">
-          <li class="header__menu-item"><a href="#" class="header__menu-link  header__menu-link--add"></a></li>        
+          <li class="header__menu-item"><a href="#" class="header__menu-link  header__menu-link--add hidden"></a></li>        
           <li class="header__menu-item"><a href="#" class="header__menu-link  header__menu-link--remove"></a></li>
           <li class="header__menu-item"><a href="#" class="header__menu-link  header__menu-link--task-list"></a></li>
           <li class="header__menu-item"><a href="#" class="header__menu-link  header__menu-link--reports"></a></li>
@@ -26,7 +26,7 @@
       </nav>
     </div>
   </header>
-  <section class="screen  settings-screen  hidden">
+  <section class="screen  settings-screen">
     <header class="screen-header">
       <div class="main-container">
         <h2 class="screen-heading">Settings</h2>
@@ -44,48 +44,50 @@
           <ul class="pom-settings__list  list">
             <li class="pom-settings__item  circled">
               <span class="pom-settings__heading">WORK TIME</span>
-              <div class="pom-settings__input-wrapper">
+              <div class="pom-settings__input-wrapper" id="work-time-option">
                 <button class="pom-settings__btn  pom-settings__btn--minus"></button>
                 <button class="pom-settings__btn  pom-settings__btn--plus"></button>
-                <span class="pom-settings__input">25</span>
+                <input type="text" class="pom-settings__input" id="work-time-input" min="15" max="35"disabled>
               </div>
               <p class="pom-settings__instruction">Please select a value between 15 and 25 <span class="pom-settings__highlighted">minutes</span></p>
             </li>
             <li class="pom-settings__item  circled">
               <span class="pom-settings__heading">WORK ITERATION</span>
-              <div class="pom-settings__input-wrapper">
+              <div class="pom-settings__input-wrapper" id="work-iteration-option">
                 <button class="pom-settings__btn  pom-settings__btn--minus"></button>
                 <button class="pom-settings__btn  pom-settings__btn--plus"></button>
-                <span class="pom-settings__input">5</span>
+                <input type="text" class="pom-settings__input" id="work-iteration-input" min="3" max="5" disabled>
               </div>
               <p class="pom-settings__instruction">Please select a value between 2 and 5 <span class="pom-settings__highlighted">iterations</span></p>
             </li>
             <li class="pom-settings__item  circled">
               <span class="pom-settings__heading">SHORT BREAK</span>
-              <div class="pom-settings__input-wrapper">
+              <div class="pom-settings__input-wrapper" id="short-break-option">
                 <button class="pom-settings__btn  pom-settings__btn--minus"></button>
                 <button class="pom-settings__btn  pom-settings__btn--plus"></button>
-                <span class="pom-settings__input">5</span>
+                <input type="text" class="pom-settings__input" id="short-break-input" min="2" max="5" disabled>
               </div>
               <p class="pom-settings__instruction">Please select a value between 3 and 5 <span class="pom-settings__highlighted">minutes</span></p>
             </li>
             <li class="pom-settings__item  circled">
               <span class="pom-settings__heading">LONG BREAK</span>
-              <div class="pom-settings__input-wrapper">
+              <div class="pom-settings__input-wrapper" id="long-break-option">
                 <button class="pom-settings__btn  pom-settings__btn--minus"></button>
                 <button class="pom-settings__btn  pom-settings__btn--plus"></button>
-                <span class="pom-settings__input">30</span>
+                <input type="text" class="pom-settings__input" id="long-break-input" min="15" max="40" disabled>
               </div>
               <p class="pom-settings__instruction">Please select a value between 15 and 25 <span class="pom-settings__highlighted">minutes</span></p>
             </li>
           </ul>
-          <section class="pom-settings__cycle-preview">
+          <section class="pom-cycle">
             <h3 class="subtitle2">Your cycle</h3>
-            <img class="pom-settings__cycle-preview-img" src="/Graph.png" alt="">
+            <div class="pom-cycle__top-labels"></div>
+            <div class="pom-cycle__inner-wrapper"></div>
+            <div class="pom-cycle__bottom-labels"></div>            
           </section>
           <section class="pom-settings__buttons">
-            <button class="button  button--blue  pom-settings--button">Go to Tasks</button>
-            <button class="button  button--green  pom-settings--button">Save</button>
+            <button class="button  button--blue pom-settings--button">Go to Tasks</button>
+            <button class="button  button--green pom-settings--button">Save</button>
           </section>
         </section>
         <section class="categories-settings  hidden">
@@ -102,7 +104,7 @@
     </section>
   </section>
 
-  <section class="screen  task-list-screen">
+  <section class="screen  task-list-screen  ">
     <header class="screen-header">
       <div class="main-container">
         <h2 class="screen-heading  task-list-screen__screen-heading">Dalily Task List<button class="task-list-screen__add-btn"></button></h2>
