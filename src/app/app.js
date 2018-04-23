@@ -1,9 +1,6 @@
-/* root component starts here */
-require('assets/less/main.less'); // include general styles
+require('./router');
 
-require('./router'); // include router
-
-require('./components/settings/settings'); // include router
+require('./components/settings/settings');
 
 /* example of including header component */
 require('./components/header/header');
