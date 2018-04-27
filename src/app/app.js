@@ -1,14 +1,18 @@
 require('./router');
+require('./database');
 
 require('./components/settings/settings');
 require('assets/less/main.less'); // include general styles
 
 
 /* example of including header component */
-require('./components/header/header');
+var Header = require('./components/header/header').Header;
 
 import {Settings} from './components/settings/settings';
 import {Cycle} from './components/cycle/cycle';
+
+var header = new Header();
+header.setScrollListener();
 
 
 var settings = new Settings();

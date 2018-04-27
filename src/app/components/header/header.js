@@ -1,16 +1,25 @@
-// require('./header.less'); // example of including component's styles
-var pageHeader = document.getElementsByClassName('header')[0];
-var page = document.getElementsByClassName('page')[0];
-var headerAddBtn = document.getElementsByClassName('header__menu-link--add')[0];
-window.addEventListener('scroll', function() {
+function Header() {
+  this.page = document.getElementsByClassName('page')[0];
+  this.pageHeader = document.getElementsByClassName('header')[0];
+}
+
+Header.prototype.toggleState = function() {
+  var _this = this;
   var scrolled = window.pageYOffset || document.documentElement.scrollTop;
   if(scrolled > 55) {
-    pageHeader.classList.add('header--sticky');
-    page.classList.add('page--scrolled');
-    headerAddBtn.classList.remove('hidden');
-  } else if(scrolled === 0) {
-    pageHeader.classList.remove('header--sticky');
-    page.classList.remove('page--scrolled');  
-    headerAddBtn.classList.add('hidden');      
+    _this.pageHeader.classList.add('header--sticky');    
+    _this.page.classList.add('page--scrolled');  
+  } else if (scrolled === 0) {
+    _this.pageHeader.classList.remove('header--sticky');
+    _this.page.classList.remove('page--scrolled');    
   }
-})
+};
+
+Header.prototype.setScrollListener = function() {
+  var _this = this;
+  window.addEventListener('scroll', function() {
+    _this.toggleState();
+  });
+}
+
+module.exports.Header = Header;

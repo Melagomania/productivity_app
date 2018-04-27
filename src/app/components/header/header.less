@@ -10,7 +10,9 @@
     width: 100%;
     box-shadow: 1px 0px 20px 0px #022;
     padding: 29px 0 25px;
-
+    .header__menu-link--add {
+      display: block;
+    }
     .header__sticky-flex-wrapper {
       display: flex;
       justify-content: space-between;
@@ -69,8 +71,11 @@
     font-size: 19px;    
   }
 
-  &--add::after {
-    content: '\e900';
+  &--add{
+    display: none;
+    &::after {
+      content: '\e900';
+    }
   }
 
   &--remove::after {
