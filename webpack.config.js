@@ -1,6 +1,7 @@
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var handleBars = require('handlebars');
 
 module.exports = {
   entry: './src/app/app.js',
@@ -21,6 +22,10 @@ module.exports = {
   devtool: 'source-map',
   module: {
     loaders: [   
+      { 
+        test: /\.hbs$/, 
+        loader: "handlebars-loader" 
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
@@ -66,6 +71,8 @@ module.exports = {
   ],
   devServer: {
     contentBase: './dist',
-    port: 3000
+    port: 3000,
+    overlay: true,
+  historyApiFallback: true
   }
 };

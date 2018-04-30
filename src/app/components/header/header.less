@@ -33,6 +33,7 @@
 
 .header__logo-image {
   width: 242px;
+  height: 100%;
 }
 
 .header__menu {
@@ -61,10 +62,13 @@
   color: @nepal-col;
   
   &:hover,
-  &:focus,
-  &:active {
+  &:focus {
     color: @spray-col;
   }
+  &--active {
+    color: white;
+  }
+
 
   &::after {
     display: block;

@@ -1,0 +1,72 @@
+<section class="screen task-list-screen">
+  <header class="screen-header">
+    <div class="main-container">
+      <h1 class="screen-heading task-list-screen__screen-heading">Dalily Task List
+        <button class="task-list-screen__add-btn"></button>
+      </h1>
+      <div class="today-tasks__tabs-wrapper">
+        <ul class="tabs tabs--right list">
+          <li class="tabs__item">
+            <a href="/task-list" class="tabs__btn">To Do</a>
+          </li>
+          <li class="tabs__item">
+            <a href="/task-list/done" class="tabs__btn tabs__btn--current">Done</a>
+          </li>
+        </ul>
+        <ul class="tabs  tabs--left tabs--remove  list">
+          <li class="tabs__item">
+            <button class="tabs__btn  tabs__btn--current" href="#">Select All</button>
+          </li>
+          <li class="tabs__item">
+            <button class="tabs__btn">Deselect all</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section class="screen-body">
+    <div class="main-container">
+      <section class="message-section hidden">
+        <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+        <p class="message-section__message">Add your first task</p>
+      </section>
+      <section class="message-section hidden">
+        <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+        <p class="message-section__message">As you visited our site for a first time you can check and customize your default application settings</p>
+        <button class="button button--blue">Skip</button>
+        <button class="button button--green">Go to Settings</button>
+      </section>
+      <section class="message-section hidden">
+        <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+        <p class="message-section__message">You don’t have any tasks left.
+          <br> Add new tasks to stay productive.</p>
+      </section>
+      <section class="message-section message-section--compact hidden">
+        <p class="message-section__message">Task added,
+          <br> drag it to the top 5 in daily task list</p>
+        <span class="message-section__icon">&#xe901;</span>
+      </section>
+      <section class="message-section message-section--compact hidden">
+        <p class="message-section__message message-section__message--done">Excellent,
+          <br> all daily tasks done! :)</p>
+      </section>
+      <ul class="task-list list">
+        <li class="task-card task-card--hobby task-card--urgent-priority task-card--done">
+          <section class="task-card__delete-indicator task-card__delete-indicator--active"></section>
+          <section class="task-card__date">Today</section>
+          <section class="task-card__task-info">
+            <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+            <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+          </section>
+          <section class="task-card__buttons">
+            <section class="task-card__task-adjustsments">
+              <button class="task-card__button task-card__button--to-daily hidden"></button>
+              <button class="task-card__button task-card__button--edit"></button>
+            </section>
+            <a href='/timer' class="task-card__start"></a>
+          </section>
+        </li>
+      </ul>
+    </div>
+  </section>
+</section>

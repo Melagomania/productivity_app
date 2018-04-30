@@ -1,0 +1,109 @@
+<section class="modal-win  hidden">
+  <div class="modal-win__buttons-wrapper">
+    <button class="modal-win__btn modal-win__btn--remove"></button>
+    <section class="modal-win__control-btns">
+      <button class="modal-win__btn modal-win__btn--close"></button>
+      <button class="modal-win__btn modal-win__btn--confirm"></button>
+    </section>
+  </div>
+  <h3 class="modal-win__heading screen-heading">Add Task</h3>
+  <ul class="task-settings-list list ">
+    <li class="task-settings-list__item">
+      <h4 class="task-settings-list__heading">Title</h4>
+      <input type="text" class="task-settings-list__text-input" placeholder="Add title here">
+    </li>
+    <li class="task-settings-list__item">
+      <h4 class="task-settings-list__heading">Description</h4>
+      <input type="text" class="task-settings-list__text-input" placeholder="Add description here">
+    </li>
+    <li class="task-settings-list__item">
+      <h4 class="task-settings-list__heading">Category</h4>
+      <section class="task-settings-list__radio-btns">
+        <input id="cat1" class="task-settings-list__radio" name="category" value="Work" type="radio">
+        <label for="cat1" class="task-settings-list__label task-settings-list__label--active">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--work"></span>
+          <span class="task-settings-list__label-text">Work</span>
+        </label>
+        <input id="cat2" class="task-settings-list__radio" name="category" value="Education" type="radio">
+        <label for="cat2" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--education"></span>
+          <span class="task-settings-list__label-text">Education</span>
+        </label>
+        <input id="cat3" class="task-settings-list__radio" name="category" value="Hobby" type="radio">
+        <label for="cat3" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--hobby"></span>
+          <span class="task-settings-list__label-text">Hobby</span>
+        </label>
+        <input id="cat4" class="task-settings-list__radio" name="category" value="Sport" type="radio">
+        <label for="cat4" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--sport"></span>
+          <span class="task-settings-list__label-text">Sport</span>
+        </label>
+        <input id="cat5" class="task-settings-list__radio" name="category" value="Other" type="radio">
+        <label for="cat5" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--other"></span>
+          <span class="task-settings-list__label-text">Other</span>
+        </label>
+      </section>
+    </li>
+    <li class="task-settings-list__item">
+      <h4 class="task-settings-list__heading">Deadline</h4>
+      <input type="text" class="task-settings-list__text-input" placeholder="May, 23, 2018">
+    </li>
+    <li class="task-settings-list__item">
+      <h4 class="task-settings-list__heading">Estimation</h4>
+      <input id="est1" type="radio" name="estimation" class="estimation-radio">
+      <label for="est1" class="estimation-label"></label>
+      <input id="est2" type="radio" name="estimation" class="estimation-radio">
+      <label for="est2" class="estimation-label"></label>
+      <input id="est3" type="radio" name="estimation" class="estimation-radio">
+      <label for="est3" class="estimation-label"></label>
+      <input id="est4" type="radio" name="estimation" class="estimation-radio">
+      <label for="est4" class="estimation-label"></label>
+      <input id="est5" type="radio" name="estimation" class="estimation-radio">
+      <label for="est5" class="estimation-label"></label>
+    </li>
+    <li class="task-settings-list__item">
+      <h4 class="task-settings-list__heading">Priority</h4>
+      <section class="task-settings-list__radio-btns">
+        <input id="prior1" class="task-settings-list__radio" name="prior" value="Work" type="radio">
+        <label for="prior1" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--urgent"></span>
+          <span class="task-settings-list__label-text">Urgent</span>
+        </label>
+        <input id="prior2" class="task-settings-list__radio" name="prior" value="Education" type="radio">
+        <label for="prior2" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--high"></span>
+          <span class="task-settings-list__label-text">High</span>
+        </label>
+        <input id="prior3" class="task-settings-list__radio" name="prior" value="Hobby" type="radio">
+        <label for="prior3" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--middle"></span>
+          <span class="task-settings-list__label-text">Middle</span>
+        </label>
+        <input id="prior4" class="task-settings-list__radio" name="prior" value="Sport" type="radio">
+        <label for="prior4" class="task-settings-list__label">
+          <span class="task-settings-list__label-circle task-settings-list__label-circle--low"></span>
+          <span class="task-settings-list__label-text">Low</span>
+        </label>
+      </section>
+    </li>
+  </ul>
+</section>
+
+<section class="modal-win hidden">
+  <div class="modal-win__buttons-wrapper hidden">
+    <section class="modal-win__control-btns">
+      <button class="modal-win__btn modal-win__btn--close"></button>
+    </section>
+  </div>
+  <section class="remove-task">
+    <p class="remove-task__message">
+      Are you sure you want to remove selected task(s)?
+    </p>
+    <section class="remove-task__buttons">
+      <button class="button button--blue">Cancel</button>
+      <button class="button button--red">Remove</button>
+    </section>
+  </section>
+</section>
