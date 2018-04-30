@@ -1,5 +1,6 @@
 import {cycle} from './../../app';
-export function Settings() {
+export function Settings(cycle) {
+  this.cycle = cycle;
   var _this = this;
   _this.elements = {
     fields: document.getElementsByClassName('pom-settings__input-wrapper'),
@@ -7,11 +8,11 @@ export function Settings() {
       'work-time-option': document.getElementById('work-time-input'),
       'work-iteration-option': document.getElementById('work-iteration-input'),
       'short-break-option': document.getElementById('short-break-input'),
-      'long-break-option': document.getElementById('long-break-input')      
+      'long-break-option': document.getElementById('long-break-input')
     }
   }
 
-_this.options = {
+  _this.options = {
     'work-time-option': {
       current: 25,
       min: 15,
@@ -31,62 +32,60 @@ _this.options = {
       step: 1
     },
     'long-break-option': {
-      current :30,
+      current: 30,
       min: 15,
       max: 40,
       step: 5
     }
   };
 
-  _this.init = function() {
+  _this.init = function () {
     this.renderOptions();
-    for(var i = 0; i < _this.elements.fields.length; i++) {
+    for (var i = 0; i < _this.elements.fields.length; i++) {
       this.elements.fields[i].addEventListener('click', _this.handleClick);
     }
-    
-    
   }
 
-  _this.renderOptions = function() {
-    _this.elements.inputs['work-time-option'].value = _this.options['work-time-option'].current;
-    _this.elements.inputs['work-iteration-option'].value = _this.options['work-iteration-option'].current;
-    _this.elements.inputs['short-break-option'].value = _this.options['short-break-option'].current;
-    _this.elements.inputs['long-break-option'].value = _this.options['long-break-option'].current;
-  } 
+  _this.renderOptions = function () {
+    for (let i in _this.elements.inputs) {
+      _this.elements.inputs[i].value = _this.options[i].current;
+    }
+  }
 
-  _this.renderOption = function(field) {
+  _this.renderOption = function (field) {
     _this.elements.inputs[field].value = _this.options[field].current;
   }
 
-  _this.modifyOption = function(field, action) {
-    switch(action) {
+  _this.modifyOption = function (field, action) {
+    switch (action) {
       case 'plus':
-        if(_this.options[field].current !== _this.options[field].max) {
-          _this.options[field].current += _this.options[field].step;   
+        if (_this.options[field].current !== _this.options[field].max) {
+          _this.options[field].current += _this.options[field].step;
         }
         break;
       case 'minus':
-        if(_this.options[field].current !== _this.options[field].min) {
-          _this.options[field].current -= _this.options[field].step;   
+        if (_this.options[field].current !== _this.options[field].min) {
+          _this.options[field].current -= _this.options[field].step;
         }
         break;
     }
   }
 
-  _this.handleClick = function(e) {
-    if(e.target.classList.contains('pom-settings__btn')){
+  _this.handleClick = function (e) {
+    if (e.target.classList.contains('pom-settings__btn')) {
       var clickedField = e.target.parentNode.id;
       var buttonAction;
-      if(e.target.classList.contains('pom-settings__btn--plus')) {
+      if (e.target.classList.contains('pom-settings__btn--plus')) {
         buttonAction = 'plus';
-      } else if(e.target.classList.contains('pom-settings__btn--minus')) {
+      } else if (e.target.classList.contains('pom-settings__btn--minus')) {
         buttonAction = 'minus';
       }
       _this.modifyOption(clickedField, buttonAction);
       _this.renderOption(clickedField);
-      cycle.renderCycle(cycle.calculateOptions(_this.options))
-      cycle.renderTopCycleLabels(cycle.calculateOptions(_this.options));
-      cycle.renderBottomCycleLabels(cycle.calculateOptions(_this.options));      
+      cycle.calculateOptions(_this.options);
+      cycle.renderCycle(cycle.renderConfig)
+      cycle.renderTopCycleLabels(cycle.renderConfig);
+      cycle.renderBottomCycleLabels(cycle.renderConfig);
     }
   }
 }

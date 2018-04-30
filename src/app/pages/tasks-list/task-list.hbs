@@ -1,0 +1,215 @@
+<section class="screen task-list-screen">
+  <header class="screen-header">
+    <div class="main-container">
+      <h1 class="screen-heading task-list-screen__screen-heading">Dalily Task List
+        <button class="task-list-screen__add-btn"></button>
+      </h1>
+      <div class="today-tasks__tabs-wrapper">
+        <ul class="tabs tabs--right list">
+          <li class="tabs__item">
+            <a href="/task-list" class="tabs__btn tabs__btn--current">To Do</a>
+          </li>
+          <li class="tabs__item">
+            <a href="/task-list/done" class="tabs__btn">Done</a>
+          </li>
+        </ul>
+        <ul class="tabs  tabs--left tabs--remove list">
+          <li class="tabs__item">
+            <button class="tabs__btn  tabs__btn--current" href="#">Select All</button>
+          </li>
+          <li class="tabs__item">
+            <button class="tabs__btn">Deselect all</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section class="screen-body">
+    <div class="main-container">
+      <section class="message-section hidden">
+        <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+        <p class="message-section__message">Add your first task</p>
+      </section>
+      <section class="message-section hidden">
+        <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+        <p class="message-section__message">You don’t have any tasks left.
+          <br> Add new tasks to stay productive.</p>
+      </section>
+      <section class="message-section message-section--compact hidden">
+        <p class="message-section__message">Task added,
+          <br> drag it to the top 5 in daily task list</p>
+        <span class="message-section__icon">&#xe901;</span>
+      </section>
+      <section class="message-section message-section--compact hidden">
+        <p class="message-section__message message-section__message--done">Excellent,
+          <br> all daily tasks done! :)</p>
+      </section>
+      <section class="today-task">
+        <ul class="task-list list">
+          <li class="task-card task-card--hobby task-card--urgent-priority">
+            <section class="task-card__delete-indicator task-card__delete-indicator--active"></section>
+            <section class="task-card__date">Today</section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily hidden"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+          <li class="task-card task-card--sport task-card--high-priority">
+            <section class="task-card__delete-indicator"></section>
+            <section class="task-card__date">Today</section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily hidden"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+          <li class="task-card task-card--work task-card--middle-priority task-card--to-delete">
+            <section class="task-card__delete-indicator"></section>
+            <section class="task-card__date">Today</section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily hidden"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+          <li class="task-card task-card--education task-card--middle-priority task-card--to-delete">
+            <section class="task-card__delete-indicator"></section>
+            <section class="task-card__date">Today</section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily hidden"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+          <li class="task-card  task-card--other task-card--low-priority">
+            <section class="task-card__delete-indicator"></section>
+            <section class="task-card__date">Today</section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily hidden"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+        </ul>
+      </section>
+
+      <button class="task-list-screen__global-list-toggler">Global list </button>
+      <section class="global-list ">
+        <div class="global-list__tabs-wrapper">
+          <ul class="tabs  tabs--right  list">
+            <li class="tabs__item">
+              <button class="tabs__btn tabs__btn--current">All</button>
+            </li>
+            <li class="tabs__item">
+              <button class="tabs__btn">Urgent</button>
+            </li>
+            <li class="tabs__item">
+              <button class="tabs__btn">High</button>
+            </li>
+            <li class="tabs__item">
+              <button class="tabs__btn">Middle</button>
+            </li>
+            <li class="tabs__item">
+              <button class="tabs__btn">Low</button>
+            </li>
+          </ul>
+        </div>
+        <ul class="task-list  task-list--categorized task-list--categorized-work task-list--work list">
+          <div class="task-list__decorative-line">
+            <div class="task-list__decorative-circle">
+              <div class="task-list__decorative-inner-circle"></div>
+            </div>
+          </div>
+          <h3 class="task-list__heading task-list__heading--work">Work</h3>
+          <li class="task-card task-card--work task-card--high-priority task-card--no-border task-card--to-delete">
+            <section class="task-card__delete-indicator"></section>
+            <section class="task-card__date">Today</section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+          <li class="task-card  task-card--work task-card--middle-priority task-card--no-border">
+            <section class="task-card__delete-indicator"></section>
+            <section class="task-card__date">Today</section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+        </ul>
+        <ul class="task-list task-list--categorized task-list--categorized-education task-list--work list">
+          <div class="task-list__decorative-line">
+            <div class="task-list__decorative-circle">
+              <div class="task-list__decorative-inner-circle"></div>
+            </div>
+          </div>
+          <h3 class="task-list__heading task-list__heading--education">Education</h3>
+          <li class="task-card task-card--education task-card--low-priority task-card--overdue  task-card--no-border">
+            <section class="task-card__delete-indicator"></section>
+            <section class="task-card__date">
+              <span class="task-card__day">23</span>
+              <span class="task-card__mounth">may</span>
+            </section>
+            <section class="task-card__task-info">
+              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
+              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+            </section>
+            <section class="task-card__buttons">
+              <section class="task-card__task-adjustsments">
+                <button class="task-card__button task-card__button--to-daily"></button>
+                <button class="task-card__button task-card__button--edit"></button>
+              </section>
+              <a href='/timer' class="task-card__start link"></a>
+            </section>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
+</section>

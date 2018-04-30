@@ -7,14 +7,10 @@ export function Cycle() {
     var workTime = options['work-time-option'].current;
     var workIterations = options['work-iteration-option'].current;
     var totalWorkTime = (workTime * workIterations) * 2;
-
     var shortBreakTime = options['short-break-option'].current;
     var totalShortBreakTime = (shortBreakTime * (workIterations - 1)) * 2;
-    
     var longBreakTime = options['long-break-option'].current;
-    
     var totalTime = totalWorkTime + totalShortBreakTime + longBreakTime;
-    
     var res = {
       longBreakTime: longBreakTime,
       shortBreakTime: shortBreakTime,
@@ -24,6 +20,7 @@ export function Cycle() {
       longBreakPercentage: longBreakTime / totalTime * 100,
       workIterations: workIterations,
     } 
+    this.renderConfig = res;
     return res;
   }
 
@@ -47,7 +44,8 @@ export function Cycle() {
       }
       if(i === 1) break;
       var longBreak = document.createElement('div');
-      longBreak.classList.add('pom-cycle__line', 'pom-cycle__line--long-break');
+      longBreak.classList.add('pom-cycle__line');
+      longBreak.classList.add('pom-cycle__line--long-break');
       longBreak.style.width = options.longBreakPercentage + '%';
       this.cycleWrapper.appendChild(longBreak);
     }

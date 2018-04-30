@@ -82,6 +82,7 @@
 
   // status/progress
   &--done {
+    opacity: 0.8;
     .task-card__task-name {
       text-decoration: line-through;
     }
@@ -130,6 +131,7 @@
       color: @urgent-prior-text;
     }
     .task-card__start{
+      text-decoration: none;
       background-color:  @tomato-col;
       &:hover,
       &:focus,
@@ -311,6 +313,7 @@
   height: 87px;
   border: none;
   cursor: pointer;
+  .reset-link;
 
   &::after {
     position: absolute;

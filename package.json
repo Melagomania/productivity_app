@@ -8,7 +8,10 @@
   "scripts": {
     "start": "webpack-dev-server --open"
   },
-  "dependencies": {},
+  "dependencies": {
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.7.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
