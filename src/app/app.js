@@ -1,15 +1,22 @@
 var router = require('./router');
-require('./database');
+// require('./database');
 require('assets/less/main.less'); // include general styles
 var Header = require('./components/header/header').Header;
 import {Settings} from './components/settings/settings';
 import {Cycle} from './components/cycle/cycle';
 
+import {ModalController} from './components/modals/modalController';
+import {ModalView} from './components/modals/modalView';
+
+import {Firebase} from './firebase';
+
+export var firebase = new Firebase();
+checkFirstVisit();
 var header = new Header();
 header.setScrollListener();
 
-checkFirstVisit();
-
+var modalView = new ModalView();
+var modalController = new ModalController(modalView);
 
 function checkFirstVisit() {
   if(sessionStorage.visited === undefined) {

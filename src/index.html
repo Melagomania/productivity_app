@@ -8,6 +8,7 @@
   <title>Productivity app</title>
 </head>
 <body class="page">
+  <div class="modal-wrapper"></div>
   <header class="header">
     <div class="main-container header__sticky-flex-wrapper">
       <h1 class="header__logo">
@@ -17,7 +18,7 @@
       </h1>
       <nav class="header__menu">
         <ul class="header__menu-list list">
-          <li class="header__menu-item"><a href="/add" class="header__menu-link header__menu-link--add"></a></li>    
+          <li class="header__menu-item"><button href="/add" class="header__menu-link header__menu-link--add modal-button" data-modal-action="modal-add"></button></li>    
           <li class="header__menu-item"><a href="/#" class="header__menu-link header__menu-link--remove"></a></li>
           <li class="header__menu-item"><a href="/task-list" class="header__menu-link header__menu-link--task-list"></a></li>
           <li class="header__menu-item"><a href="/reports" class="header__menu-link header__menu-link--reports"></a></li>
@@ -30,7 +31,7 @@
 
   </div>
   
-  <div class="screen-tint hidden"></div>
+
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
 <script src="/bundle.js"></script>  

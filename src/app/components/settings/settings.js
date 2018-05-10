@@ -1,4 +1,6 @@
-import {cycle} from './../../app';
+import {
+  cycle
+} from './../../app';
 export function Settings(cycle) {
   this.cycle = cycle;
   var _this = this;

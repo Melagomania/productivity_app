@@ -1,45 +1,47 @@
-<section class="modal-win  hidden">
+<section class="modal-win">
   <div class="modal-win__buttons-wrapper">
+    {{#if removeBtn}}
     <button class="modal-win__btn modal-win__btn--remove"></button>
+    {{/if}}
     <section class="modal-win__control-btns">
-      <button class="modal-win__btn modal-win__btn--close"></button>
-      <button class="modal-win__btn modal-win__btn--confirm"></button>
+      <button class="modal-win__btn modal-win__btn--close modal-button" data-modal-action="modal-close"></button>
+      <button class="modal-win__btn modal-win__btn--confirm modal-button" data-modal-action="modal-confirm"></button>
     </section>
   </div>
-  <h3 class="modal-win__heading screen-heading">Add Task</h3>
+  <h3 class="modal-win__heading screen-heading">{{title}}</h3>
   <ul class="task-settings-list list ">
     <li class="task-settings-list__item">
       <h4 class="task-settings-list__heading">Title</h4>
-      <input type="text" class="task-settings-list__text-input" placeholder="Add title here">
+      <input type="text" class="task-settings-list__text-input" name="task-title"placeholder="Add title here">
     </li>
     <li class="task-settings-list__item">
       <h4 class="task-settings-list__heading">Description</h4>
-      <input type="text" class="task-settings-list__text-input" placeholder="Add description here">
+      <input type="text" class="task-settings-list__text-input" name="task-description" placeholder="Add description here">
     </li>
     <li class="task-settings-list__item">
       <h4 class="task-settings-list__heading">Category</h4>
       <section class="task-settings-list__radio-btns">
-        <input id="cat1" class="task-settings-list__radio" name="category" value="Work" type="radio">
+        <input id="cat1" class="task-settings-list__radio" name="task-category" value="1" type="radio">
         <label for="cat1" class="task-settings-list__label task-settings-list__label--active">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--work"></span>
           <span class="task-settings-list__label-text">Work</span>
         </label>
-        <input id="cat2" class="task-settings-list__radio" name="category" value="Education" type="radio">
+        <input id="cat2" class="task-settings-list__radio" name="task-category" value="2" type="radio">
         <label for="cat2" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--education"></span>
           <span class="task-settings-list__label-text">Education</span>
         </label>
-        <input id="cat3" class="task-settings-list__radio" name="category" value="Hobby" type="radio">
+        <input id="cat3" class="task-settings-list__radio" name="task-category" value="3" type="radio">
         <label for="cat3" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--hobby"></span>
           <span class="task-settings-list__label-text">Hobby</span>
         </label>
-        <input id="cat4" class="task-settings-list__radio" name="category" value="Sport" type="radio">
+        <input id="cat4" class="task-settings-list__radio" name="task-category" value="4" type="radio">
         <label for="cat4" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--sport"></span>
           <span class="task-settings-list__label-text">Sport</span>
         </label>
-        <input id="cat5" class="task-settings-list__radio" name="category" value="Other" type="radio">
+        <input id="cat5" class="task-settings-list__radio" name="task-category" value="5" type="radio">
         <label for="cat5" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--other"></span>
           <span class="task-settings-list__label-text">Other</span>
@@ -48,40 +50,40 @@
     </li>
     <li class="task-settings-list__item">
       <h4 class="task-settings-list__heading">Deadline</h4>
-      <input type="text" class="task-settings-list__text-input" placeholder="May, 23, 2018">
+      <input type="text" class="task-settings-list__text-input" name="task-deadline" placeholder="May, 23, 2018">
     </li>
     <li class="task-settings-list__item">
       <h4 class="task-settings-list__heading">Estimation</h4>
-      <input id="est1" type="radio" name="estimation" class="estimation-radio">
+      <input id="est1" type="radio" name="task-estimation" value="1" class="estimation-radio">
       <label for="est1" class="estimation-label"></label>
-      <input id="est2" type="radio" name="estimation" class="estimation-radio">
+      <input id="est2" type="radio" name="task-estimation" value="2" class="estimation-radio">
       <label for="est2" class="estimation-label"></label>
-      <input id="est3" type="radio" name="estimation" class="estimation-radio">
+      <input id="est3" type="radio" name="task-estimation" value="3" class="estimation-radio">
       <label for="est3" class="estimation-label"></label>
-      <input id="est4" type="radio" name="estimation" class="estimation-radio">
+      <input id="est4" type="radio" name="task-estimation" value="4" class="estimation-radio">
       <label for="est4" class="estimation-label"></label>
-      <input id="est5" type="radio" name="estimation" class="estimation-radio">
+      <input id="est5" type="radio" name="task-estimation" value="5" class="estimation-radio">
       <label for="est5" class="estimation-label"></label>
     </li>
     <li class="task-settings-list__item">
       <h4 class="task-settings-list__heading">Priority</h4>
       <section class="task-settings-list__radio-btns">
-        <input id="prior1" class="task-settings-list__radio" name="prior" value="Work" type="radio">
+        <input id="prior1" class="task-settings-list__radio" name="task-priority" value="4" type="radio">
         <label for="prior1" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--urgent"></span>
           <span class="task-settings-list__label-text">Urgent</span>
         </label>
-        <input id="prior2" class="task-settings-list__radio" name="prior" value="Education" type="radio">
+        <input id="prior2" class="task-settings-list__radio" name="task-priority" value="3" type="radio">
         <label for="prior2" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--high"></span>
           <span class="task-settings-list__label-text">High</span>
         </label>
-        <input id="prior3" class="task-settings-list__radio" name="prior" value="Hobby" type="radio">
+        <input id="prior3" class="task-settings-list__radio" name="task-priority" value="2" type="radio">
         <label for="prior3" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--middle"></span>
           <span class="task-settings-list__label-text">Middle</span>
         </label>
-        <input id="prior4" class="task-settings-list__radio" name="prior" value="Sport" type="radio">
+        <input id="prior4" class="task-settings-list__radio" name="task-priority" value="1" type="radio">
         <label for="prior4" class="task-settings-list__label">
           <span class="task-settings-list__label-circle task-settings-list__label-circle--low"></span>
           <span class="task-settings-list__label-text">Low</span>
@@ -91,7 +93,7 @@
   </ul>
 </section>
 
-<section class="modal-win hidden">
+{{!-- <section class="modal-win hidden">
   <div class="modal-win__buttons-wrapper hidden">
     <section class="modal-win__control-btns">
       <button class="modal-win__btn modal-win__btn--close"></button>
@@ -106,4 +108,5 @@
       <button class="button button--red">Remove</button>
     </section>
   </section>
-</section>
+</section> --}}
+<div class="screen-tint "></div>
