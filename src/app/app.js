@@ -1,8 +1,18 @@
+import {Header} from './components/header/header';
+export var header = new Header();
+header.setScrollListener();
+require('assets/less/main.less');
+
+import {PageController} from './components/page/page-controller';
+import {PageView} from './components/page/page-view';
+import {PageModel} from './components/page/page-model';
+
+export var pageModel = new PageModel();
+export var pageView = new PageView();
 var router = require('./router');
-require('assets/less/main.less'); // include general styles
-var Header = require('./components/header/header').Header;
-import {Settings} from './components/settings/settings';
-import {Cycle} from './components/cycle/cycle';
+var pageController = new PageController(1, 2, router);
+pageController.setLinksListener();
+
 
 import {ModalController} from './components/modals/modalController';
 import {ModalView} from './components/modals/modalView';
@@ -12,8 +22,6 @@ import {Firebase} from './firebase';
 export var firebase = new Firebase();
 firebase.getTasksFromDB();
 checkFirstVisit();
-var header = new Header();
-header.setScrollListener();
 
 var modalView = new ModalView();
 var modalController = new ModalController(modalView);

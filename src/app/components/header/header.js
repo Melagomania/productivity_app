@@ -1,4 +1,4 @@
-function Header() {
+export function Header() {
   this.page = document.getElementsByClassName('page')[0];
   this.pageHeader = document.getElementsByClassName('header')[0];
 }
@@ -22,4 +22,15 @@ Header.prototype.setScrollListener = function() {
   });
 }
 
-module.exports.Header = Header;
+Header.prototype.toggleCurrentLink = function(newCurrentPage) {
+  var current = document.getElementsByClassName('header__menu-link--active');
+  if(current.length) {
+    current[0].classList.remove('header__menu-link--active');
+  }
+  if(newCurrentPage) {
+    var newCurrentLink = document.getElementsByClassName('header__menu-link--' + newCurrentPage)[0];
+    newCurrentLink.classList.add('header__menu-link--active');
+  }
+}
+
+// module.exports.Header = Header;

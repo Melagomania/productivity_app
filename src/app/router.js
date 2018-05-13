@@ -1,13 +1,26 @@
-import {Settings} from './components/settings/settings';
-import {Cycle} from './components/cycle/cycle';
+import {
+  Settings
+} from './components/settings/settings';
+import {
+  Cycle
+} from './components/cycle/cycle';
+import {
+  header
+} from './app';
+import {
+  pageModel
+} from './app';
+import {
+  pageView
+} from './app';
 
-var firstVisitPage = require('./pages/first-visit/first-visit.hbs');
-var settingsHBS = require('./pages/settings/settings.hbs');
-var settingsCategorieHBS = require('./pages/settings/settings-categories.hbs');
-var timerHBS = require('./pages/timer/timer.hbs');
-var taskListHBS = require('./pages/tasks-list/task-list.hbs');
-var taskListDoneHBS = require('./pages/tasks-list/task-list-done.hbs');
-var reportsHBS = require('./pages/reports/reports.hbs');
+// var firstVisitPage = require('./pages/first-visit/first-visit.hbs');
+// var settingsHBS = require('./pages/settings/settings.hbs');
+// var settingsCategorieHBS = require('./pages/settings/settings-categories.hbs');
+// var timerHBS = require('./pages/timer/timer.hbs');
+// var taskListHBS = require('./pages/tasks-list/task-list.hbs');
+// var taskListDoneHBS = require('./pages/tasks-list/task-list-done.hbs');
+// var reportsHBS = require('./pages/reports/reports.hbs');
 
 var Router = {
   routes: [],
@@ -67,7 +80,7 @@ var Router = {
       if (match) {
         match.shift();
         this.routes[i].handler.apply({}, match);
-        if(!match && i === this.routes.length - 1) {
+        if (!match && i === this.routes.length - 1) {
           this.routes[i].handler.apply({}, 'task-list');
         }
         return this;
@@ -104,22 +117,22 @@ Router.config({
   mode: 'history'
 });
 
-// returning the user to the initial state
-// Router.navigate();
-
-// adding routes
 Router
-.add(/welcome/, function () {
-  document.getElementsByClassName('screen-container')[0].innerHTML = firstVisitPage(); 
-})
+  .add(/welcome/, function () {
+    header.toggleCurrentLink();
+    pageModel.setCurrentScreen('welcome');
+    pageView.renderScreen(pageModel.getCurrentScreen());
+  })
   .add(/settings\/categories/, function () {
-    document.getElementsByClassName('header__menu-link--settings')[0].classList.add('header__menu-link--active');
-    document.getElementsByClassName('screen-container')[0].innerHTML = settingsCategorieHBS(); 
+    header.toggleCurrentLink('settings');
+    pageModel.setCurrentScreen('settings-categories');
+    pageView.renderScreen(pageModel.getCurrentScreen());
   })
   .add(/settings/, function () {
-    document.getElementsByClassName('header__menu-link--settings')[0].classList.add('header__menu-link--active');
-    document.getElementsByClassName('screen-container')[0].innerHTML = settingsHBS(); 
-    
+    header.toggleCurrentLink('settings');
+    pageModel.setCurrentScreen('settings');
+    pageView.renderScreen(pageModel.getCurrentScreen());
+
     var cycle = new Cycle();
     var settings = new Settings(cycle);
     settings.init(settings.options);
@@ -128,26 +141,29 @@ Router
     cycle.renderBottomCycleLabels(cycle.calculateOptions(settings.options));
   })
   .add(/task-list\/done/, function () {
-    document.getElementsByClassName('screen-container')[0].innerHTML = taskListDoneHBS(); 
-    document.getElementsByClassName('header__menu-link--task-list')[0].classList.add('header__menu-link--active');    
+    header.toggleCurrentLink('task-list');
+    pageModel.setCurrentScreen('task-list-done');
+    pageView.renderScreen(pageModel.getCurrentScreen());
   })
 
   .add(/task-list/, function () {
-    document.getElementsByClassName('header__menu-link--task-list')[0].classList.add('header__menu-link--active');
-    document.getElementsByClassName('screen-container')[0].innerHTML = taskListHBS();     
+    header.toggleCurrentLink('task-list');
+    pageModel.setCurrentScreen('task-list');
+    pageView.renderScreen(pageModel.getCurrentScreen());
   })
   .add(/timer/, function () {
-    document.getElementsByClassName('screen-container')[0].innerHTML = timerHBS();     
-  }).add(/reports/, function () {
-    document.getElementsByClassName('header__menu-link--reports')[0].classList.add('header__menu-link--active');
-    document.getElementsByClassName('screen-container')[0].innerHTML = reportsHBS();     
+    header.toggleCurrentLink('task-list');
+    pageModel.setCurrentScreen('timer');
+    pageView.renderScreen(pageModel.getCurrentScreen());
+  })
+  .add(/reports/, function () {
+    header.toggleCurrentLink('reports');
+    pageModel.setCurrentScreen('reports');
+    pageView.renderScreen(pageModel.getCurrentScreen());
   })
   .add(function () {
-    Router.navigate('/task-list').check();  
+    Router.navigate('/task-list').check();
   })
   .check().listen();
-
-// forwarding
-// Router.navigate('/settings');
 
 module.exports = Router;

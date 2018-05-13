@@ -19,7 +19,7 @@ Firebase.prototype.addTask = function(taskData) {
 Firebase.prototype.getTasksFromDB = function() {
   var ref = firebase.database().ref(`tasks`);
   ref.on('value', function(snapshot) {
-    console.log(snapshot.val());
+    return (snapshot.val());
   });
 }
 
