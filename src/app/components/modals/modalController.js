@@ -3,45 +3,61 @@ import {firebase} from './../../app';
 export function ModalController(modalView) {
   var _this = this;
   this.modalView = modalView;
+  this.isOpened = false;
 
   this.setButtonListeners();
 }
 
 ModalController.prototype.setButtonListeners = function () {
   var _this = this;
-  document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
+  var page = document.getElementsByClassName('page')[0];
+  page.addEventListener('click', function (e) {
     var target = e.target;
-
     if (target.classList.contains('modal-button')) {
       var buttonAction = target.dataset.modalAction;
       var templateContext;
 
       switch (buttonAction) {
         case 'modal-add':
-          templateContext = { title: 'Add task', removeBtn: false }
+          templateContext = {
+            title: 'Add task',
+            removeBtn: false
+          }
           _this.modalView.openModal(templateContext);
+          this.isOpened = true;
           break;
         case 'modal-close':
           _this.modalView.closeModal();
+          this.isOpened = false;
           break;
         case 'modal-confirm':
           var taskInfo = _this.getInputsInfo();
-          firebase.addTask(taskInfo);``
+          firebase.addTask(taskInfo);
           _this.modalView.closeModal();
+          this.isOpened = false;
           break;
         case 'modal-edit':
-          templateContext = { title: 'Add task', removeBtn: true }
+          templateContext = {
+            title: 'Add task',
+            removeBtn: true
+          }
           _this.modalView.openModal(templateContext);
+          this.isOpened = true;
           break;
       }
     } else if (target.classList.contains('screen-tint')) {
       _this.modalView.closeModal();
-
+    }
+  });
+  page.addEventListener('keyup', function (e) {
+    if (e.keyCode === 27 && this.isOpened) {
+      _this.modalView.closeModal();
+      this.isOpened = false;
     }
   })
 };
 
-ModalController.prototype.getInputsInfo = function() {
+ModalController.prototype.getInputsInfo = function () {
   var taskOptions = {};
   var taskTitleField = document.getElementsByName('task-title')[0];
   var taskDeskriptionField = document.getElementsByName('task-description')[0];
@@ -65,12 +81,12 @@ ModalController.prototype.getInputsInfo = function() {
   taskOptions.priority = getValue(priorityBtns);
 
   function getValue(inputs) {
-    for(var i of inputs) {
-      if(i.checked) {
+    for (var i of inputs) {
+      if (i.checked) {
         return i.value;
       }
     }
   }
   return taskOptions;
-  
-} 
+
+}
