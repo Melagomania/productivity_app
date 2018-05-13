@@ -16,8 +16,8 @@ Firebase.prototype.addTask = function(taskData) {
   return key;
 }
 
-Firebase.prototype.getTasksFromDB = function(userId) {
-  var ref = firebase.database().ref(`tasks/user${userId}`);
+Firebase.prototype.getTasksFromDB = function() {
+  var ref = firebase.database().ref(`tasks`);
   ref.on('value', function(snapshot) {
     console.log(snapshot.val());
   });

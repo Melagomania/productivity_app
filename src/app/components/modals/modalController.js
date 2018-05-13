@@ -1,5 +1,4 @@
 import {firebase} from './../../app';
-console.log(firebase);
 
 export function ModalController(modalView) {
   var _this = this;

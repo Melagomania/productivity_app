@@ -1,5 +1,4 @@
 var router = require('./router');
-// require('./database');
 require('assets/less/main.less'); // include general styles
 var Header = require('./components/header/header').Header;
 import {Settings} from './components/settings/settings';
@@ -11,6 +10,7 @@ import {ModalView} from './components/modals/modalView';
 import {Firebase} from './firebase';
 
 export var firebase = new Firebase();
+firebase.getTasksFromDB();
 checkFirstVisit();
 var header = new Header();
 header.setScrollListener();
