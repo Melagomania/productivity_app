@@ -1,6 +1,4 @@
 var modalTemplate = require('./modals.hbs');
-
-
 export function ModalView() {
 
 }

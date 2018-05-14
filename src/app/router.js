@@ -14,14 +14,6 @@ import {
   pageView
 } from './app';
 
-// var firstVisitPage = require('./pages/first-visit/first-visit.hbs');
-// var settingsHBS = require('./pages/settings/settings.hbs');
-// var settingsCategorieHBS = require('./pages/settings/settings-categories.hbs');
-// var timerHBS = require('./pages/timer/timer.hbs');
-// var taskListHBS = require('./pages/tasks-list/task-list.hbs');
-// var taskListDoneHBS = require('./pages/tasks-list/task-list-done.hbs');
-// var reportsHBS = require('./pages/reports/reports.hbs');
-
 var Router = {
   routes: [],
   mode: null,

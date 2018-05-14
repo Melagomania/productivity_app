@@ -16,10 +16,18 @@ Firebase.prototype.addTask = function(taskData) {
   return key;
 }
 
+Firebase.prototype.editTask = function(taskId, taskData) {
+  firebase.database().ref('tasks/' + taskId).set(taskData);
+}
+
+Firebase.prototype.removeTask = function(taskId) {
+  firebase.database().ref('tasks/' + taskId).remove();
+}
+
 Firebase.prototype.getTasksFromDB = function() {
   var ref = firebase.database().ref(`tasks`);
   ref.on('value', function(snapshot) {
-    return (snapshot.val());
+    console.log(snapshot.val());
   });
 }
 

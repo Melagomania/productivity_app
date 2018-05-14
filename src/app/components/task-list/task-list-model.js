@@ -1,4 +1,10 @@
-export function TaksListModel(database) {
-  this.database = database;
+export function TaskListModel(database) {
+  this.remoteDB = database;
   
+  this.remoteDB.getTasksFromDB();
+  this.localDB = {};
+}
+
+TaskListModel.prototype.init = function() {
+  this.remoteDB
 }
