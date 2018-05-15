@@ -1,8 +1,9 @@
 <section class="screen task-list-screen">
   <header class="screen-header">
     <div class="main-container">
-      <h1 class="screen-heading task-list-screen__screen-heading">Dalily Task List
-        <button class="task-list-screen__add-btn modal-button" data-modal-action="modal-add"></button>
+      <h1 class="screen-heading task-list-screen__screen-heading">Daily Task List
+        <button class="task-list-screen__add-btn modal-button" data-modal-action="modal-open-add">{{nbn}}</button>
+        
       </h1>
       <div class="today-tasks__tabs-wrapper">
         <ul class="tabs tabs--right list">
@@ -44,6 +45,8 @@
         <p class="message-section__message message-section__message--done">Excellent,
           <br> all daily tasks done! :)</p>
       </section>
+
+
       <section class="today-task">
         <ul class="task-list list">
           <li class="task-card task-card--hobby task-card--urgent-priority">
@@ -56,7 +59,7 @@
             <section class="task-card__buttons">
               <section class="task-card__task-adjustsments">
                 <button class="task-card__button task-card__button--to-daily hidden"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
+                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"></button>
               </section>
               <a href='/timer' class="task-card__start link"></a>
             </section>
@@ -71,7 +74,7 @@
             <section class="task-card__buttons">
               <section class="task-card__task-adjustsments">
                 <button class="task-card__button task-card__button--to-daily hidden"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
+                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"></button>
               </section>
               <a href='/timer' class="task-card__start link"></a>
             </section>
@@ -86,7 +89,7 @@
             <section class="task-card__buttons">
               <section class="task-card__task-adjustsments">
                 <button class="task-card__button task-card__button--to-daily hidden"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
+                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"></button>
               </section>
               <a href='/timer' class="task-card__start link"></a>
             </section>
@@ -101,7 +104,7 @@
             <section class="task-card__buttons">
               <section class="task-card__task-adjustsments">
                 <button class="task-card__button task-card__button--to-daily hidden"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
+                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"></button>
               </section>
               <a href='/timer' class="task-card__start link"></a>
             </section>
@@ -116,7 +119,7 @@
             <section class="task-card__buttons">
               <section class="task-card__task-adjustsments">
                 <button class="task-card__button task-card__button--to-daily hidden"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
+                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"></button>
               </section>
               <a href='/timer' class="task-card__start link"></a>
             </section>
@@ -125,7 +128,7 @@
       </section>
 
       <button class="task-list-screen__global-list-toggler">Global list </button>
-      <section class="global-list ">
+      <section class="global-list">
         <div class="global-list__tabs-wrapper">
           <ul class="tabs  tabs--right  list">
             <li class="tabs__item">
@@ -145,44 +148,7 @@
             </li>
           </ul>
         </div>
-        <ul class="task-list  task-list--categorized task-list--categorized-work task-list--work list">
-          <div class="task-list__decorative-line">
-            <div class="task-list__decorative-circle">
-              <div class="task-list__decorative-inner-circle"></div>
-            </div>
-          </div>
-          <h3 class="task-list__heading task-list__heading--work">Work</h3>
-          <li class="task-card task-card--work task-card--high-priority task-card--no-border task-card--to-delete">
-            <section class="task-card__delete-indicator"></section>
-            <section class="task-card__date">Today</section>
-            <section class="task-card__task-info">
-              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
-              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-            </section>
-            <section class="task-card__buttons">
-              <section class="task-card__task-adjustsments">
-                <button class="task-card__button task-card__button--to-daily"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
-              </section>
-              <a href='/timer' class="task-card__start link"></a>
-            </section>
-          </li>
-          <li class="task-card  task-card--work task-card--middle-priority task-card--no-border">
-            <section class="task-card__delete-indicator"></section>
-            <section class="task-card__date">Today</section>
-            <section class="task-card__task-info">
-              <h3 class="task-card__task-name">Lorem ipsum sit amet</h3>
-              <p class="tasc-card__task-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-            </section>
-            <section class="task-card__buttons">
-              <section class="task-card__task-adjustsments">
-                <button class="task-card__button task-card__button--to-daily"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
-              </section>
-              <a href='/timer' class="task-card__start link"></a>
-            </section>
-          </li>
-        </ul>
+        
         <ul class="task-list task-list--categorized task-list--categorized-education task-list--work list">
           <div class="task-list__decorative-line">
             <div class="task-list__decorative-circle">
@@ -203,7 +169,7 @@
             <section class="task-card__buttons">
               <section class="task-card__task-adjustsments">
                 <button class="task-card__button task-card__button--to-daily"></button>
-                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-edit"></button>
+                <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"></button>
               </section>
               <a href='/timer' class="task-card__start link"></a>
             </section>

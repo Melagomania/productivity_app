@@ -12,5 +12,6 @@ export function PageView() {
 }
 
 PageView.prototype.renderScreen = function(screen) {
+  // console.log(context);
   this.screenContainer.innerHTML = this.screenTemplates[screen]();
 }

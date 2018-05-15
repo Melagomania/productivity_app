@@ -1,11 +1,11 @@
 <section class="modal-win">
   <div class="modal-win__buttons-wrapper">
     {{#if removeBtn}}
-    <button class="modal-win__btn modal-win__btn--remove"></button>
+      <button class="modal-win__btn modal-win__btn--remove  modal-button" data-modal-action="modal-task-remove"></button>
     {{/if}}
     <section class="modal-win__control-btns">
       <button class="modal-win__btn modal-win__btn--close modal-button" data-modal-action="modal-close"></button>
-      <button class="modal-win__btn modal-win__btn--confirm modal-button" data-modal-action="modal-confirm"></button>
+      <button class="modal-win__btn modal-win__btn--confirm modal-button" data-modal-action="modal-{{submitBtn}}-task"></button>
     </section>
   </div>
   <h3 class="modal-win__heading">{{title}}</h3>

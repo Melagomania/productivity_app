@@ -14,6 +14,9 @@ import {
   pageView
 } from './app';
 
+import {taskListModel} from './app';
+import { taskListView } from './app';
+
 var Router = {
   routes: [],
   mode: null,
@@ -135,13 +138,14 @@ Router
   .add(/task-list\/done/, function () {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list-done');
-    pageView.renderScreen(pageModel.getCurrentScreen());
+    pageView.renderScreen(pageModel.getCurrentScreen());    
   })
-
+  
   .add(/task-list/, function () {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list');
     pageView.renderScreen(pageModel.getCurrentScreen());
+    taskListView.renderGlobalTaskList(taskListModel.sortedTasks);
   })
   .add(/timer/, function () {
     header.toggleCurrentLink('task-list');

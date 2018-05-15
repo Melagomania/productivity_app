@@ -1,9 +1,11 @@
 import {firebase} from './../../app';
 
-export function ModalController(modalView) {
+export function ModalController(modalView, taskListModel) {
   var _this = this;
   this.modalView = modalView;
   this.isOpened = false;
+
+  this.taskListModel = taskListModel;
 
   this.setButtonListeners();
 }
@@ -18,10 +20,21 @@ ModalController.prototype.setButtonListeners = function () {
       var templateContext;
 
       switch (buttonAction) {
-        case 'modal-add':
+        //choose what type of modal window to open (or to close opened modal) 
+        case 'modal-open-add':
           templateContext = {
             title: 'Add task',
-            removeBtn: false
+            removeBtn: false,
+            submitBtn: 'add'            
+          }
+          _this.modalView.openModal(templateContext);
+          this.isOpened = true;
+          break;
+        case 'modal-open-edit':
+          templateContext = {
+            title: 'Edit task',
+            removeBtn: true,
+            submitBtn: 'edit'
           }
           _this.modalView.openModal(templateContext);
           this.isOpened = true;
@@ -30,19 +43,25 @@ ModalController.prototype.setButtonListeners = function () {
           _this.modalView.closeModal();
           this.isOpened = false;
           break;
-        case 'modal-confirm':
+        
+        //choose what type of action perfom on a task
+        case 'modal-add-task':
           var taskInfo = _this.getInputsInfo();
-          firebase.addTask(taskInfo);
+          _this.taskListModel.addTask(taskInfo);
+
           _this.modalView.closeModal();
           this.isOpened = false;
           break;
-        case 'modal-edit':
-          templateContext = {
-            title: 'Add task',
-            removeBtn: true
-          }
-          _this.modalView.openModal(templateContext);
-          this.isOpened = true;
+        case 'modal-edit-task':
+          var taskInfo = _this.getInputsInfo();
+          _this.taskListModel.editTask('-LCYA9_uIWT0x6qDWt_S',taskInfo);
+          _this.modalView.closeModal();
+          this.isOpened = false;
+          break;
+        case 'modal-task-remove':      
+          _this.taskListModel.removeTask('-LCYA9_uIWT0x6qDWt_S');
+          _this.modalView.closeModal();
+          this.isOpened = false;
           break;
       }
     } else if (target.classList.contains('screen-tint')) {
@@ -88,5 +107,4 @@ ModalController.prototype.getInputsInfo = function () {
     }
   }
   return taskOptions;
-
 }
