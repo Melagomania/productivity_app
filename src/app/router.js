@@ -139,13 +139,21 @@ Router
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list-done');
     pageView.renderScreen(pageModel.getCurrentScreen());    
+
+    taskListModel.getDoneTasks();
+    taskListView.renderDoneTaskList(taskListModel.doneTasks);
   })
   
   .add(/task-list/, function () {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list');
     pageView.renderScreen(pageModel.getCurrentScreen());
+    
+    taskListModel.sortTasksByCategories();   
+    taskListModel.getTodayTasks();
+    
     taskListView.renderGlobalTaskList(taskListModel.sortedTasks);
+    taskListView.renderDailyTaskList(taskListModel.todayTasks);
   })
   .add(/timer/, function () {
     header.toggleCurrentLink('task-list');

@@ -1,0 +1,18 @@
+{{log this}}
+{{#each this}}
+  <ul class="task-list list">
+    <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}} task-card--done">
+      <section class="task-card__delete-indicator task-card__delete-indicator--active"></section>
+      <section class="task-card__date">{{this.deadline}}</section>
+      <section class="task-card__task-info">
+        <h3 class="task-card__task-name">{{this.title}}</h3>
+        <p class="tasc-card__task-description">{{this.description}}</p>
+      </section>
+      <section class="task-card__buttons">
+        <span class="task-card__start task-card__start--disabled link">
+          <span class="task-card__estimation-value">{{this.estimation}}</span>
+        </span>
+      </section>
+    </li>
+  </ul>
+{{/each}}

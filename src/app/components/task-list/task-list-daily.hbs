@@ -1,0 +1,27 @@
+{{#if this.length}} 
+  {{#each this}}
+    <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}}">
+      <section class="task-card__delete-indicator"></section>
+      <section class="task-card__date">{{this.deadline}}</section>
+      <section class="task-card__task-info">
+        <h3 class="task-card__task-name">{{this.title}}</h3>
+        <p class="tasc-card__task-description">{{this.description}}</p>
+      </section>
+      <section class="task-card__buttons">
+        <section class="task-card__task-adjustsments">
+
+          <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
+        </section>
+        <a href='/timer' class="task-card__start link">
+          <span class="task-card__estimation-value">{{this.estimation}}</span>
+        </a>
+      </section>
+    </li>
+  {{/each}} 
+{{else}}
+  <section class="message-section message-section--compact">
+    <p class="message-section__message">Task added,
+      <br> drag it to the top 5 in daily task list</p>
+    <span class="message-section__icon">&#xe901;</span>
+  </section>
+{{/if}}

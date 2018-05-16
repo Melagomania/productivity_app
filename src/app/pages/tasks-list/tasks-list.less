@@ -138,6 +138,14 @@
       &:active {
         background-color: darken( saturate(@tomato-col, 10%), 9%);
       }
+      &--disabled {
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: @tomato-col;
+          cursor: default;
+        }
+      }
     }
   }
   &--high-priority {
@@ -150,6 +158,14 @@
       &:focus,
       &:active {
         background-color: darken( saturate(@yellow-orange-col, 10%), 9%);
+      }
+      &--disabled {
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: @yellow-orange-col;
+          cursor: default;
+        }
       }
     }
   }
@@ -164,6 +180,14 @@
       &:active {
         background-color: #e88b19;
       }
+      &--disabled {
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: @gorse;
+          cursor: default;
+        }
+      }
     }
   }
   &--low-priority {
@@ -176,6 +200,14 @@
       &:focus,
       &:active {
         background-color: darken( saturate(@mountain-meadow-col, 10%), 9%);
+      }
+      &--disabled {
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: @mountain-meadow-col;
+          cursor: default;
+        }
       }
     }
   }
@@ -326,27 +358,37 @@
     font-family: 'Icon';
   }
 
-  &::before {
-    position: absolute;
-    top: 50%;    
-    left: 50%;    
-    transform: translate(-50%, -50%);    
-    font-family: 'PT Sans';    
-    font-weight: 700;
-    content: '3';
-    font-size: 22px;
-    color: #fff;
-  }
-
-  &:hover{
+    &:hover{
     &::after {
       content: "\e90e";
     }
 
-    &::before {
+    .task-card__estimation-value {
       display: none;
     }
   }
+
+  &--disabled {
+    &:hover{
+      &::after {
+        content: "\e913";
+      }
+      .task-card__estimation-value {
+        display: block;
+      }
+    }
+  }
+}
+
+.task-card__estimation-value {
+  position: absolute;
+  top: 50%;    
+  left: 50%;    
+  transform: translate(-50%, -50%);      
+  font-size: 22px;
+  color: #fff;
+  font-family: 'PT Sans';    
+  font-weight: 700;
 }
 
 .task-list-screen__global-list-toggler {

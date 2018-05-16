@@ -1,14 +1,22 @@
 export function TaskListModel(database) {
   this.remoteDB = database;
-  this.localDB = {};
+  this.localDB;
 
+  this.todayTasks = {};
+  this.doneTasks = {};
   this.sortedTasks = {
     1: {},
     2: {},
     3: {},
     4: {},
     5: {}
-  }
+  };
+
+  Object.defineProperty(this.todayTasks, 'length', {
+    enumerable: false,
+    writable: true,
+    value: 0
+  });
 
   Object.defineProperty(this.sortedTasks[1], 'length', {
     enumerable: false,
@@ -40,8 +48,7 @@ export function TaskListModel(database) {
     value: 0
   });
 
-  this.todayTasksAmount = 0
-  this.todayTasks = {}
+
 }
 
 TaskListModel.prototype.addTask = function (taskData) {
@@ -51,56 +58,82 @@ TaskListModel.prototype.addTask = function (taskData) {
 }
 
 TaskListModel.prototype.editTask = function (taskId, taskData) {
-  firebase.database().ref('tasks/' + taskId).set(taskData);
-  this.localDB[taskId] = taskData;
+  firebase.database().ref('tasks/' + taskId).update(taskData);
+  for(var i in taskData) {
+    this.localDB[taskId][i] = taskData[i];
+
+  }
+}
+
+TaskListModel.prototype.setActive = function (taskId) {
+  this.localDB[taskId].isActive = true;
+  firebase.database().ref('tasks/' + taskId).update({isActive: true});
 }
 
 TaskListModel.prototype.removeTask = function (taskId) {
-  firebase.database().ref('tasks/' + taskId).remove();
   delete this.localDB[taskId];
+  firebase.database().ref('tasks/' + taskId).remove();
 }
 
-TaskListModel.prototype.calculateTodayTasksAmount = function () {
-  this.todayTasksAmount = 0;
+TaskListModel.prototype.getTodayTasks = function () {
+  this.todayTasks.length = 0;
+  
   for (var i in this.localDB) {
-    if (this.localDB[i].deadline === 'today') {
-      this.todayTasksAmount++;
+    if (this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
+      this.todayTasks[i] = this.localDB[i];
+      this.todayTasks.length++;
     }
   }
 }
 
-TaskListModel.prototype.getTodayTasks = function () {
-  for (var i in this.localDB) {
-    if (this.localDB[i].deadline === 'today') {
-      this.todayTasks[i] = this.localDB[i];
+TaskListModel.prototype.getDoneTasks = function() {
+  for(var i in this.localDB) {
+    if(this.isTaskDone(this.localDB[i])) {
+      this.doneTasks[i] = this.localDB[i];
     }
   }
 }
 
 TaskListModel.prototype.sortTasksByCategories = function () {
-  console.log('333');
+  for(var i in this.sortedTasks) {
+    this.sortedTasks[i].length = 0;
+  }
   for(var i in this.localDB) {
     switch (this.localDB[i].categoryId) {
       case '1':
-        this.sortedTasks[1][i] = this.localDB[i];
-        this.sortedTasks[1].length++;
+        if(!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])){
+          this.sortedTasks[1][i] = this.localDB[i];
+          this.sortedTasks[1].length++;
+        }
         break;
       case '2':
-        this.sortedTasks[2][i] = this.localDB[i];
-        this.sortedTasks[2].length++;        
+        if(!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])){
+          this.sortedTasks[2][i] = this.localDB[i];
+          this.sortedTasks[2].length++;    
+        }    
         break;
       case '3':
-        this.sortedTasks[3][i] = this.localDB[i];
-        this.sortedTasks[3].length++;        
-        break;
+        if(!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])){
+          this.sortedTasks[3][i] = this.localDB[i];
+          this.sortedTasks[3].length++;        
+          break;
+        } 
       case '4':
-        this.sortedTasks[4][i] = this.localDB[i];
-        this.sortedTasks[4].length++;
-        break;
+        if(!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])){
+          this.sortedTasks[4][i] = this.localDB[i];
+          this.sortedTasks[4].length++;
+          break;
+        }
       case '5':
-        this.sortedTasks[5][i] = this.localDB[i];
-        this.sortedTasks[5].length++;
-        break;
+        if(!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])){
+          this.sortedTasks[5][i] = this.localDB[i];
+          this.sortedTasks[5].length++;
+          break;
+        }
     }
   }
+}
+
+TaskListModel.prototype.isTaskDone = function(task) {
+  return task.estimation === task.estimationUsed;
 }

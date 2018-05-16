@@ -20,7 +20,7 @@
 
 {{#each this}}
 {{#if this.length}}
-{{log @key}}
+{{log this}}
 <ul class="task-list  task-list--categorized task-list--categorized-{{getCategory @key}} task-list--{{getCategory @key}} list">
   <div class="task-list__decorative-line">
     <div class="task-list__decorative-circle">
@@ -29,21 +29,23 @@
   </div>
   <h3 class="task-list__heading task-list__heading--{{getCategory @key}}">{{getCategory @key}}</h3>
   {{#each this}}
+  {{#unless this.isActive}}
   <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}} task-card--no-border">
     <section class="task-card__delete-indicator"></section>
-    <section class="task-card__date">Today</section>
+    <section class="task-card__date">{{this.deadline}}</section>
     <section class="task-card__task-info">
       <h3 class="task-card__task-name">{{this.title}}</h3>
       <p class="tasc-card__task-description">{{this.description}}</p>
     </section>
     <section class="task-card__buttons">
       <section class="task-card__task-adjustsments">
-        <button class="task-card__button task-card__button--to-daily"></button>
-        <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"></button>
+        <button class="task-card__button task-card__button--to-daily modal-button" data-modal-action="to-daily" data-task-id="{{@key}}"></button>
+        <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
       </section>
-      <a href='/timer' class="task-card__start link"></a>
+      <a href='/timer' class="task-card__start link"><span class="task-card__estimation-value">{{this.estimation}}</span></a>
     </section>
   </li>
+  {{/unless}}
   {{/each}}
 </ul>
 {{/if}}
