@@ -96,8 +96,16 @@ TaskListModel.prototype.getDoneTasks = function() {
 
 TaskListModel.prototype.sortTasksByCategories = function () {
   for(var i in this.sortedTasks) {
-    this.sortedTasks[i].length = 0;
+    this.sortedTasks[i] = {};
+    this.sortedTasks[i].length = 0;    
+  
+    Object.defineProperty(this.sortedTasks[i], 'length', {
+      enumerable: false,
+      writable: true,
+      value: 0
+    });
   }
+  console.log('srt',this.sortedTasks);
   for(var i in this.localDB) {
     switch (this.localDB[i].categoryId) {
       case '1':

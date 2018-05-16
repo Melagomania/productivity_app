@@ -1,26 +1,25 @@
 <div class="global-list__tabs-wrapper">
-  <ul class="tabs  tabs--right  list">
+  <ul class="tabs  tabs--right  list" id="tasks-filter">
     <li class="tabs__item">
-      <button class="tabs__btn tabs__btn--current">All</button>
+      <button class="tabs__btn tasks-filter-btn" id="all-filter" data-tasks-filter="all">All</button>
     </li>
     <li class="tabs__item">
-      <button class="tabs__btn">Urgent</button>
+      <button class="tabs__btn tasks-filter-btn" id="urgent-filter" data-tasks-filter="urgent">Urgent</button>
     </li>
     <li class="tabs__item">
-      <button class="tabs__btn">High</button>
+      <button class="tabs__btn tasks-filter-btn" id="high-filter" data-tasks-filter="high">High</button>
     </li>
     <li class="tabs__item">
-      <button class="tabs__btn">Middle</button>
+      <button class="tabs__btn tasks-filter-btn" id="middle-filter" data-tasks-filter="middle">Middle</button>
     </li>
     <li class="tabs__item">
-      <button class="tabs__btn">Low</button>
+      <button class="tabs__btn tasks-filter-btn" id="low-filter" data-tasks-filter="low">Low</button>
     </li>
   </ul>
 </div>
 
 {{#each this}}
 {{#if this.length}}
-{{log this}}
 <ul class="task-list  task-list--categorized task-list--categorized-{{getCategory @key}} task-list--{{getCategory @key}} list">
   <div class="task-list__decorative-line">
     <div class="task-list__decorative-circle">

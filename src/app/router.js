@@ -15,7 +15,7 @@ import {
 } from './app';
 
 import {taskListModel} from './app';
-import { taskListView } from './app';
+import {taskListView} from './app';
 
 var Router = {
   routes: [],
