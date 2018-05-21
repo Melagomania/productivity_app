@@ -1,7 +1,7 @@
 {{#if this.length}} 
   {{#each this}}
     <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}}">
-      <section class="task-card__delete-indicator"></section>
+      <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
       <section class="task-card__date">{{this.deadline}}</section>
       <section class="task-card__task-info">
         <h3 class="task-card__task-name">{{this.title}}</h3>
@@ -9,7 +9,6 @@
       </section>
       <section class="task-card__buttons">
         <section class="task-card__task-adjustsments">
-
           <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
         </section>
         <a href='/timer' class="task-card__start link">

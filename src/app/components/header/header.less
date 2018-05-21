@@ -54,6 +54,7 @@
 }
 
 .header__menu-link {
+  position: relative;
   .reset-btn;
   .reset-link;  
   display: block;
@@ -98,4 +99,20 @@
   &--settings::after {
     content: '\e90c';
   }
+}
+
+.header__remove-count {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  display: block;
+  width: 22px;
+  height: 22px;
+  padding-top: 2px;
+  font-size: 14;
+  font-family: 'Roboto';
+  font-weight: bold;
+  color: #fff;
+  background-color: @tomato-col;
+  border-radius: 50%;
 }

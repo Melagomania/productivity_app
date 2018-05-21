@@ -2,6 +2,7 @@ export function TaskListModel(database) {
   this.remoteDB = database;
   this.localDB;
 
+  this.tasksToDelete = [];
   this.todayTasks = {};
   this.doneTasks = {};
   this.sortedTasks = {
@@ -61,7 +62,6 @@ TaskListModel.prototype.editTask = function (taskId, taskData) {
   firebase.database().ref('tasks/' + taskId).update(taskData);
   for(var i in taskData) {
     this.localDB[taskId][i] = taskData[i];
-
   }
 }
 
@@ -75,9 +75,18 @@ TaskListModel.prototype.removeTask = function (taskId) {
   firebase.database().ref('tasks/' + taskId).remove();
 }
 
+TaskListModel.prototype.removeTasksCollection = function(tasks) {
+  var _this = this;
+  tasks.forEach(function (taskId) {
+    delete _this.localDB[taskId];
+  });
+  for (const taskId of tasks) {
+    firebase.database().ref('tasks/' + taskId).remove();
+  }
+};
+
 TaskListModel.prototype.getTodayTasks = function () {
   this.todayTasks.length = 0;
-  
   for (var i in this.localDB) {
     if (this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
       this.todayTasks[i] = this.localDB[i];
@@ -105,7 +114,6 @@ TaskListModel.prototype.sortTasksByCategories = function () {
       value: 0
     });
   }
-  console.log('srt',this.sortedTasks);
   for(var i in this.localDB) {
     switch (this.localDB[i].categoryId) {
       case '1':

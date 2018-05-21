@@ -1,5 +1,6 @@
 export function TaskListView() {
   this.currentPriorityButton = 'all';
+  this.removeCount = document.getElementById('tasks-remove-count');
 
   this.templates = {
     dailyListTemplate: require('./task-list-daily.hbs'), 
@@ -57,8 +58,34 @@ TaskListView.prototype.filterTasksByPriority = function(priority) {
   }
 }
 
+TaskListView.prototype.toggleRemoveCount = function() {
+  this.removeCount.classList.toggle('hidden');
+};
+
+TaskListView.prototype.updateRemoveCount = function(value) {
+  this.removeCount.textContent = value;
+};
+
 TaskListView.prototype.changeCurrentPriorityButton = function(priority) {
   document.getElementById(this.currentPriorityButton + '-filter').classList.remove('tabs__btn--current');
   this.currentPriorityButton = priority;
   document.getElementById(this.currentPriorityButton + '-filter').classList.add('tabs__btn--current');
-}
+};
+
+TaskListView.prototype.showRemoveTaskButtons = function() {
+  var taskCards = document.getElementsByClassName('task-card');
+  for(let i of taskCards) {
+    i.style.border = 'none'
+    i.getElementsByClassName('task-card__delete-indicator')[0].style.display = 'inline-block';
+    i.getElementsByClassName('task-card__date')[0].style.display = 'none';   
+  }
+};
+
+TaskListView.prototype.hideRemoveTaskButtons = function() {
+  var taskCards = document.getElementsByClassName('task-card');
+  for(let i of taskCards) {
+    i.style.border = '';
+    i.getElementsByClassName('task-card__delete-indicator')[0].style.display = 'none';
+    i.getElementsByClassName('task-card__date')[0].style.display = 'inline-block';   
+  }
+};

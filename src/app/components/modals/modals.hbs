@@ -1,3 +1,4 @@
+{{#unless removeConfirmModal}}
 <section class="modal-win">
   <div class="modal-win__buttons-wrapper">
     {{#if removeBtn}}
@@ -92,11 +93,11 @@
     </li>
   </ul>
 </section>
-
-{{!-- <section class="modal-win hidden">
-  <div class="modal-win__buttons-wrapper hidden">
+{{else}}
+<section class="modal-win">
+  <div class="modal-win__buttons-wrapper">
     <section class="modal-win__control-btns">
-      <button class="modal-win__btn modal-win__btn--close"></button>
+      <button class="modal-win__btn modal-win__btn--close modal-button"  data-modal-action="modal-close"></button>
     </section>
   </div>
   <section class="remove-task">
@@ -104,9 +105,11 @@
       Are you sure you want to remove selected task(s)?
     </p>
     <section class="remove-task__buttons">
-      <button class="button button--blue">Cancel</button>
-      <button class="button button--red">Remove</button>
+      <button class="button button--blue modal-button" data-modal-action="modal-cancel-delete">Cancel</button>
+      <button class="button button--red modal-button" data-modal-action="modal-remove-tasks">Remove</button>
     </section>
   </section>
-</section> --}}
+</section>
+{{/unless}}
+
 <div class="screen-tint "></div>
