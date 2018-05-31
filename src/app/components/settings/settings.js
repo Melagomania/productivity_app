@@ -88,4 +88,3 @@ export function Settings(cycle) {
     }
   }
 }
-// module.exports = Settings;

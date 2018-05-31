@@ -1,18 +1,8 @@
-import {
-  Settings
-} from './components/settings/settings';
-import {
-  Cycle
-} from './components/cycle/cycle';
-import {
-  header
-} from './app';
-import {
-  pageModel
-} from './app';
-import {
-  pageView
-} from './app';
+import {Settings} from './components/settings/settings';
+import {Cycle} from './components/cycle/cycle';
+import {header} from './app';
+import {pageModel} from './app';
+import {pageView} from './app';
 
 import {taskListModel} from './app';
 import {taskListView} from './app';
@@ -23,7 +13,7 @@ var Router = {
   root: '/',
   config: function (options) {
     this.mode = options && options.mode && options.mode == 'history' &&
-      !!(history.pushState) ? 'history' : 'hash';
+    !!(history.pushState) ? 'history' : 'hash';
     this.root = options && options.root ? '/' + this.clearSlashes(options.root) + '/' : '/';
     return this;
   },
@@ -138,20 +128,20 @@ Router
   .add(/task-list\/done/, function () {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list-done');
-    pageView.renderScreen(pageModel.getCurrentScreen());    
+    pageView.renderScreen(pageModel.getCurrentScreen());
 
     taskListModel.getDoneTasks();
     taskListView.renderDoneTaskList(taskListModel.doneTasks);
   })
-  
+
   .add(/task-list/, function () {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list');
     pageView.renderScreen(pageModel.getCurrentScreen());
-    
-    taskListModel.sortTasksByCategories();   
+
+    taskListModel.sortTasksByCategories();
     taskListModel.getTodayTasks();
-    
+
     taskListView.renderGlobalTaskList(taskListModel.sortedTasks);
     taskListView.renderDailyTaskList(taskListModel.todayTasks);
   })
@@ -168,6 +158,7 @@ Router
   .add(function () {
     Router.navigate('/task-list').check();
   })
+
   .check().listen();
 
 module.exports = Router;

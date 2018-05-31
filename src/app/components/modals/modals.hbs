@@ -19,35 +19,37 @@
       <h4 class="task-settings-list__heading">Description</h4>
       <input type="text" class="task-settings-list__text-input" name="task-description" placeholder="Add description here">
     </li>
-    <li class="task-settings-list__item">
+    <li class="task-settings-list__item  task-settings-list__item-scrollable">
       <h4 class="task-settings-list__heading">Category</h4>
-      <section class="task-settings-list__radio-btns">
-        <input id="cat1" class="task-settings-list__radio" name="task-category" value="1" type="radio">
-        <label for="cat1" class="task-settings-list__label task-settings-list__label--active">
-          <span class="task-settings-list__label-circle task-settings-list__label-circle--work"></span>
-          <span class="task-settings-list__label-text">Work</span>
-        </label>
-        <input id="cat2" class="task-settings-list__radio" name="task-category" value="2" type="radio">
-        <label for="cat2" class="task-settings-list__label">
-          <span class="task-settings-list__label-circle task-settings-list__label-circle--education"></span>
-          <span class="task-settings-list__label-text">Education</span>
-        </label>
-        <input id="cat3" class="task-settings-list__radio" name="task-category" value="3" type="radio">
-        <label for="cat3" class="task-settings-list__label">
-          <span class="task-settings-list__label-circle task-settings-list__label-circle--hobby"></span>
-          <span class="task-settings-list__label-text">Hobby</span>
-        </label>
-        <input id="cat4" class="task-settings-list__radio" name="task-category" value="4" type="radio">
-        <label for="cat4" class="task-settings-list__label">
-          <span class="task-settings-list__label-circle task-settings-list__label-circle--sport"></span>
-          <span class="task-settings-list__label-text">Sport</span>
-        </label>
-        <input id="cat5" class="task-settings-list__radio" name="task-category" value="5" type="radio">
-        <label for="cat5" class="task-settings-list__label">
-          <span class="task-settings-list__label-circle task-settings-list__label-circle--other"></span>
-          <span class="task-settings-list__label-text">Other</span>
-        </label>
-      </section>
+      <div class="task-settings__radio-scroll-wrapper">
+        <section class="task-settings-list__radio-btns">
+          <input id="cat1" class="task-settings-list__radio" name="task-category" value="1" type="radio">
+          <label for="cat1" class="task-settings-list__label task-settings-list__label--active">
+            <span class="task-settings-list__label-circle task-settings-list__label-circle--work"></span>
+            <span class="task-settings-list__label-text">Work</span>
+          </label>
+          <input id="cat2" class="task-settings-list__radio" name="task-category" value="2" type="radio">
+          <label for="cat2" class="task-settings-list__label">
+            <span class="task-settings-list__label-circle task-settings-list__label-circle--education"></span>
+            <span class="task-settings-list__label-text">Education</span>
+          </label>
+          <input id="cat3" class="task-settings-list__radio" name="task-category" value="3" type="radio">
+          <label for="cat3" class="task-settings-list__label">
+            <span class="task-settings-list__label-circle task-settings-list__label-circle--hobby"></span>
+            <span class="task-settings-list__label-text">Hobby</span>
+          </label>
+          <input id="cat4" class="task-settings-list__radio" name="task-category" value="4" type="radio">
+          <label for="cat4" class="task-settings-list__label">
+            <span class="task-settings-list__label-circle task-settings-list__label-circle--sport"></span>
+            <span class="task-settings-list__label-text">Sport</span>
+          </label>
+          <input id="cat5" class="task-settings-list__radio" name="task-category" value="5" type="radio">
+          <label for="cat5" class="task-settings-list__label">
+            <span class="task-settings-list__label-circle task-settings-list__label-circle--other"></span>
+            <span class="task-settings-list__label-text">Other</span>
+          </label>
+        </section>
+      </div>
     </li>
     <li class="task-settings-list__item">
       <h4 class="task-settings-list__heading">Deadline</h4>

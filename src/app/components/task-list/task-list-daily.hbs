@@ -1,4 +1,5 @@
-{{#if this.length}} 
+<ul class="task-list list">
+{{#if this.length}}
   {{#each this}}
     <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}}">
       <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
@@ -11,12 +12,12 @@
         <section class="task-card__task-adjustsments">
           <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
         </section>
-        <a href='/timer' class="task-card__start link">
+        <a href='/timer' class="task-card__start router-link link">
           <span class="task-card__estimation-value">{{this.estimation}}</span>
         </a>
       </section>
     </li>
-  {{/each}} 
+  {{/each}}
 {{else}}
   <section class="message-section message-section--compact">
     <p class="message-section__message">Task added,
@@ -24,3 +25,4 @@
     <span class="message-section__icon">&#xe901;</span>
   </section>
 {{/if}}
+</ul>

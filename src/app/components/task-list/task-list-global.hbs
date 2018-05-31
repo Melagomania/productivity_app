@@ -41,7 +41,7 @@
         <button class="task-card__button task-card__button--to-daily modal-button" data-modal-action="to-daily" data-task-id="{{@key}}"></button>
         <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
       </section>
-      <a href='/timer' class="task-card__start link"><span class="task-card__estimation-value">{{this.estimation}}</span></a>
+      <a href='/timer' class="task-card__start router-link link"><span class="task-card__estimation-value">{{this.estimation}}</span></a>
     </section>
   </li>
   {{/unless}}

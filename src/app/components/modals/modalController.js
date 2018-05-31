@@ -24,7 +24,7 @@ ModalController.prototype.setButtonListeners = function () {
       var templateContext;
       switch (buttonAction) {
 
-        //choose what type of modal window to open (or to close opened modal) 
+        //choose what type of modal window to open (or to close opened modal)
         case 'modal-open-add':
           templateContext = {
             title: 'Add task',
@@ -90,7 +90,7 @@ ModalController.prototype.setButtonListeners = function () {
             removeConfirmModal: true
           }
           _this.modalView.closeModal();
-          _this.isOpened = false;          
+          _this.isOpened = false;
           _this.modalView.openModal(templateContext);
           break;
         case 'to-daily':
@@ -114,7 +114,6 @@ ModalController.prototype.setButtonListeners = function () {
           _this.taskListModel.sortTasksByCategories();
           _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
           _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
-          _
 
           _this.modalView.closeModal();
           _this.taskListView.toggleRemoveCount();
