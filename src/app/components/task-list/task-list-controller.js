@@ -2,7 +2,6 @@ export function TaskListController(taskListModel, taskListView, modalView) {
   this.taskListModel = taskListModel;
   this.taskListView = taskListView;
   this.modalView = modalView;
-  this.openedTaskId = null;
 
   this.removeModeStatus = 'off';
 
@@ -15,14 +14,20 @@ TaskListController.prototype.init = function() {
   var _this = this;
   var ref = firebase.database().ref(`tasks`);
   ref.on('value', function(snapshot) {
-    _this.taskListModel.localDB = snapshot.val(); 
-    
-    _this.taskListModel.sortTasksByCategories();   
+    _this.taskListModel.localDB = snapshot.val();
+
+    _this.taskListModel.sortTasksByCategories();
     _this.taskListModel.getTodayTasks();
-    _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
-    _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
+
+    //todo: refactor (???)
+    try {
+      _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
+      _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
+    } catch (e) {
+      console.log('Not task list page');
+    }
   });
-} 
+}
 
 TaskListController.prototype.setRemoveBtnHandler = function() {
   var _this = this;
@@ -34,7 +39,7 @@ TaskListController.prototype.setRemoveBtnHandler = function() {
         _this.show
         _this.removeModeStatus = 'on';
         _this.taskListView.toggleRemoveCount();
-        _this.taskListView.updateRemoveCount( _this.tasksToDelete.length);        
+        _this.taskListView.updateRemoveCount( _this.tasksToDelete.length);
         break;
       case 'on':
         _this.taskListView.hideRemoveTaskButtons();
@@ -61,7 +66,7 @@ TaskListController.prototype.setDeleteIndicatorHandler = function() {
         _this.taskListView.updateRemoveCount(_this.taskListModel.tasksToDelete.length);
       } else {
         _this.taskListModel.tasksToDelete.push(taskId);
-        _this.taskListView.updateRemoveCount(_this.taskListModel.tasksToDelete.length);        
+        _this.taskListView.updateRemoveCount(_this.taskListModel.tasksToDelete.length);
       }
     }
   });
