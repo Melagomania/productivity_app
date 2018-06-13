@@ -39,6 +39,15 @@ export function Settings(cycle) {
   };
 
   _this.init = function () {
+    _this.elements = {
+      fields: document.getElementsByClassName('pom-settings__input-wrapper'),
+      inputs: {
+        'work-time-option': document.getElementById('work-time-input'),
+        'work-iteration-option': document.getElementById('work-iteration-input'),
+        'short-break-option': document.getElementById('short-break-input'),
+        'long-break-option': document.getElementById('long-break-input')
+      }
+    }
     this.renderOptions();
     for (var i = 0; i < _this.elements.fields.length; i++) {
       this.elements.fields[i].addEventListener('click', _this.handleClick);
@@ -81,6 +90,7 @@ export function Settings(cycle) {
       }
       _this.modifyOption(clickedField, buttonAction);
       _this.renderOption(clickedField);
+      //todo: implement with observer::
       cycle.calculateOptions(_this.options);
       cycle.renderCycle(cycle.renderConfig)
       cycle.renderTopCycleLabels(cycle.renderConfig);

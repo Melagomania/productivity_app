@@ -2,7 +2,6 @@ export function PageView() {
   this.screenContainer = document.getElementsByClassName('screen-container')[0];
   this.headerHeading = document.getElementsByClassName('screen-heading--mobile')[0];
   this.headerAddBtn = document.getElementsByClassName('task-list-screen__add-btn--header')[0];
-  // this.headerMenu = document.getElementsByClassName('header__menu-list')[0];
 
   this.taskListOnlyBtns = document.getElementsByClassName('task-list-only');
   this.screenTemplates = {
@@ -29,7 +28,6 @@ PageView.prototype.renderScreen = function(screen) {
   this.screenContainer.innerHTML = this.screenTemplates[screen]();
   this.headerHeading.innerHTML = this.screenTitles[screen];
   if(screen === 'task-list' || screen === 'task-list-done') {
-    console.log('333');
     this.headerAddBtn.style.display = 'inline-block';
     for(let i of this.taskListOnlyBtns) {
       i.style.display = 'block';

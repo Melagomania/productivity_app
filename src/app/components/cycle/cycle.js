@@ -2,7 +2,15 @@ export function Cycle() {
   this.cycleWrapper = document.getElementsByClassName('pom-cycle__inner-wrapper')[0];
   this.topCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__top-labels')[0];
   this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
-  
+
+
+
+  this.init = function () {
+    this.cycleWrapper = document.getElementsByClassName('pom-cycle__inner-wrapper')[0];
+    this.topCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__top-labels')[0];
+    this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
+  }
+
   this.calculateOptions = function(options) {
     var workTime = options['work-time-option'].current;
     var workIterations = options['work-iteration-option'].current;
@@ -19,7 +27,7 @@ export function Cycle() {
       workTimePercentage: workTime / totalTime * 100,
       longBreakPercentage: longBreakTime / totalTime * 100,
       workIterations: workIterations,
-    } 
+    }
     this.renderConfig = res;
     return res;
   }
@@ -32,7 +40,7 @@ export function Cycle() {
         el.classList.add('pom-cycle__line');
         if(j % 2 !== 0) {
           el.classList.add('pom-cycle__line--short-break');
-          el.style.width = options.shortBreakPercentage + '%';          
+          el.style.width = options.shortBreakPercentage + '%';
         } else {
           el.classList.add('pom-cycle__line--work-time');
           el.style.width = options.workTimePercentage + '%';
@@ -50,44 +58,44 @@ export function Cycle() {
       this.cycleWrapper.appendChild(longBreak);
     }
   }
-  
+
   this.renderTopCycleLabels = function(options) {
     this.clearWrapper(this.topCycleLabelsWrapper);
     for(let i = 0; i < 3; i++) {
       var label = document.createElement('div');
       var labelText = document.createElement('span');
-      var labelCircle = document.createElement('span');    
+      var labelCircle = document.createElement('span');
 
       label.classList.add('pom-cycle__label');
       switch (i) {
         case 0:
           label.style.left = 0;
           labelText.textContent = '0m';
-          break;   
+          break;
         case 1:
           label.style.left = `calc(${50 + options.longBreakPercentage / 2}%  - 3px)`;
           labelText.textContent = this.convertTime(options.totalTime / 2 + options.longBreakTime / 2);
           break;
         case 2:
-          label.style.right = '0';          
+          label.style.right = '0';
           labelText.textContent = this.convertTime(options.totalTime);
-          break;  
-            
+          break;
+
       }
       labelText.classList.add('pom-cycle__label-text');
       labelCircle.classList.add('pom-cycle__label-circle');
-      
+
       label.appendChild(labelText);
-      label.appendChild(labelCircle);     
-      this.topCycleLabelsWrapper.appendChild(label); 
+      label.appendChild(labelCircle);
+      this.topCycleLabelsWrapper.appendChild(label);
     }
   }
 
   this.renderBottomCycleLabels = function(options) {
-    this.clearWrapper(this.bottomCycleLabelsWrapper); 
+    this.clearWrapper(this.bottomCycleLabelsWrapper);
     for(let i = 30; i <= options.totalTime; i = i + 30) {
       var label = document.createElement('div');
-      var labelCircle = document.createElement('span');    
+      var labelCircle = document.createElement('span');
       var labelText = document.createElement('span');
 
       labelText.textContent = this.convertTime(i);
@@ -96,10 +104,10 @@ export function Cycle() {
       labelText.classList.add('pom-cycle__label-text');
       labelCircle.classList.add('pom-cycle__label-circle');
 
-      label.appendChild(labelCircle);  
+      label.appendChild(labelCircle);
       label.appendChild(labelText);
-      this.bottomCycleLabelsWrapper.appendChild(label); 
-    }   
+      this.bottomCycleLabelsWrapper.appendChild(label);
+    }
   }
 
   this.convertTime = function(minutes) {
@@ -111,7 +119,7 @@ export function Cycle() {
     } else if(minutes){
       res = `${minutes}m`;
     } else {
-      res = `${hours}h`;      
+      res = `${hours}h`;
     }
     return res;
   }

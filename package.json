@@ -6,7 +6,9 @@
     "Andrii Dieiev"
   ],
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "build": "webpack build"
+
   },
   "dependencies": {
     "handlebars": "^4.0.11",

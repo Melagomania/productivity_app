@@ -23,7 +23,6 @@ ModalController.prototype.setButtonListeners = function () {
       var buttonAction = target.dataset.modalAction;
       var templateContext;
       switch (buttonAction) {
-
         //choose what type of modal window to open (or to close opened modal)
         case 'modal-open-add':
           templateContext = {

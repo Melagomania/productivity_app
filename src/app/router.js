@@ -1,11 +1,17 @@
-import {Settings} from './components/settings/settings';
-import {Cycle} from './components/cycle/cycle';
+import {settings} from './app';
+import {cycle} from './app';
+
+
 import {header} from './app';
 import {pageModel} from './app';
 import {pageView} from './app';
 
 import {taskListModel} from './app';
 import {taskListView} from './app';
+
+import {timerController} from './app';
+
+
 
 var Router = {
   routes: [],
@@ -118,9 +124,8 @@ Router
     pageModel.setCurrentScreen('settings');
     pageView.renderScreen(pageModel.getCurrentScreen());
 
-    var cycle = new Cycle();
-    var settings = new Settings(cycle);
     settings.init(settings.options);
+    cycle.init();
     cycle.renderCycle(cycle.calculateOptions(settings.options));
     cycle.renderTopCycleLabels(cycle.calculateOptions(settings.options));
     cycle.renderBottomCycleLabels(cycle.calculateOptions(settings.options));
@@ -149,6 +154,8 @@ Router
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('timer');
     pageView.renderScreen(pageModel.getCurrentScreen());
+
+    timerController.openTimer();
   })
   .add(/reports/, function () {
     header.toggleCurrentLink('reports');
