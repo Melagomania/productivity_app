@@ -107,6 +107,9 @@ ModalController.prototype.setButtonListeners = function () {
           _this.taskListModel.tasksToDelete = [];
           break;
         case 'modal-cancel-delete':
+          _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
+          _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
+          _this.taskListModel.tasksToDelete = [];
           _this.modalView.closeModal();
           _this.taskListView.toggleRemoveCount();
       }
