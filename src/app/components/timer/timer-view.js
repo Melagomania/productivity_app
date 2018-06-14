@@ -12,12 +12,10 @@ TimerView.prototype.update = function (data) {
 };
 
 TimerView.prototype.renderTimerScreen = function (data) {
-  console.log(1);
   this.renderButtons(data);
   this.renderClock(data);
   this.renderHeadings(data);
   this.renderPomodoras(data);
-  console.log(2);
 };
 
 TimerView.prototype.renderButtons = function (data) {

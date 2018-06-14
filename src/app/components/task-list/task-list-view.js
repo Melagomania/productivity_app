@@ -3,7 +3,7 @@ export function TaskListView() {
   this.removeCount = document.getElementById('tasks-remove-count');
 
   this.templates = {
-    dailyListTemplate: require('./task-list-daily.hbs'), 
+    dailyListTemplate: require('./task-list-daily.hbs'),
     globalListTemplate: require('./task-list-global.hbs'),
     doneTasksTemplate: require('./task-list-done.hbs')
   };
@@ -31,9 +31,9 @@ TaskListView.prototype.filterTasksByPriority = function(priority) {
   var lists = globalListContainer.getElementsByClassName('task-list');
   if(priority === 'all') {
     for(var i = 0; i < lists.length; i++) {
-      var taskCards = lists[i].getElementsByClassName('task-card');  
-      lists[i].classList.remove('hidden');  
-      for(var j = 0; j < taskCards.length; j++) {     
+      var taskCards = lists[i].getElementsByClassName('task-card');
+      lists[i].classList.remove('hidden');
+      for(var j = 0; j < taskCards.length; j++) {
           taskCards[j].classList.remove('hidden');
       }
     }
@@ -42,7 +42,7 @@ TaskListView.prototype.filterTasksByPriority = function(priority) {
 
   for(var i = 0; i < lists.length; i++) {
     var hidden = 0;
-    var taskCards = lists[i].getElementsByClassName('task-card');    
+    var taskCards = lists[i].getElementsByClassName('task-card');
     for(var j = 0; j < taskCards.length; j++) {
       if(!taskCards[j].classList.contains('task-card--' + priority + '-priority')) {
         taskCards[j].classList.add('hidden');
@@ -77,7 +77,7 @@ TaskListView.prototype.showRemoveTaskButtons = function() {
   for(let i of taskCards) {
     i.style.border = 'none'
     i.getElementsByClassName('task-card__delete-indicator')[0].style.display = 'inline-block';
-    i.getElementsByClassName('task-card__date')[0].style.display = 'none';   
+    i.getElementsByClassName('task-card__date')[0].style.display = 'none';
   }
 };
 
@@ -86,6 +86,6 @@ TaskListView.prototype.hideRemoveTaskButtons = function() {
   for(let i of taskCards) {
     i.style.border = '';
     i.getElementsByClassName('task-card__delete-indicator')[0].style.display = 'none';
-    i.getElementsByClassName('task-card__date')[0].style.display = 'inline-block';   
+    i.getElementsByClassName('task-card__date')[0].style.display = 'inline-block';
   }
 };

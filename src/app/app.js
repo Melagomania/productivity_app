@@ -13,19 +13,23 @@ import {TaskListController} from './components/task-list/task-list-controller';
 import {TaskListView} from './components/task-list/task-list-view';
 
 
-
 import {Settings} from './components/settings/settings';
 import {Cycle} from './components/cycle/cycle';
+
 export var cycle = new Cycle();
 export var settings = new Settings(cycle);
 
 
 export var taskListView = new TaskListView();
 export var taskListModel = new TaskListModel(firebase);
+
+
+
 var modalView = new ModalView();
 var modalController = new ModalController(modalView, taskListModel, taskListView);
 var taskListController = new TaskListController(taskListModel, taskListView, modalView);
 taskListController.init();
+
 
 import {PageController} from './components/page/page-controller';
 import {PageView} from './components/page/page-view';

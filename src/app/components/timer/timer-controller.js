@@ -26,7 +26,6 @@ TimerController.prototype.handleTimerButtonClick = function (target) {
   switch (action) {
     case 'start-task': {
       this.timerModel.taskListDB.setInProgress(this.timerModel.currentTaskId);
-      this.timerModel.taskListDB.setCurrentlyRunning(this.timerModel.currentTaskId, true);
       this.timerModel.notify(this.timerModel.currentTask);
     }
   }

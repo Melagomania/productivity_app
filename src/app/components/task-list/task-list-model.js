@@ -60,7 +60,6 @@ TaskListModel.prototype.addTask = function (taskData) {
   }
   var key = firebase.database().ref('tasks').push(taskData).key;
   this.localDB[key] = taskData;
-  console.log(this.localDB)
   return key;
 };
 
@@ -77,18 +76,13 @@ TaskListModel.prototype.setActive = function (taskId) {
 };
 
 TaskListModel.prototype.setInProgress = function (taskId) {
-  this.localDB[taskId].isInProgress= true;
+  this.localDB[taskId].isInProgress = true;
   firebase.database().ref('tasks/' + taskId).update({isInProgress: true});
 };
 
 TaskListModel.prototype.setInProgress = function (taskId) {
-  this.localDB[taskId].isInProgress= true;
+  this.localDB[taskId].isInProgress = true;
   firebase.database().ref('tasks/' + taskId).update({isInProgress: true});
-};
-
-TaskListModel.prototype.setCurrentlyRunning = function (taskId, val) {
-  this.localDB[taskId].isCurrentlyRunning = val;
-  firebase.database().ref('tasks/' + taskId).update({isCurrentlyRunning: val});
 };
 
 TaskListModel.prototype.removeTask = function (taskId) {
@@ -107,7 +101,12 @@ TaskListModel.prototype.removeTasksCollection = function (tasks) {
 };
 
 TaskListModel.prototype.getTodayTasks = function () {
-  this.todayTasks.length = 0;
+  this.todayTasks = {};
+  Object.defineProperty(this.todayTasks, 'length', {
+    enumerable: false,
+    writable: true,
+    value: 0
+  });
   for (var i in this.localDB) {
     if (this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
       this.todayTasks[i] = this.localDB[i];
@@ -173,4 +172,9 @@ TaskListModel.prototype.sortTasksByCategories = function () {
 
 TaskListModel.prototype.isTaskDone = function (task) {
   return task.estimation === task.estimationUsed;
-}
+};
+
+
+
+
+

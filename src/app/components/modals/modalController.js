@@ -3,7 +3,6 @@ import {
 } from './../../app';
 
 export function ModalController(modalView, taskListModel, taskListView) {
-  var _this = this;
   this.modalView = modalView;
   this.taskListModel = taskListModel;
   this.taskListView = taskListView;
@@ -23,7 +22,6 @@ ModalController.prototype.setButtonListeners = function () {
       var buttonAction = target.dataset.modalAction;
       var templateContext;
       switch (buttonAction) {
-        //choose what type of modal window to open (or to close opened modal)
         case 'modal-open-add':
           templateContext = {
             title: 'Add task',
@@ -50,7 +48,7 @@ ModalController.prototype.setButtonListeners = function () {
           this.isOpened = false;
           break;
 
-          //choose what type of action perfom on a task
+        //choose what type of action perfom on a task
         case 'modal-add-task':
           var taskInfo = _this.getInputsInfo();
           taskInfo.isActive = false;
@@ -59,16 +57,11 @@ ModalController.prototype.setButtonListeners = function () {
           taskInfo.estimationUsed = 0;
           var now = new Date();
           taskInfo.createDate = now.getTime();
-
           _this.taskListModel.addTask(taskInfo);
-
-
           _this.taskListModel.getTodayTasks();
           _this.taskListModel.sortTasksByCategories();
           _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
           _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
-
-
           _this.modalView.closeModal();
           this.isOpened = false;
           break;
@@ -95,12 +88,9 @@ ModalController.prototype.setButtonListeners = function () {
         case 'to-daily':
           if (_this.taskListModel.todayTasks.length < 5) {
             _this.currentTaskId = e.target.getAttribute('data-task-id');
-
             _this.taskListModel.setActive(_this.currentTaskId);
-
             _this.taskListModel.sortTasksByCategories();
             _this.taskListModel.getTodayTasks();
-
             _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
             _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
           }
@@ -108,14 +98,14 @@ ModalController.prototype.setButtonListeners = function () {
         case 'modal-remove-tasks':
           var tasksToDelete = _this.taskListModel.tasksToDelete;
           _this.taskListModel.removeTasksCollection(tasksToDelete);
-
           _this.taskListModel.getTodayTasks();
           _this.taskListModel.sortTasksByCategories();
           _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
           _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
-
           _this.modalView.closeModal();
           _this.taskListView.toggleRemoveCount();
+          _this.taskListModel.tasksToDelete = [];
+          break;
         case 'modal-cancel-delete':
           _this.modalView.closeModal();
           _this.taskListView.toggleRemoveCount();
@@ -155,6 +145,7 @@ ModalController.prototype.getInputsInfo = function () {
       }
     }
   }
+
   return taskOptions;
 }
 
