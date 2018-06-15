@@ -102,12 +102,12 @@
   top: 50%;
   transform: translate(-50%, -50%) rotate(-136deg);
   border-radius: 50%;
-  border: 43px solid transparent;
-  border-right-color: red;
-  border-top-color: red;
-  width: 243px;
-  height: 248px;
-  animation: circleHiderAnimation 10s infinite linear;
+  border: 38px solid transparent;
+  border-right-color: @nepal-col;
+  border-top-color: @nepal-col;
+  width: 240px;
+  height: 240px;
+  animation: circleHiderAnimation 5s 1 linear;
 }
 
 .timer__inner-clock-circle {
@@ -121,7 +121,7 @@
   border-top-color: #8da5b8;
   width: 240px;
   height: 240px;
-  animation: timerRotatingPart 10s infinite linear;
+  animation: timerRotatingPart 5s 1 linear;
 
 }
 
@@ -136,7 +136,7 @@
   border-top-color: @nepal-col;
   width: 240px;
   height: 240px;
-  animation: timerRightPart 10s infinite linear;
+  animation: timerRightPart 5s 1 linear;
 }
 
 @keyframes timerRotatingPart {
@@ -150,6 +150,7 @@
 
   100% {
     transform: translate(-50%, -50%) rotate(225deg);
+
   }
 }
 
@@ -178,10 +179,16 @@
   0% {
     border-right-color: @madison-col;
     border-top-color: @madison-col;
+    border-width: 43px;
+    width: 243px;
+    height: 248px;
   }
   49.9% {
     border-right-color: @madison-col;
-    border-top-color: @madison-col
+    border-top-color: @madison-col;
+    border-width: 43px;
+    width: 243px;
+    height: 248px;
   }
 
   50% {
