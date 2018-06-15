@@ -3,7 +3,6 @@ export function TimerModel(taskListDB) {
   this.currentTask = null;
 
   this.taskListDB = taskListDB;
-
   this.observers = [];
 }
 

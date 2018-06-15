@@ -47,7 +47,7 @@ import {TimerView} from './components/timer/timer-view';
 
 var timerView = new TimerView();
 var timerModel = new TimerModel(taskListModel);
-export var timerController = new TimerController(timerModel, timerView);
+export var timerController = new TimerController(timerModel, timerView, settings.options);
 timerController.init();
 
 

@@ -1,6 +1,10 @@
-export function TimerController(timerModel, timerView) {
+export function TimerController(timerModel, timerView, settings) {
   this.timerModel = timerModel;
   this.timerView = timerView;
+  this.settings = settings;
+
+  this.iterationsCompleted = 0;
+  this.currentStage = '';
 }
 
 TimerController.prototype.init = function () {
@@ -25,12 +29,40 @@ TimerController.prototype.handleTimerButtonClick = function (target) {
   var action = target.dataset.timerAction;
   switch (action) {
     case 'start-task': {
-      this.timerModel.taskListDB.setInProgress(this.timerModel.currentTaskId);
-      this.timerModel.notify(this.timerModel.currentTask);
+      // this.timerModel.taskListDB.setInProgress(this.timerModel.currentTaskId);
+      // this.timerModel.notify(this.timerModel.currentTask);
+      console.log(this.settings);
+      this.startTimer();
     }
   }
 };
 
-TimerController.prototype.openTimer = function() {
+TimerController.prototype.startTimer = function () {
+  console.log(this.iterationsCompleted);
+  if (this.iterationsCompleted % 2 === 0) {
+    this.startWork();
+  } else {
+    if(this.iterationsCompleted === this.settings['work-iteration-option'].current) {
+      // this.iterationsCompleted++;
+      console.log('long');
+    } else {
+      // this.iterationsCompleted++;
+      console.log('short');
+    }
+  }
+};
+
+
+TimerController.prototype.startWork = function () {
+  console.log('work');
+  this.currentStage = 'working';
+  this.iterationsCompleted++;
+};
+
+
+
+TimerController.prototype.openTimer = function () {
   this.timerView.renderTimerScreen(this.timerModel.currentTask);
 };
+
+
