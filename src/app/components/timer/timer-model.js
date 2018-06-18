@@ -1,14 +1,27 @@
 export function TimerModel(taskListDB) {
+  var _this = this;
   this.currentTaskId = null;
   this.currentTask = null;
+  this.iterationsCompleted = 0;
+  this.currentStage = 0;
 
   this.taskListDB = taskListDB;
   this.observers = [];
 }
 
-TimerModel.prototype.setCurrentTaskId = function (newTaskId) {
-  this.currentTaskId = newTaskId;
-  this.currentTask = this.getCurrentTask(this.currentTaskId);
+
+TimerModel.prototype.completePomodora = function (taskId) {
+
+};
+
+TimerModel.prototype.setCurrentTask = function (taskId) {
+  this.currentTaskId = taskId;
+  this.currentTask = this.getCurrentTask(taskId);
+};
+
+TimerModel.prototype.updatePomodoras = function (value) {
+  this.taskListDB.setPomodorasArr(this.currentTaskId, value);
+  this.notify(this.taskListDB.localDB[this.currentTaskId]);
 };
 
 TimerModel.prototype.notify = function (data) {

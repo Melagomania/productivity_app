@@ -56,7 +56,6 @@ TaskListModel.prototype.addTask = function (taskData) {
   taskData.pomodoras = [];
   for (let i = 0; i < +taskData.estimation; i++) {
     taskData.pomodoras.push('');
-    taskData.isCurrentlyRunning = false;
   }
   var key = firebase.database().ref('tasks').push(taskData).key;
   this.localDB[key] = taskData;
@@ -75,10 +74,16 @@ TaskListModel.prototype.setActive = function (taskId) {
   firebase.database().ref('tasks/' + taskId).update({isActive: true});
 };
 
-TaskListModel.prototype.setInProgress = function (taskId) {
-  this.localDB[taskId].isInProgress = true;
-  firebase.database().ref('tasks/' + taskId).update({isInProgress: true});
+TaskListModel.prototype.setPomodorasArr = function (taskId, value) {
+  this.localDB[taskId].estimationUsed++;
+  this.localDB[taskId].pomodoras[this.localDB[taskId].estimationUsed - 1] = value;
+  firebase.database().ref('tasks/' + taskId).update({
+    'pomodoras': this.localDB[taskId].pomodoras,
+    'estimationUsed': this.localDB[taskId].estimationUsed
+  });
+
 };
+
 
 TaskListModel.prototype.setInProgress = function (taskId) {
   this.localDB[taskId].isInProgress = true;
@@ -171,7 +176,7 @@ TaskListModel.prototype.sortTasksByCategories = function () {
 }
 
 TaskListModel.prototype.isTaskDone = function (task) {
-  return task.estimation === task.estimationUsed;
+  return +task.estimation === task.estimationUsed;
 };
 
 

@@ -67,6 +67,7 @@ ModalController.prototype.setButtonListeners = function () {
           break;
         case 'modal-edit-task':
           var taskInfo = _this.getInputsInfo();
+
           _this.taskListModel.editTask(_this.currentTaskId, taskInfo);
           _this.modalView.closeModal();
 

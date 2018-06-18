@@ -1,7 +1,7 @@
 {{#each this}}
   <ul class="task-list list">
     <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}} task-card--done">
-      <section class="task-card__delete-indicator task-card__delete-indicator--active"></section>
+      <section class="task-card__delete-indicator task-card__delete-indicator--active" data-task-id="{{@key}}"></section>
       <section class="task-card__date">{{this.deadline}}</section>
       <section class="task-card__task-info">
         <h3 class="task-card__task-name">{{this.title}}</h3>

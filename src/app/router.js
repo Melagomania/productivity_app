@@ -150,7 +150,7 @@ Router
     taskListView.renderGlobalTaskList(taskListModel.sortedTasks);
     taskListView.renderDailyTaskList(taskListModel.todayTasks);
   })
-  .add(/timer/, function () {
+  .add(/timer/, function (e) {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('timer');
     pageView.renderScreen(pageModel.getCurrentScreen());

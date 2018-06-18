@@ -28,7 +28,7 @@
     margin-right: 0;
   }
 
-  &--active {
+  &--done {
     background: url("/fill tomato.svg") no-repeat center;
   }
 
@@ -107,7 +107,14 @@
   border-top-color: @nepal-col;
   width: 240px;
   height: 240px;
-  animation: circleHiderAnimation 5s 1 linear;
+  display: none;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-duration: 5s;
+  &--animated {
+    display: block;
+    animation-name: circleHiderAnimation;
+  }
 }
 
 .timer__inner-clock-circle {
@@ -121,8 +128,14 @@
   border-top-color: #8da5b8;
   width: 240px;
   height: 240px;
-  animation: timerRotatingPart 5s 1 linear;
-
+  display: none;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-duration: 5s;
+  &--animated {
+    display: block;
+    animation-name: timerRotatingPart;
+  }
 }
 
 .timer__circle-right-part {
@@ -136,7 +149,15 @@
   border-top-color: @nepal-col;
   width: 240px;
   height: 240px;
-  animation: timerRightPart 5s 1 linear;
+  display: none;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-duration: 5s;
+  &--animated {
+    display: block;
+    animation-name: timerRightPart;
+
+  }
 }
 
 @keyframes timerRotatingPart {
