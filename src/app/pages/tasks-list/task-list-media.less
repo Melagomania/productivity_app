@@ -41,13 +41,51 @@
 
 @media screen and (max-width: 480px) {
   .task-card__goToTimer {
-    width: 70px;
+    width: 68px;
+    height: 76px;
     margin-left: 10px;
+
+    &::after {
+      font-size: 42px;
+    }
   }
 
   .global-list__tabs-wrapper {
     margin-top: 20px;
     margin-bottom: 10px;
   }
+  .task-card__buttons {
+    height: 76px;
+  }
+
+  .task-card__button {
+    margin: 3px 0;
+    font-size: 15px;
+  }
+
+  .task-card__task-info {
+    padding: 15px 0;
+  }
+
+  .task-card__estimation-value {
+    font-size: 19px;
+  }
+
+  .task-card__delete-indicator {
+    height: 76px;
+
+    &::after {
+      font-size: 31px;
+    }
+  }
+
+  .task-list--categorized {
+    .task-card__delete-indicator {
+      width: 59px;
+      min-width: 59px;
+    }
+  }
+
+
 }
 

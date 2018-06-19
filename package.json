@@ -6,9 +6,8 @@
     "Andrii Dieiev"
   ],
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack build"
-
+    "start:n": "webpack-dev-server --port 3000 --hot --host 0.0.0.0",
+    "start": "webpack-dev-server --open"
   },
   "dependencies": {
     "handlebars": "^4.0.11",
