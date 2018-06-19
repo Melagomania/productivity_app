@@ -1,11 +1,38 @@
-{{#unless this.isInProgress}}
-  <button class="button button--green timer-btn" data-timer-action="start-task">Start</button>
-{{else}}
-  {{#if this.isCurrentlyRunning}}
-    <button class="button button--red timer-btn" data-timer-action="fail-pom"> Fail Pomodora</button>
-    <button class="button button--green timer-btn" data-timer-action="finish-pom">Finish Pomodora</button>
-  {{else}}
-    <button class="button button--green timer-btn" data-timer-action="start-pom">Start Pomodora</button>
-    <button class="button button--blue timer-btn" data-timer-action="finish-task">Finish Task</button>
-  {{/if}}
-{{/unless}}
+{{#ifcompare this.currentStage 0}}
+  <button class="button button--green timer-btn" data-timer-action="start-pom">Start</button>
+{{/ifcompare}}
+
+{{#ifcompare this.currentStage 1}}
+  <button class="button button--red timer-btn" data-timer-action="fail-pom"> Fail Pomodora</button>
+  <button class="button button--green timer-btn" data-timer-action="finish-pom">Finish Pomodora</button>
+{{/ifcompare}}
+
+{{#ifcompare this.currentStage 2}}
+  <button class="button button--green timer-btn" data-timer-action="start-pom">Start Pomodora</button>
+  <button class="button button--blue timer-btn" data-timer-action="finish-task">Finish Task</button>
+{{/ifcompare}}
+
+{{#ifcompare this.currentStage 3}}
+  <button class="button button--green timer-btn" data-timer-action="start-pom">Start Pomodora</button>
+  <button class="button button--blue timer-btn" data-timer-action="finish-task">Finish Task</button>
+{{/ifcompare}}
+
+{{#ifcompare this.currentStage 4}}
+  <button class="button button--green timer-btn" data-timer-action="start-pom">Start Pomodora</button>
+  <button class="button button--blue timer-btn" data-timer-action="finish-task">Finish Task</button>
+{{/ifcompare}}
+
+
+
+
+<!--{{#unless this.isInProgress}}-->
+  <!--<button class="button button--green timer-btn" data-timer-action="start-task">Start</button>-->
+<!--{{else}}-->
+  <!--{{#if this.isCurrentlyRunning}}-->
+    <!--<button class="button button--red timer-btn" data-timer-action="fail-pom"> Fail Pomodora</button>-->
+    <!--<button class="button button--green timer-btn" data-timer-action="finish-pom">Finish Pomodora</button>-->
+  <!--{{else}}-->
+    <!--<button class="button button--green timer-btn" data-timer-action="start-pom">Start Pomodora</button>-->
+    <!--<button class="button button--blue timer-btn" data-timer-action="finish-task">Finish Task</button>-->
+  <!--{{/if}}-->
+<!--{{/unless}}-->

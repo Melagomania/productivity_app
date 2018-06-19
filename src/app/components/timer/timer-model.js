@@ -10,13 +10,14 @@ export function TimerModel(taskListDB) {
 }
 
 
-TimerModel.prototype.completePomodora = function (taskId) {
-
+TimerModel.prototype.setCurrentStage = function (newCurrentStage) {
+  this.currentStage = newCurrentStage;
+  this.notify(this.taskListDB.localDB[this.currentTaskId]);
 };
 
 TimerModel.prototype.setCurrentTask = function (taskId) {
   this.currentTaskId = taskId;
-  this.currentTask = this.getCurrentTask(taskId);
+  this.currentTask = this.taskListDB.localDB[taskId];
 };
 
 TimerModel.prototype.updatePomodoras = function (value) {
@@ -25,6 +26,7 @@ TimerModel.prototype.updatePomodoras = function (value) {
 };
 
 TimerModel.prototype.notify = function (data) {
+  data.currentStage = this.currentStage;
   this.observers.forEach(function (observer) {
     observer.update(data);
   });
@@ -32,8 +34,4 @@ TimerModel.prototype.notify = function (data) {
 
 TimerModel.prototype.addObserver = function (observer) {
   this.observers.push(observer);
-};
-
-TimerModel.prototype.getCurrentTask = function (taskId) {
-  return this.taskListDB.localDB[taskId];
 };

@@ -6,15 +6,37 @@
 <!--<div class="timer__circle-hider"></div>-->
 
 <p class="timer__clock-text">
-  <span class="timer__break-word hidden">Break</span>
-  <span class="timer__time-indicator hidden">6</span>
-  <span class="timer__min-word hidden">min</span>
-  <span class="timer__notification">Break
-    <br> is over
-  </span>
-  <span class="timer__notification hidden">Let's do it</span>
-  <span class="timer__notification hidden">You
-    <br> Completed
-    <br> Task
-  </span>
+  {{#ifcompare this.currentStage 1}}
+    <span id="timer-time-indicator" class="timer__time-indicator ">{{this.work-time-option.current}}</span>
+    <span class="timer__min-word ">min</span>
+  {{/ifcompare}}
+
+  {{#ifcompare this.currentStage 2}}
+    <span class="timer__break-word ">Break</span>
+    <span id="timer-time-indicator" class="timer__time-indicator ">6</span>
+    <span class="timer__min-word ">min</span>
+  {{/ifcompare}}
+
+  {{#ifcompare this.currentStage 3}}
+    <span class="timer__break-word ">Break</span>
+    <span id="timer-time-indicator" class="timer__time-indicator ">6</span>
+    <span class="timer__min-word ">min</span>
+  {{/ifcompare}}
+
+  {{#ifcompare this.currentStage 4}}
+    <span class="timer__notification">Break
+      <br> is over
+    </span>
+  {{/ifcompare}}
+
+  {{#ifcompare this.currentStage 0}}
+    <span class="timer__notification">Let's do it</span>
+  {{/ifcompare}}
+  {{#ifcompare this.currentStage 5}}
+    <span class="timer__notification">You
+      <br> Completed
+      <br> Task
+    </span>
+  {{/ifcompare}}
+
 </p>
