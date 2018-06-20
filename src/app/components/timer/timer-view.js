@@ -20,10 +20,17 @@ TimerView.prototype.saveDOMElmenents = function () {
 };
 
 TimerView.prototype.update = function (data) {
+  console.log('222');
+
   this.renderTimerScreen(data);
 };
 
+TimerView.prototype.updateTimeLeft = function (data) {
+  document.getElementById('timer-time-indicator').textContent = data;
+};
+
 TimerView.prototype.renderTimerScreen = function (data) {
+  console.log('333');
   this.renderButtons(data);
   this.renderClock(data);
   this.renderHeadings(data);
@@ -45,33 +52,31 @@ TimerView.prototype.renderClock = function (data) {
   clock.innerHTML = this.templates.timerClock(data);
   this.saveDOMElmenents();
   let time;
-
+  let timeIndicatorInterval;
   switch (data.currentStage) {
     case 1: {
       time = this.settings['work-time-option'].current * 60 * 10;
-      this.startAnimations(time);
-      this.elements.timeIndicator.textContent = this.settings['work-time-option'].current;
-      this.setTimeTimeout(time / this.settings['work-time-option'].current);
+      timeIndicatorInterval = time / this.settings['work-time-option'].current;
       break;
     }
     case 2: {
       time = this.settings['short-break-option'].current * 60 * 10;
-      this.startAnimations(time);
-      this.elements.timeIndicator.textContent = this.settings['short-break-option'].current;
-      this.setTimeTimeout(time / this.settings['short-break-option'].current * 60 * 10);
+      timeIndicatorInterval = time / this.settings['short-break-option'].current * 60 * 10;
       break;
     }
     case 3: {
       time = this.settings['long-break-option'].current * 60 * 10;
-      this.startAnimations(time);
-      this.elements.timeIndicator.textContent = this.settings['long-break-option'].current;
-      this.setTimeTimeout(time / this.settings['long-break-option'].current * 60 * 10);
+      timeIndicatorInterval = time / this.settings['long-break-option'].current * 60 * 10;
       break;
     }
     default: {
       break;
     }
   }
+  if(data.currentStage !== 0 && data.currentStage !== 5 && data.currentStage !== 4) {
+    this.startAnimations(time);
+  }
+
 };
 
 TimerView.prototype.renderPomodoras = function (data) {
@@ -87,14 +92,4 @@ TimerView.prototype.startAnimations = function (time) {
   this.elements.circleRightPart.style.animationDuration = time + 'ms';
   this.elements.clockCircle.style.animationDuration = time + 'ms';
   this.elements.circleHider.style.animationDuration = time + 'ms';
-};
-
-TimerView.prototype.setTimeTimeout = function (time) {
-  let _this = this;
-  this.interval = setInterval(function () {
-    _this.elements.timeIndicator.textContent--;
-    if(+_this.elements.timeIndicator.textContent === 1) {
-      clearInterval(_this.interval);
-    }
-  }, time);
 };

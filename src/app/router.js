@@ -154,7 +154,6 @@ Router
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('timer');
     pageView.renderScreen(pageModel.getCurrentScreen());
-
     timerController.openTimer();
   })
   .add(/reports/, function () {

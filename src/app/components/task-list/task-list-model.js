@@ -81,8 +81,16 @@ TaskListModel.prototype.setPomodorasArr = function (taskId, value) {
     'pomodoras': this.localDB[taskId].pomodoras,
     'estimationUsed': this.localDB[taskId].estimationUsed
   });
-
 };
+
+
+TaskListModel.prototype.setTaskDone = function (taskId) {
+  this.localDB[taskId].estimationUsed = this.localDB[taskId].estimation;
+  firebase.database().ref('tasks/' + taskId).update({
+    'estimationUsed': this.localDB[taskId].estimationUsed
+  });
+};
+
 
 
 TaskListModel.prototype.setInProgress = function (taskId) {
@@ -176,7 +184,7 @@ TaskListModel.prototype.sortTasksByCategories = function () {
 }
 
 TaskListModel.prototype.isTaskDone = function (task) {
-  return +task.estimation === task.estimationUsed;
+  return +task.estimation == task.estimationUsed;
 };
 
 
