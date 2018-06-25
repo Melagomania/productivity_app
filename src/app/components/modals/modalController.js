@@ -138,7 +138,7 @@ ModalController.prototype.getInputsInfo = function () {
   taskOptions.title = taskTitleField.value;
   taskOptions.description = taskDeskriptionField.value;
   taskOptions.deadline = taskDeadlineField.value;
-  taskOptions.estimation = getValue(estimationBtns);
+  taskOptions.estimation = +getValue(estimationBtns);
   taskOptions.categoryId = getValue(categoryBtns);
   taskOptions.priority = getValue(priorityBtns);
 

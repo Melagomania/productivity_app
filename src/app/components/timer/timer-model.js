@@ -10,7 +10,6 @@ export function TimerModel(taskListDB) {
   this.observers = [];
 }
 
-
 TimerModel.prototype.setTimeLeft = function (newTimeLeft) {
   if(newTimeLeft) {
     this.timeLeft= newTimeLeft;
@@ -58,7 +57,7 @@ TimerModel.prototype.addObserver = function (observer) {
 };
 
 TimerModel.prototype.isTaskCompleted = function () {
-  if (+this.taskListDB.localDB[this.currentTaskId].estimation == this.taskListDB.localDB[this.currentTaskId].estimationUsed) {
+  if (this.taskListDB.localDB[this.currentTaskId].estimation === this.taskListDB.localDB[this.currentTaskId].pomodorasCompleted) {
     return true;
   }
   return false;

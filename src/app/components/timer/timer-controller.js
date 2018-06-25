@@ -38,6 +38,7 @@ TimerController.prototype.handleTimerButtonClick = function (target) {
       this.timerModel.iterationsCompleted++;
       this.timerModel.updatePomodoras('failed');
       if (this.timerModel.isTaskCompleted()) {
+        this.timerModel.setTaskDone();
         this.timerModel.setCurrentStage(5);
       } else {
         this.startTimer();
@@ -50,6 +51,7 @@ TimerController.prototype.handleTimerButtonClick = function (target) {
       this.timerModel.iterationsCompleted++;
       this.timerModel.updatePomodoras('done');
       if (this.timerModel.isTaskCompleted()) {
+        this.timerModel.setTaskDone();
         this.timerModel.setCurrentStage(5);
       } else {
         this.startTimer();
@@ -90,6 +92,7 @@ TimerController.prototype.startWork = function () {
     _this.timerModel.updatePomodoras('done');
 
     if (+_this.timerModel.isTaskCompleted()) {
+      _this.timerModel.setTaskDone();
       _this.timerModel.setCurrentStage(5);
     } else {
       _this.startTimer();

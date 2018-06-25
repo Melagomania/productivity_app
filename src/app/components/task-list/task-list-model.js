@@ -57,14 +57,18 @@ export function TaskListModel(database) {
 
 TaskListModel.prototype.addTask = function (taskData) {
   taskData.pomodoras = [];
-  for (let i = 0; i < +taskData.estimation; i++) {
+  taskData.isDone = false;
+  taskData.pomodorasCompleted = 0;
+  for (let i = 0; i < taskData.estimation; i++) {
     taskData.pomodoras.push('');
   }
-  var key = firebase.database().ref('tasks').push(taskData).key;
+
+  let key = firebase.database().ref('tasks').push(taskData).key;
+
   this.localDB[key] = taskData;
-  console.log(this);
   this.firstTaskAdded = true;
   sessionStorage.setItem('firstTaskAdded', true);
+  console.log(this);
   return key;
 };
 
@@ -81,19 +85,28 @@ TaskListModel.prototype.setActive = function (taskId) {
 };
 
 TaskListModel.prototype.setPomodorasArr = function (taskId, value) {
-  this.localDB[taskId].estimationUsed++;
-  this.localDB[taskId].pomodoras[this.localDB[taskId].estimationUsed - 1] = value;
+  if(value !== 'failed') {
+    this.localDB[taskId].estimationUsed++;
+  }
+  this.localDB[taskId].pomodorasCompleted++;
+  for(let i = 0; i < this.localDB[taskId].pomodoras.length; i++) {
+    if(this.localDB[taskId].pomodoras[i] === '') {
+      this.localDB[taskId].pomodoras[i] = value;
+      break;
+    }
+  }
   firebase.database().ref('tasks/' + taskId).update({
     'pomodoras': this.localDB[taskId].pomodoras,
-    'estimationUsed': this.localDB[taskId].estimationUsed
-  });
+    'estimationUsed': this.localDB[taskId].estimationUsed,
+    'pomodorasCompleted': this.localDB[taskId].pomodorasCompleted
+});
 };
 
 // todo: refactor
 TaskListModel.prototype.setTaskDone = function (taskId) {
-  this.localDB[taskId].estimationUsed = this.localDB[taskId].estimation;
+  this.localDB[taskId].isDone = true;
   firebase.database().ref('tasks/' + taskId).update({
-    'estimationUsed': this.localDB[taskId].estimationUsed
+    'isDone': true
   });
 };
 
@@ -204,8 +217,10 @@ TaskListModel.prototype.sortTasksByCategories = function () {
   }
 }
 
+
+//todo: remove unused method
 TaskListModel.prototype.isTaskDone = function (task) {
-  return +task.estimation == task.estimationUsed;
+  return task.isDone;
 };
 
 
