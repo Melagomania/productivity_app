@@ -3,7 +3,8 @@ export function TimerView(settings) {
     timerIterations: require('./timer-pomodoras.hbs'),
     timerClock: require('./timer-clock.hbs'),
     timerButtons: require('./timer-buttons.hbs'),
-    timerHeadings: require('./timer-headings.hbs')
+    timerHeadings: require('./timer-headings.hbs'),
+    timerArrows: require('./timer-arrows.hbs')
   };
   this.elements = null;
   this.settings = settings;
@@ -20,8 +21,6 @@ TimerView.prototype.saveDOMElmenents = function () {
 };
 
 TimerView.prototype.update = function (data) {
-  console.log('222');
-
   this.renderTimerScreen(data);
 };
 
@@ -30,16 +29,21 @@ TimerView.prototype.updateTimeLeft = function (data) {
 };
 
 TimerView.prototype.renderTimerScreen = function (data) {
-  console.log('333');
   this.renderButtons(data);
   this.renderClock(data);
   this.renderHeadings(data);
   this.renderPomodoras(data);
+  this.renderArrows(data);
 };
 
 TimerView.prototype.renderButtons = function (data) {
   var buttonsContainer = document.getElementById('timer-buttons-container');
   buttonsContainer.innerHTML = this.templates.timerButtons(data);
+};
+
+TimerView.prototype.renderArrows = function (data) {
+  var arrowsContainer = document.getElementById('timer-arrows-container');
+  arrowsContainer.innerHTML = this.templates.timerArrows(data);
 };
 
 TimerView.prototype.renderHeadings = function (data) {

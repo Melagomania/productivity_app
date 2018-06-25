@@ -126,7 +126,6 @@ TimerController.prototype.startLongBreak = function () {
 
 
 TimerController.prototype.openTimer = function () {
-  console.log('111');
   this.timerView.renderTimerScreen(this.timerModel.currentTask);
 };
 
@@ -134,12 +133,9 @@ TimerController.prototype.openTimer = function () {
 TimerController.prototype.setTimeLeftTimer = function (time) {
   var _this = this;
   this.timeLeftInterval = setTimeout(function () {
-    console.log(_this.timeLeftInterval);
     _this.timerModel.setTimeLeft();
     if(_this.timerModel.timeLeft === 1) {
-      console.log('clear', _this.timeLeftInterval);
       clearTimeout(_this.timeLeftInterval);
-      console.log('cleared', _this.timeLeftInterval);
     } else {
       _this.setTimeLeftTimer(time);
     }

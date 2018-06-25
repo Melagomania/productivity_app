@@ -1,7 +1,10 @@
 export function TaskListModel(database) {
+  this.firstTaskAdded = sessionStorage.getItem('firstTaskAdded');
+
   this.remoteDB = database;
   this.localDB;
 
+  this.undoneTasks = 0;
   this.tasksToDelete = [];
   this.todayTasks = {};
   this.doneTasks = {};
@@ -59,6 +62,9 @@ TaskListModel.prototype.addTask = function (taskData) {
   }
   var key = firebase.database().ref('tasks').push(taskData).key;
   this.localDB[key] = taskData;
+  console.log(this);
+  this.firstTaskAdded = true;
+  sessionStorage.setItem('firstTaskAdded', true);
   return key;
 };
 
@@ -83,14 +89,13 @@ TaskListModel.prototype.setPomodorasArr = function (taskId, value) {
   });
 };
 
-
+// todo: refactor
 TaskListModel.prototype.setTaskDone = function (taskId) {
   this.localDB[taskId].estimationUsed = this.localDB[taskId].estimation;
   firebase.database().ref('tasks/' + taskId).update({
     'estimationUsed': this.localDB[taskId].estimationUsed
   });
 };
-
 
 
 TaskListModel.prototype.setInProgress = function (taskId) {
@@ -137,10 +142,11 @@ TaskListModel.prototype.getDoneTasks = function () {
 };
 
 TaskListModel.prototype.sortTasksByCategories = function () {
+  this.undoneTasks = 0;
   for (var i in this.sortedTasks) {
     this.sortedTasks[i] = {};
-    this.sortedTasks[i].length = 0;
 
+    this.sortedTasks[i].length = 0;
     Object.defineProperty(this.sortedTasks[i], 'length', {
       enumerable: false,
       writable: true,
@@ -153,32 +159,47 @@ TaskListModel.prototype.sortTasksByCategories = function () {
         if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
           this.sortedTasks[1][i] = this.localDB[i];
           this.sortedTasks[1].length++;
+          this.undoneTasks++;
+          this.firstTaskAdded = true;
+          sessionStorage.setItem('firstTaskAdded', true);
         }
         break;
       case '2':
         if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
           this.sortedTasks[2][i] = this.localDB[i];
           this.sortedTasks[2].length++;
+          this.undoneTasks++;
+          this.firstTaskAdded = true;
+          sessionStorage.setItem('firstTaskAdded', true);
         }
         break;
       case '3':
         if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
           this.sortedTasks[3][i] = this.localDB[i];
           this.sortedTasks[3].length++;
-          break;
+          this.undoneTasks++;
+          this.firstTaskAdded = true;
+          sessionStorage.setItem('firstTaskAdded', true);
         }
+        break;
       case '4':
         if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
           this.sortedTasks[4][i] = this.localDB[i];
           this.sortedTasks[4].length++;
-          break;
+          this.undoneTasks++;
+          this.firstTaskAdded = true;
+          sessionStorage.setItem('firstTaskAdded', true);
         }
+        break;
       case '5':
         if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
           this.sortedTasks[5][i] = this.localDB[i];
           this.sortedTasks[5].length++;
-          break;
+          this.undoneTasks++;
+          this.firstTaskAdded = true;
+          sessionStorage.setItem('firstTaskAdded', true);
         }
+        break;
     }
   }
 }

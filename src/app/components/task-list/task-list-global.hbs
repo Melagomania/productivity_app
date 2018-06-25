@@ -1,53 +1,61 @@
-<div class="global-list__tabs-wrapper">
-  <ul class="tabs  tabs--right  list" id="tasks-filter">
-    <li class="tabs__item">
-      <button class="tabs__btn tasks-filter-btn" id="all-filter" data-tasks-filter="all">All</button>
-    </li>
-    <li class="tabs__item">
-      <button class="tabs__btn tasks-filter-btn" id="urgent-filter" data-tasks-filter="urgent">Urgent</button>
-    </li>
-    <li class="tabs__item">
-      <button class="tabs__btn tasks-filter-btn" id="high-filter" data-tasks-filter="high">High</button>
-    </li>
-    <li class="tabs__item">
-      <button class="tabs__btn tasks-filter-btn" id="middle-filter" data-tasks-filter="middle">Middle</button>
-    </li>
-    <li class="tabs__item">
-      <button class="tabs__btn tasks-filter-btn" id="low-filter" data-tasks-filter="low">Low</button>
-    </li>
-  </ul>
-</div>
-
-{{#each this}}
-{{#if this.length}}
-<ul class="task-list  task-list--categorized task-list--categorized-{{getCategory @key}} task-list--{{getCategory @key}} list">
-  <div class="task-list__decorative-line">
-    <div class="task-list__decorative-circle">
-      <div class="task-list__decorative-inner-circle"></div>
-    </div>
+{{#if this.undoneTasks}}
+<button class="task-list-screen__global-list-toggler">Global list</button>
+<section class="global-list">
+  <div class="global-list__tabs-wrapper">
+    <ul class="tabs  tabs--right  list" id="tasks-filter">
+      <li class="tabs__item">
+        <button class="tabs__btn tasks-filter-btn" id="all-filter" data-tasks-filter="all">All</button>
+      </li>
+      <li class="tabs__item">
+        <button class="tabs__btn tasks-filter-btn" id="urgent-filter" data-tasks-filter="urgent">Urgent</button>
+      </li>
+      <li class="tabs__item">
+        <button class="tabs__btn tasks-filter-btn" id="high-filter" data-tasks-filter="high">High</button>
+      </li>
+      <li class="tabs__item">
+        <button class="tabs__btn tasks-filter-btn" id="middle-filter" data-tasks-filter="middle">Middle</button>
+      </li>
+      <li class="tabs__item">
+        <button class="tabs__btn tasks-filter-btn" id="low-filter" data-tasks-filter="low">Low</button>
+      </li>
+    </ul>
   </div>
-  <h3 class="task-list__heading task-list__heading--{{getCategory @key}}">{{getCategory @key}}</h3>
-  {{#each this}}
-  {{#unless this.isActive}}
-  <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}} task-card--no-border">
-    <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
-    <section class="task-card__date">{{this.deadline}}</section>
-    <section class="task-card__task-info">
-      <h3 class="task-card__task-name">{{this.title}}</h3>
-      <p class="tasc-card__task-description">{{this.description}}</p>
-    </section>
-    <section class="task-card__buttons">
-      <section class="task-card__task-adjustsments">
-        <button class="task-card__button task-card__button--to-daily modal-button" data-modal-action="to-daily" data-task-id="{{@key}}"></button>
-        <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
-      </section>
-      <span class="task-card__goToTimer task-card__goToTimer--disabled link">
+  {{#each this.sortedTasks}}
+    {{#if this.length}}
+      <ul class="task-list  task-list--categorized task-list--categorized-{{getCategory @key}} task-list--{{getCategory
+        @key}} list">
+        <div class="task-list__decorative-line">
+          <div class="task-list__decorative-circle">
+            <div class="task-list__decorative-inner-circle"></div>
+          </div>
+        </div>
+        <h3 class="task-list__heading task-list__heading--{{getCategory @key}}">{{getCategory @key}}</h3>
+        {{#each this}}
+          {{#unless this.isActive}}
+            <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority
+              this.priority}} task-card--no-border">
+              <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
+              <section class="task-card__date">{{this.deadline}}</section>
+              <section class="task-card__task-info">
+                <h3 class="task-card__task-name">{{this.title}}</h3>
+                <p class="tasc-card__task-description">{{this.description}}</p>
+              </section>
+              <section class="task-card__buttons">
+                <section class="task-card__task-adjustsments">
+                  <button class="task-card__button task-card__button--to-daily modal-button"
+                          data-modal-action="to-daily" data-task-id="{{@key}}"></button>
+                  <button class="task-card__button task-card__button--edit modal-button"
+                          data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
+                </section>
+                <span class="task-card__goToTimer task-card__goToTimer--disabled link">
           <span class="task-card__estimation-value">{{this.estimation}}</span>
       </span>
-    </section>
-  </li>
-  {{/unless}}
+              </section>
+            </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+    {{/if}}
   {{/each}}
-</ul>
+</section>
 {{/if}}
-{{/each}}

@@ -27,7 +27,6 @@ export function PageView() {
 PageView.prototype.renderScreen = function(screen) {
   this.screenContainer.innerHTML = this.screenTemplates[screen]();
   this.headerHeading.innerHTML = this.screenTitles[screen];
-  console.log('000');
   if(screen === 'task-list' || screen === 'task-list-done') {
     this.headerAddBtn.style.display = 'inline-block';
     for(let i of this.taskListOnlyBtns) {

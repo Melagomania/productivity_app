@@ -1,30 +1,50 @@
 <ul class="task-list list">
-{{#if this.length}}
-  {{#each this}}
-    <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}}">
-      <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
-      <section class="task-card__date">{{this.deadline}}</section>
-      <section class="task-card__task-info">
-        <h3 class="task-card__task-name">{{this.title}}</h3>
-        <p class="tasc-card__task-description">{{this.description}}</p>
-      </section>
-      <section class="task-card__buttons">
-        <section class="task-card__task-adjustsments">
-          <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit" data-task-id="{{@key}}"></button>
+  {{#if this.todayTasks.length}}
+    {{#each this.todayTasks}}
+      <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}}">
+        <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
+        <section class="task-card__date">{{this.deadline}}</section>
+        <section class="task-card__task-info">
+          <h3 class="task-card__task-name">{{this.title}}</h3>
+          <p class="tasc-card__task-description">{{this.description}}</p>
         </section>
-        <a href='/timer' class="task-card__goToTimer router-link link" data-task-id="{{@key}}">
-          <span class="task-card__estimation-value">{{this.estimation}}</span>
-        </a>
-      </section>
-    </li>
-  {{/each}}
-{{else}}
+        <section class="task-card__buttons">
+          <section class="task-card__task-adjustsments">
+            <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"
+                    data-task-id="{{@key}}"></button>
+          </section>
+          <a href='/timer' class="task-card__goToTimer router-link link" data-task-id="{{@key}}">
+            <span class="task-card__estimation-value">{{this.estimation}}</span>
+          </a>
+        </section>
+      </li>
+    {{/each}}
+  {{else}}
 
-  <section class="message-section message-section--compact">
-    <p class="message-section__message">Task added,
-      <br> drag it to the top 5 in daily task list</p>
-    <span class="message-section__icon">&#xe901;</span>
-  </section>
-{{/if}}
+  {{log this}}
+    {{#if this.undoneTasks}}
+      <section class="message-section message-section--compact">
+        <p class="message-section__message">Task added,
+          <br> drag it to the top 5 in daily task list</p>
+        <span class="message-section__icon">&#xe901;</span>
+      </section>
+    {{else}}
+      {{#unless this.firstTaskAdded}}
+        <section class="message-section">
+          <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+          <p class="message-section__message">Add your first task</p>
+        </section>
+      {{else}}
+        <section class="message-section">
+          <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+          <p class="message-section__message">You don’t have any tasks left.
+            <br> Add new tasks to stay productive.</p>
+        </section>
+      {{/unless}}
+    {{/if}}
+
+
+
+  {{/if}}
 </ul>
 

@@ -147,8 +147,8 @@ Router
     taskListModel.sortTasksByCategories();
     taskListModel.getTodayTasks();
 
-    taskListView.renderGlobalTaskList(taskListModel.sortedTasks);
-    taskListView.renderDailyTaskList(taskListModel.todayTasks);
+    taskListView.renderGlobalTaskList(taskListModel);
+    taskListView.renderDailyTaskList(taskListModel);
   })
   .add(/timer/, function (e) {
     header.toggleCurrentLink('task-list');

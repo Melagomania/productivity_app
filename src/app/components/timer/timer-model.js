@@ -47,7 +47,9 @@ TimerModel.prototype.notify = function (data) {
 
 TimerModel.prototype.notifyTimeLeft = function (data) {
   this.observers.forEach(function (observer) {
-    observer.updateTimeLeft(data);
+    if(observer.updateTimeLeft) {
+      observer.updateTimeLeft(data);
+    }
   });
 };
 

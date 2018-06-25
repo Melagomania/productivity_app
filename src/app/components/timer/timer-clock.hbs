@@ -1,42 +1,45 @@
-<div class="timer__inner-clock-circle"></div>
-<div class="timer__circle-right-part"></div>
-<!--<div class="timer__circle-right-part"></div>-->
+<div class="timer__clock timer__clock--{{this.categoryId}}-cat" id="timer-clock">
 
-<div class="timer__circle-hider"></div>
-<!--<div class="timer__circle-hider"></div>-->
+  <div class="timer__inner-clock-circle"></div>
+  <div class="timer__circle-right-part"></div>
+  <!--<div class="timer__circle-right-part"></div>-->
 
-<p class="timer__clock-text">
-  {{#ifcompare this.currentStage 1}}
-    <span id="timer-time-indicator" class="timer__time-indicator ">{{this.work-time-option.current}}</span>
-    <span class="timer__min-word ">min</span>
-  {{/ifcompare}}
+  <div class="timer__circle-hider"></div>
+  <!--<div class="timer__circle-hider"></div>-->
 
-  {{#ifcompare this.currentStage 2}}
-    <span class="timer__break-word ">Break</span>
-    <span id="timer-time-indicator" class="timer__time-indicator ">6</span>
-    <span class="timer__min-word ">min</span>
-  {{/ifcompare}}
+  <p class="timer__clock-text">
+    {{#ifcompare this.currentStage 1}}
+      <span id="timer-time-indicator" class="timer__time-indicator ">{{this.work-time-option.current}}</span>
+      <span class="timer__min-word ">min</span>
+    {{/ifcompare}}
 
-  {{#ifcompare this.currentStage 3}}
-    <span class="timer__break-word ">Long break</span>
-    <span id="timer-time-indicator" class="timer__time-indicator ">6</span>
-    <span class="timer__min-word ">min</span>
-  {{/ifcompare}}
+    {{#ifcompare this.currentStage 2}}
+      <span class="timer__break-word ">Break</span>
+      <span id="timer-time-indicator" class="timer__time-indicator ">6</span>
+      <span class="timer__min-word ">min</span>
+    {{/ifcompare}}
 
-  {{#ifcompare this.currentStage 4}}
-    <span class="timer__notification">Break
+    {{#ifcompare this.currentStage 3}}
+      <span class="timer__break-word ">Long break</span>
+      <span id="timer-time-indicator" class="timer__time-indicator ">6</span>
+      <span class="timer__min-word ">min</span>
+    {{/ifcompare}}
+
+    {{#ifcompare this.currentStage 4}}
+      <span class="timer__notification">Break
       <br> is over
     </span>
-  {{/ifcompare}}
+    {{/ifcompare}}
 
-  {{#ifcompare this.currentStage 0}}
-    <span class="timer__notification">Let's do it</span>
-  {{/ifcompare}}
-  {{#ifcompare this.currentStage 5}}
-    <span class="timer__notification">You
+    {{#ifcompare this.currentStage 0}}
+      <span class="timer__notification">Let's do it</span>
+    {{/ifcompare}}
+    {{#ifcompare this.currentStage 5}}
+      <span class="timer__notification">You
       <br> Completed
       <br> Task
     </span>
-  {{/ifcompare}}
+    {{/ifcompare}}
 
-</p>
+  </p>
+</div>

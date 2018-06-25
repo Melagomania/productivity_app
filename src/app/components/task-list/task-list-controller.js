@@ -22,8 +22,8 @@ TaskListController.prototype.init = function () {
 
     //todo: refactor (???)
     try {
-      _this.taskListView.renderGlobalTaskList(_this.taskListModel.sortedTasks);
-      _this.taskListView.renderDailyTaskList(_this.taskListModel.todayTasks);
+      _this.taskListView.renderGlobalTaskList(_this.taskListModel);
+      _this.taskListView.renderDailyTaskList(_this.taskListModel);
     } catch (e) {
       // console.log('Not task list page');
     }
