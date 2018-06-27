@@ -17,6 +17,5 @@ PageController.prototype.setLinksListener = function () {
 };
 
 PageController.prototype.init = function () {
-  this.pageModel.addObserver(this.pageView);
   this.setLinksListener();
 };

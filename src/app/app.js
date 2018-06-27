@@ -49,7 +49,6 @@ timerController.init();
 
 
 let router = require('./router');
-
 let pageController = new PageController(pageModel, pageView, router);
 pageController.init();
 
