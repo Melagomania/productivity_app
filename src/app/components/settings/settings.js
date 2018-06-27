@@ -41,6 +41,11 @@ export class Settings {
     };
   }
 
+  init() {
+    this.getSettingsFromFirebase();
+    this.setEventListeners();
+  }
+
   renderSettingsFieldsInputs() {
     let _this = this;
     this.circleElements = {
@@ -58,6 +63,14 @@ export class Settings {
         _this.handleClick(e);
       });
     }
+  }
+
+  setEventListeners() {
+    document.getElementById('page').addEventListener('click', (e) => {
+      if(e.target.dataset.action = 'save-settings') {
+        this.saveSettingsToFirebase();
+      }
+    });
   }
 
   renderOptions() {
@@ -106,5 +119,32 @@ export class Settings {
 
   addObserver(observer) {
     this.observers.push(observer);
+  }
+
+  getSettingsFromFirebase() {
+    let _this = this;
+    let ref = firebase.database().ref(`settings`);
+    ref.once('value', function (snapshot) {
+      let result = snapshot.val();
+      console.log(result);
+      if(result) {
+        _this.options['work-time-option'].current = result['work-time-option'];
+        _this.options['work-iteration-option'].current = result['work-iteration-option'];
+        _this.options['long-break-option'].current = result['long-break-option'];
+        _this.options['short-break-option'].current = result['short-break-option'];
+        _this.renderOptions();
+        _this.notify(_this.options)
+      }
+    });
+  }
+
+  saveSettingsToFirebase() {
+    firebase.database().ref('settings/').update({
+      'work-time-option': this.options['work-time-option'].current,
+      'work-iteration-option': this.options['work-iteration-option'].current,
+      'long-break-option': this.options['long-break-option'].current,
+      'short-break-option': this.options['short-break-option'].current
+
+    });
   }
 }

@@ -1,4 +1,4 @@
-function routerModule(injections) {
+export function routerModule(injections) {
   let Router = {
     routes: [],
     mode: null,
@@ -149,10 +149,7 @@ function routerModule(injections) {
     .add(function () {
       Router.navigate('/task-list').check();
     })
-
     .check().listen();
 
   return Router;
-};
-
-module.exports = routerModule;
+}

@@ -13,6 +13,8 @@ import {Cycle} from './components/cycle/cycle';
 import {TimerModel} from './components/timer/timer-model';
 import {TimerController} from './components/timer/timer-controller';
 import {TimerView} from './components/timer/timer-view';
+import {routerModule} from './router';
+
 
 require('assets/less/main.less');
 
@@ -25,6 +27,7 @@ header.setScrollListener();
 let cycle = new Cycle();
 let settings = new Settings(cycle);
 settings.addObserver(cycle);
+settings.init();
 cycle.calculateOptions(settings.options);
 
 let modalView = new ModalView();
@@ -39,8 +42,6 @@ taskListController.init();
 modalController.init();
 
 
-
-
 let timerView = new TimerView(settings.options);
 let timerModel = new TimerModel(taskListModel);
 let timerController = new TimerController(timerModel, timerView, settings.options);
@@ -53,7 +54,6 @@ let pageModel = new PageModel();
 let pageView = new PageView();
 
 
-let routerModule = require('./router');
 let router = routerModule({
   settings: settings,
   cycle: cycle,

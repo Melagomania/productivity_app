@@ -13,7 +13,6 @@ export class Cycle {
   }
 
   calculateOptions(options) {
-    console.log('calc');
     let workTime = options['work-time-option'].current;
     let workIterations = options['work-iteration-option'].current;
     let totalWorkTime = (workTime * workIterations) * 2;
