@@ -1,17 +1,17 @@
-export function Cycle() {
-  this.cycleWrapper = document.getElementsByClassName('pom-cycle__inner-wrapper')[0];
-  this.topCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__top-labels')[0];
-  this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
-
-
-
-  this.init = function () {
+export class Cycle {
+  constructor() {
     this.cycleWrapper = document.getElementsByClassName('pom-cycle__inner-wrapper')[0];
     this.topCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__top-labels')[0];
     this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
   }
 
-  this.calculateOptions = function(options) {
+  init () {
+    this.cycleWrapper = document.getElementsByClassName('pom-cycle__inner-wrapper')[0];
+    this.topCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__top-labels')[0];
+    this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
+  }
+
+  calculateOptions(options) {
     let workTime = options['work-time-option'].current;
     let workIterations = options['work-iteration-option'].current;
     let totalWorkTime = (workTime * workIterations) * 2;
@@ -32,7 +32,7 @@ export function Cycle() {
     return res;
   }
 
-  this.renderCycle = function(options) {
+  renderCycle(options) {
     this.clearWrapper(this.cycleWrapper)
     for(let i = 0; i < 2; i++) {
       for(let j = 0; j < options.workIterations * 2 - 1; j++) {
@@ -59,7 +59,7 @@ export function Cycle() {
     }
   }
 
-  this.renderTopCycleLabels = function(options) {
+  renderTopCycleLabels(options) {
     this.clearWrapper(this.topCycleLabelsWrapper);
     for(let i = 0; i < 3; i++) {
       let label = document.createElement('div');
@@ -91,7 +91,7 @@ export function Cycle() {
     }
   }
 
-  this.renderBottomCycleLabels = function(options) {
+  renderBottomCycleLabels(options) {
     this.clearWrapper(this.bottomCycleLabelsWrapper);
     for(let i = 30; i <= options.totalTime; i = i + 30) {
       let label = document.createElement('div');
@@ -110,7 +110,7 @@ export function Cycle() {
     }
   }
 
-  this.convertTime = function(minutes) {
+  convertTime(minutes) {
     let res;
     let hours = parseInt(minutes / 60);
     minutes = minutes % 60;
@@ -124,7 +124,7 @@ export function Cycle() {
     return res;
   }
 
-  this.clearWrapper = function(el) {
+  clearWrapper(el) {
     while(el.firstChild) {
       el.removeChild(el.firstChild);
     }

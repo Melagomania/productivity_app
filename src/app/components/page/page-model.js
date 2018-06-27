@@ -1,11 +1,13 @@
-export function PageModel() {
-  this.currentScreen = null;
+export class PageModel {
+  constructor() {
+    this.currentScreen = null;
+  }
+
+  setCurrentScreen(newCurrentScreen) {
+    this.currentScreen = newCurrentScreen;
+  };
+
+  getCurrentScreen() {
+    return (this.currentScreen);
+  };
 }
-
-PageModel.prototype.setCurrentScreen = function(newCurrentScreen) {
-  this.currentScreen = newCurrentScreen;
-};
-
-PageModel.prototype.getCurrentScreen = function() {
-  return (this.currentScreen);
-};

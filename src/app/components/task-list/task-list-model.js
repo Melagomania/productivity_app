@@ -1,87 +1,90 @@
-export function TaskListModel() {
-  this.firstTaskAdded = sessionStorage.getItem('firstTaskAdded');
-  this.localDB;
+export class TaskListModel {
+  constructor() {
+    this.firstTaskAdded = sessionStorage.getItem('firstTaskAdded');
+    this.localDB = null;
 
-  this.undoneTasks = 0;
-  this.tasksToDelete = [];
-  this.todayTasks = {};
-  this.doneTasks = {};
-  this.sortedTasks = {
-    1: {},
-    2: {},
-    3: {},
-    4: {},
-    5: {}
-  };
+    this.undoneTasks = 0;
+    this.tasksToDelete = [];
+    this.todayTasks = {};
+    this.doneTasks = {};
+    this.sortedTasks = {
+      1: {},
+      2: {},
+      3: {},
+      4: {},
+      5: {}
+    };
 
-  Object.defineProperty(this.todayTasks, 'length', {
-    enumerable: false,
-    writable: true,
-    value: 0
-  });
+    Object.defineProperty(this.todayTasks, 'length', {
+      enumerable: false,
+      writable: true,
+      value: 0
+    });
 
-  Object.defineProperty(this.sortedTasks[1], 'length', {
-    enumerable: false,
-    writable: true,
-    value: 0
-  });
+    Object.defineProperty(this.sortedTasks[1], 'length', {
+      enumerable: false,
+      writable: true,
+      value: 0
+    });
 
-  Object.defineProperty(this.sortedTasks[2], 'length', {
-    enumerable: false,
-    writable: true,
-    value: 0
-  });
+    Object.defineProperty(this.sortedTasks[2], 'length', {
+      enumerable: false,
+      writable: true,
+      value: 0
+    });
 
-  Object.defineProperty(this.sortedTasks[3], 'length', {
-    enumerable: false,
-    writable: true,
-    value: 0
-  });
+    Object.defineProperty(this.sortedTasks[3], 'length', {
+      enumerable: false,
+      writable: true,
+      value: 0
+    });
 
-  Object.defineProperty(this.sortedTasks[4], 'length', {
-    enumerable: false,
-    writable: true,
-    value: 0
-  });
+    Object.defineProperty(this.sortedTasks[4], 'length', {
+      enumerable: false,
+      writable: true,
+      value: 0
+    });
 
-  Object.defineProperty(this.sortedTasks[5], 'length', {
-    enumerable: false,
-    writable: true,
-    value: 0
-  });
+    Object.defineProperty(this.sortedTasks[5], 'length', {
+      enumerable: false,
+      writable: true,
+      value: 0
+    });
 
 
-  this.observers = [];
-}
-
-TaskListModel.prototype.addTask = function (taskData) {
-  let now = new Date();
-  taskData.createDate = now.getTime();
-  taskData.isActive = false;
-  taskData.isInProgress = false;
-  taskData.startDate = null;
-  taskData.estimationUsed = 0;
-  taskData.isDone = false;
-  taskData.pomodorasCompleted = 0;
-
-  taskData.pomodoras = [];
-  for (let i = 0; i < taskData.estimation; i++) {
-    taskData.pomodoras.push('');
+    this.observers = [];
   }
 
-  let key = firebase.database().ref('tasks').push(taskData).key;
+  addTask(taskData) {
+    let now = new Date();
+    //todo: refactor::::
+    taskData.createDate = now.getTime();
+    taskData.isActive = false;
+    taskData.isInProgress = false;
+    taskData.startDate = null;
+    taskData.estimationUsed = 0;
+    taskData.isDone = false;
+    taskData.pomodorasCompleted = 0;
 
-  this.localDB[key] = taskData;
-  this.firstTaskAdded = true;
+    taskData.pomodoras = [];
+    for (let i = 0; i < taskData.estimation; i++) {
+      taskData.pomodoras.push('');
+    }
 
-  this.getTodayTasks();
-  this.sortTasksByCategories();
-  this.notify(this);
-  sessionStorage.setItem('firstTaskAdded', true);
+    let key = firebase.database().ref('tasks').push(taskData).key;
+
+    this.localDB[key] = taskData;
+    this.firstTaskAdded = true;
+
+    this.getTodayTasks();
+    this.sortTasksByCategories();
+    this.notify(this);
+    sessionStorage.setItem('firstTaskAdded', true);
   return key;
-};
+}
 
-TaskListModel.prototype.editTask = function (taskId, taskData) {
+editTask(taskId, taskData)
+{
   firebase.database().ref('tasks/' + taskId).update(taskData);
   for (let i in taskData) {
     this.localDB[taskId][i] = taskData[i];
@@ -89,23 +92,25 @@ TaskListModel.prototype.editTask = function (taskId, taskData) {
   this.getTodayTasks();
   this.sortTasksByCategories();
   this.notify(this);
-};
+}
 
-TaskListModel.prototype.setActive = function (taskId) {
+setActive(taskId)
+{
   this.localDB[taskId].isActive = true;
   firebase.database().ref('tasks/' + taskId).update({isActive: true});
   this.sortTasksByCategories();
   this.getTodayTasks();
   this.notify(this);
-};
+}
 
-TaskListModel.prototype.setPomodorasArr = function (taskId, value) {
-  if(value !== 'failed') {
+setPomodorasArr(taskId, value)
+{
+  if (value !== 'failed') {
     this.localDB[taskId].estimationUsed++;
   }
   this.localDB[taskId].pomodorasCompleted++;
-  for(let i = 0; i < this.localDB[taskId].pomodoras.length; i++) {
-    if(this.localDB[taskId].pomodoras[i] === '') {
+  for (let i = 0; i < this.localDB[taskId].pomodoras.length; i++) {
+    if (this.localDB[taskId].pomodoras[i] === '') {
       this.localDB[taskId].pomodoras[i] = value;
       break;
     }
@@ -114,29 +119,20 @@ TaskListModel.prototype.setPomodorasArr = function (taskId, value) {
     'pomodoras': this.localDB[taskId].pomodoras,
     'estimationUsed': this.localDB[taskId].estimationUsed,
     'pomodorasCompleted': this.localDB[taskId].pomodorasCompleted
-});
-};
+  });
+}
 
 // todo: refactor
-TaskListModel.prototype.setTaskDone = function (taskId) {
+setTaskDone(taskId)
+{
   this.localDB[taskId].isDone = true;
   firebase.database().ref('tasks/' + taskId).update({
     'isDone': true
   });
-};
+}
 
-
-TaskListModel.prototype.setInProgress = function (taskId) {
-  this.localDB[taskId].isInProgress = true;
-  firebase.database().ref('tasks/' + taskId).update({isInProgress: true});
-};
-
-TaskListModel.prototype.removeTask = function (taskId) {
-  delete this.localDB[taskId];
-  firebase.database().ref('tasks/' + taskId).remove();
-};
-
-TaskListModel.prototype.removeTasksCollection = function () {
+removeTasksCollection()
+{
   let _this = this;
   this.tasksToDelete.forEach(function (taskId) {
     delete _this.localDB[taskId];
@@ -148,9 +144,11 @@ TaskListModel.prototype.removeTasksCollection = function () {
   this.getTodayTasks();
   this.sortTasksByCategories();
   this.notify(this);
-};
+}
+;
 
-TaskListModel.prototype.getTodayTasks = function () {
+getTodayTasks()
+{
   this.todayTasks = {};
   Object.defineProperty(this.todayTasks, 'length', {
     enumerable: false,
@@ -163,17 +161,19 @@ TaskListModel.prototype.getTodayTasks = function () {
       this.todayTasks.length++;
     }
   }
-};
+}
 
-TaskListModel.prototype.getDoneTasks = function () {
+getDoneTasks()
+{
   for (let i in this.localDB) {
     if (this.isTaskDone(this.localDB[i])) {
       this.doneTasks[i] = this.localDB[i];
     }
   }
-};
+}
 
-TaskListModel.prototype.sortTasksByCategories = function () {
+sortTasksByCategories()
+{
   this.undoneTasks = 0;
   for (let i in this.sortedTasks) {
     this.sortedTasks[i] = {};
@@ -238,17 +238,21 @@ TaskListModel.prototype.sortTasksByCategories = function () {
 
 
 //todo: remove unused method
-TaskListModel.prototype.isTaskDone = function (task) {
+isTaskDone(task)
+{
   return task.isDone;
-};
+}
 
-TaskListModel.prototype.addObserver = function (observer) {
+addObserver(observer)
+{
   this.observers.push(observer);
-};
+}
 
-TaskListModel.prototype.notify = function (data) {
-  this.observers.forEach( observer => observer.update(data));
-};
+notify(data)
+{
+  this.observers.forEach(observer => observer.update(data));
+}
+}
 
 
 

@@ -1,45 +1,48 @@
-export function Settings(cycle) {
-  this.cycle = cycle;
-  let _this = this;
-  _this.elements = {
-    fields: document.getElementsByClassName('pom-settings__input-wrapper'),
-    inputs: {
-      'work-time-option': document.getElementById('work-time-input'),
-      'work-iteration-option': document.getElementById('work-iteration-input'),
-      'short-break-option': document.getElementById('short-break-input'),
-      'long-break-option': document.getElementById('long-break-input')
-    }
-  };
+export class Settings {
+  constructor(cycle) {
+    this.cycle = cycle;
 
-  _this.options = {
-    'work-time-option': {
-      current: 25,
-      min: 15,
-      max: 35,
-      step: 5
-    },
-    'work-iteration-option': {
-      current: 5,
-      min: 2,
-      max: 5,
-      step: 1
-    },
-    'short-break-option': {
-      current: 5,
-      min: 3,
-      max: 5,
-      step: 1
-    },
-    'long-break-option': {
-      current: 30,
-      min: 15,
-      max: 40,
-      step: 5
-    }
-  };
+    this.circleElements = {
+      fields: document.getElementsByClassName('pom-settings__input-wrapper'),
+      inputs: {
+        'work-time-option': document.getElementById('work-time-input'),
+        'work-iteration-option': document.getElementById('work-iteration-input'),
+        'short-break-option': document.getElementById('short-break-input'),
+        'long-break-option': document.getElementById('long-break-input')
+      }
+    };
 
-  _this.init = function () {
-    _this.elements = {
+    this.options = {
+      'work-time-option': {
+        current: 25,
+        min: 15,
+        max: 35,
+        step: 5
+      },
+      'work-iteration-option': {
+        current: 5,
+        min: 2,
+        max: 5,
+        step: 1
+      },
+      'short-break-option': {
+        current: 5,
+        min: 3,
+        max: 5,
+        step: 1
+      },
+      'long-break-option': {
+        current: 30,
+        min: 15,
+        max: 40,
+        step: 5
+      }
+    };
+  }
+
+  init() {
+    let _this = this;
+    this.circleElements = {
       fields: document.getElementsByClassName('pom-settings__input-wrapper'),
       inputs: {
         'work-time-option': document.getElementById('work-time-input'),
@@ -49,37 +52,39 @@ export function Settings(cycle) {
       }
     };
     this.renderOptions();
-    for (let i = 0; i < _this.elements.fields.length; i++) {
-      this.elements.fields[i].addEventListener('click', _this.handleClick);
+    for (let i = 0; i < this.circleElements.fields.length; i++) {
+      this.circleElements.fields[i].addEventListener('click', function(e) {
+        _this.handleClick(e);
+      });
     }
-  };
+  }
 
-  _this.renderOptions = function () {
-    for (let i in _this.elements.inputs) {
-      _this.elements.inputs[i].value = _this.options[i].current;
+  renderOptions() {
+    for (let i in this.circleElements.inputs) {
+      this.circleElements.inputs[i].value = this.options[i].current;
     }
-  };
+  }
 
-  _this.renderOption = function (field) {
-    _this.elements.inputs[field].value = _this.options[field].current;
-  };
+  renderOption(field) {
+    this.circleElements.inputs[field].value = this.options[field].current;
+  }
 
-  _this.modifyOption = function (field, action) {
+  modifyOption(field, action) {
     switch (action) {
       case 'plus':
-        if (_this.options[field].current !== _this.options[field].max) {
-          _this.options[field].current += _this.options[field].step;
+        if (this.options[field].current !== this.options[field].max) {
+          this.options[field].current += this.options[field].step;
         }
         break;
       case 'minus':
-        if (_this.options[field].current !== _this.options[field].min) {
-          _this.options[field].current -= _this.options[field].step;
+        if (this.options[field].current !== this.options[field].min) {
+          this.options[field].current -= this.options[field].step;
         }
         break;
     }
-  };
+  }
 
-  _this.handleClick = function (e) {
+  handleClick(e) {
     if (e.target.classList.contains('pom-settings__btn')) {
       let clickedField = e.target.parentNode.id;
       let buttonAction;
@@ -88,13 +93,13 @@ export function Settings(cycle) {
       } else if (e.target.classList.contains('pom-settings__btn--minus')) {
         buttonAction = 'minus';
       }
-      _this.modifyOption(clickedField, buttonAction);
-      _this.renderOption(clickedField);
-      //todo: implement with observer::
-      cycle.calculateOptions(_this.options);
-      cycle.renderCycle(cycle.renderConfig)
-      cycle.renderTopCycleLabels(cycle.renderConfig);
-      cycle.renderBottomCycleLabels(cycle.renderConfig);
+      this.modifyOption(clickedField, buttonAction);
+      this.renderOption(clickedField);
+      //todo: implement with observer:
+      this.cycle.calculateOptions(this.options);
+      this.cycle.renderCycle(this.cycle.renderConfig)
+      this.cycle.renderTopCycleLabels(this.cycle.renderConfig);
+      this.cycle.renderBottomCycleLabels(this.cycle.renderConfig);
     }
-  };
+  }
 }
