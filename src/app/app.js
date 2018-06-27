@@ -16,43 +16,59 @@ import {TimerView} from './components/timer/timer-view';
 
 require('assets/less/main.less');
 
+let firebase = new Firebase();
 
-export let firebase = new Firebase();
-export let header = new Header();
+let header = new Header();
 header.setScrollListener();
 
 
-export let cycle = new Cycle();
-export let settings = new Settings(cycle);
-
-export let taskListView = new TaskListView();
-export let taskListModel = new TaskListModel();
+let cycle = new Cycle();
+let settings = new Settings(cycle);
 
 let modalView = new ModalView();
 let modalController = new ModalController(modalView);
+
+let taskListView = new TaskListView();
+let taskListModel = new TaskListModel();
 let taskListController = new TaskListController(taskListModel, taskListView, modalController);
+
+//same event handlers in taskListController and modalController
 taskListController.init();
 modalController.init();
 
 
 
-export let pageModel = new PageModel();
-export let pageView = new PageView();
-
-
 
 let timerView = new TimerView(settings.options);
 let timerModel = new TimerModel(taskListModel);
+let timerController = new TimerController(timerModel, timerView, settings.options);
+
 timerModel.addObserver(header);
-export let timerController = new TimerController(timerModel, timerView, settings.options);
 timerController.init();
 
 
-let router = require('./router');
+let pageModel = new PageModel();
+let pageView = new PageView();
+
+
+let routerModule = require('./router');
+let router = routerModule({
+  settings: settings,
+  cycle: cycle,
+  header: header,
+  pageModel: pageModel,
+  pageView: pageView,
+  taskListModel: taskListModel,
+  taskListView: taskListView,
+  timerController: timerController
+});
+
+
 let pageController = new PageController(pageModel, pageView, router);
 pageController.init();
 
 checkFirstVisit();
+
 function checkFirstVisit() {
   if (sessionStorage.visited === undefined) {
     router.navigate('/welcome');

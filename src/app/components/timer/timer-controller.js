@@ -138,7 +138,7 @@ TimerController.prototype.setTimeLeftTimer = function (time) {
   var _this = this;
   this.timeLeftInterval = setTimeout(function () {
     _this.timerModel.setTimeLeft();
-    if(_this.timerModel.timeLeft === 1) {
+    if (_this.timerModel.timeLeft === 1) {
       clearTimeout(_this.timeLeftInterval);
     } else {
       _this.setTimeLeftTimer(time);
