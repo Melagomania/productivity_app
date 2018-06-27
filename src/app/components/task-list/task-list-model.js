@@ -1,6 +1,5 @@
 export function TaskListModel(database) {
   this.firstTaskAdded = sessionStorage.getItem('firstTaskAdded');
-
   this.remoteDB = database;
   this.localDB;
 
@@ -53,6 +52,7 @@ export function TaskListModel(database) {
   });
 
 
+  this.observers = [];
 }
 
 TaskListModel.prototype.addTask = function (taskData) {
@@ -67,8 +67,11 @@ TaskListModel.prototype.addTask = function (taskData) {
 
   this.localDB[key] = taskData;
   this.firstTaskAdded = true;
+
+  this.getTodayTasks();
+  this.sortTasksByCategories();
+  this.notify(this);
   sessionStorage.setItem('firstTaskAdded', true);
-  console.log(this);
   return key;
 };
 
@@ -77,11 +80,17 @@ TaskListModel.prototype.editTask = function (taskId, taskData) {
   for (var i in taskData) {
     this.localDB[taskId][i] = taskData[i];
   }
+  this.getTodayTasks();
+  this.sortTasksByCategories();
+  this.notify(this);
 };
 
 TaskListModel.prototype.setActive = function (taskId) {
   this.localDB[taskId].isActive = true;
   firebase.database().ref('tasks/' + taskId).update({isActive: true});
+  this.sortTasksByCategories();
+  this.getTodayTasks();
+  this.notify(this);
 };
 
 TaskListModel.prototype.setPomodorasArr = function (taskId, value) {
@@ -129,6 +138,9 @@ TaskListModel.prototype.removeTasksCollection = function (tasks) {
   for (const taskId of tasks) {
     firebase.database().ref('tasks/' + taskId).remove();
   }
+  this.getTodayTasks();
+  this.sortTasksByCategories();
+  this.notify(this);
 };
 
 TaskListModel.prototype.getTodayTasks = function () {
@@ -223,7 +235,13 @@ TaskListModel.prototype.isTaskDone = function (task) {
   return task.isDone;
 };
 
+TaskListModel.prototype.addObserver = function (observer) {
+  this.observers.push(observer);
+};
 
+TaskListModel.prototype.notify = function (data) {
+  this.observers.forEach( observer => observer.update(data));
+};
 
 
 

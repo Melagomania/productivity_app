@@ -1,7 +1,3 @@
-import {
-  firebase
-} from './../../app';
-
 export function ModalController(modalView, taskListModel, taskListView) {
   this.modalView = modalView;
   this.taskListModel = taskListModel;
@@ -58,10 +54,7 @@ ModalController.prototype.setButtonListeners = function () {
           var now = new Date();
           taskInfo.createDate = now.getTime();
           _this.taskListModel.addTask(taskInfo);
-          _this.taskListModel.getTodayTasks();
-          _this.taskListModel.sortTasksByCategories();
-          _this.taskListView.renderGlobalTaskList(_this.taskListModel);
-          _this.taskListView.renderDailyTaskList(_this.taskListModel);
+
           _this.modalView.closeModal();
           this.isOpened = false;
           break;
@@ -69,12 +62,8 @@ ModalController.prototype.setButtonListeners = function () {
           var taskInfo = _this.getInputsInfo();
 
           _this.taskListModel.editTask(_this.currentTaskId, taskInfo);
-          _this.modalView.closeModal();
 
-          _this.taskListModel.getTodayTasks();
-          _this.taskListModel.sortTasksByCategories();
-          _this.taskListView.renderGlobalTaskList(_this.taskListModel);
-          _this.taskListView.renderDailyTaskList(_this.taskListModel);
+          _this.modalView.closeModal();
           this.isOpened = false;
           break;
         case 'modal-task-remove':
@@ -89,20 +78,14 @@ ModalController.prototype.setButtonListeners = function () {
         case 'to-daily':
           if (_this.taskListModel.todayTasks.length < 5) {
             _this.currentTaskId = e.target.getAttribute('data-task-id');
+
             _this.taskListModel.setActive(_this.currentTaskId);
-            _this.taskListModel.sortTasksByCategories();
-            _this.taskListModel.getTodayTasks();
-            _this.taskListView.renderGlobalTaskList(_this.taskListModel);
-            _this.taskListView.renderDailyTaskList(_this.taskListModel);
           }
           break;
         case 'modal-remove-tasks':
           var tasksToDelete = _this.taskListModel.tasksToDelete;
           _this.taskListModel.removeTasksCollection(tasksToDelete);
-          _this.taskListModel.getTodayTasks();
-          _this.taskListModel.sortTasksByCategories();
-          _this.taskListView.renderGlobalTaskList(_this.taskListModel);
-          _this.taskListView.renderDailyTaskList(_this.taskListModel);
+
           _this.modalView.closeModal();
           _this.taskListView.toggleRemoveCount();
           _this.taskListModel.tasksToDelete = [];

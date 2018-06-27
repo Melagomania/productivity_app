@@ -28,6 +28,7 @@ TaskListController.prototype.init = function () {
       console.log('Not task list page');
     }
   });
+  this.taskListModel.addObserver(this.taskListView);
 };
 
 TaskListController.prototype.setRemoveBtnHandler = function () {

@@ -88,3 +88,8 @@ TaskListView.prototype.hideRemoveTaskButtons = function() {
     i.getElementsByClassName('task-card__date')[0].style.display = 'inline-block';
   }
 };
+
+TaskListView.prototype.update = function (data) {
+  this.renderGlobalTaskList(data);
+  this.renderDailyTaskList(data);
+};
