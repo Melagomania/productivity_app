@@ -1,6 +1,5 @@
-export function TaskListModel(database) {
+export function TaskListModel() {
   this.firstTaskAdded = sessionStorage.getItem('firstTaskAdded');
-  this.remoteDB = database;
   this.localDB;
 
   this.undoneTasks = 0;
@@ -56,9 +55,16 @@ export function TaskListModel(database) {
 }
 
 TaskListModel.prototype.addTask = function (taskData) {
-  taskData.pomodoras = [];
+  let now = new Date();
+  taskData.createDate = now.getTime();
+  taskData.isActive = false;
+  taskData.isInProgress = false;
+  taskData.startDate = null;
+  taskData.estimationUsed = 0;
   taskData.isDone = false;
   taskData.pomodorasCompleted = 0;
+
+  taskData.pomodoras = [];
   for (let i = 0; i < taskData.estimation; i++) {
     taskData.pomodoras.push('');
   }
@@ -130,14 +136,15 @@ TaskListModel.prototype.removeTask = function (taskId) {
   firebase.database().ref('tasks/' + taskId).remove();
 };
 
-TaskListModel.prototype.removeTasksCollection = function (tasks) {
+TaskListModel.prototype.removeTasksCollection = function () {
   var _this = this;
-  tasks.forEach(function (taskId) {
+  this.tasksToDelete.forEach(function (taskId) {
     delete _this.localDB[taskId];
   });
-  for (const taskId of tasks) {
+  for (const taskId of this.tasksToDelete) {
     firebase.database().ref('tasks/' + taskId).remove();
   }
+  this.tasksToDelete = [];
   this.getTodayTasks();
   this.sortTasksByCategories();
   this.notify(this);

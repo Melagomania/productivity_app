@@ -5,9 +5,11 @@ export function ModalController(modalView, taskListModel, taskListView) {
 
   this.isOpened = false;
   this.currentTaskId = null;
-
-  this.setButtonListeners();
 }
+
+ModalController.prototype.init = function () {
+  this.setButtonListeners();
+};
 
 ModalController.prototype.setButtonListeners = function () {
   var _this = this;
@@ -15,8 +17,8 @@ ModalController.prototype.setButtonListeners = function () {
   page.addEventListener('click', function (e) {
     var target = e.target;
     if (target.classList.contains('modal-button')) {
-      var buttonAction = target.dataset.modalAction;
-      var templateContext;
+      let buttonAction = target.dataset.modalAction;
+      let templateContext;
       switch (buttonAction) {
         case 'modal-open-add':
           templateContext = {
@@ -24,89 +26,42 @@ ModalController.prototype.setButtonListeners = function () {
             removeBtn: false,
             submitBtn: 'add'
           }
-          _this.modalView.openModal(templateContext);
-          this.isOpened = true;
-          break;
-        case 'modal-open-edit':
-          _this.currentTaskId = e.target.getAttribute('data-task-id');
-          templateContext = {
-            title: 'Edit task',
-            removeBtn: true,
-            submitBtn: 'edit',
-            removeConfirmModal: false
-          }
-          _this.modalView.openModal(templateContext);
-          _this.setInputsInfo(_this.taskListModel.localDB[_this.currentTaskId]);
-          this.isOpened = true;
+          _this.openModal(templateContext);
           break;
         case 'modal-close':
-          _this.modalView.closeModal();
-          this.isOpened = false;
+          _this.closeModal();
           break;
 
         //choose what type of action perfom on a task
         case 'modal-add-task':
-          var taskInfo = _this.getInputsInfo();
-          taskInfo.isActive = false;
-          taskInfo.isInProgress = false;
-          taskInfo.startDate = null;
-          taskInfo.estimationUsed = 0;
-          var now = new Date();
-          taskInfo.createDate = now.getTime();
-          _this.taskListModel.addTask(taskInfo);
-
-          _this.modalView.closeModal();
-          this.isOpened = false;
+          _this.closeModal();
           break;
         case 'modal-edit-task':
-          var taskInfo = _this.getInputsInfo();
-
-          _this.taskListModel.editTask(_this.currentTaskId, taskInfo);
-
-          _this.modalView.closeModal();
-          this.isOpened = false;
+          _this.closeModal();
           break;
         case 'modal-task-remove':
-          _this.taskListModel.tasksToDelete.push(_this.currentTaskId);
-          var templateContext = {
+          templateContext = {
             removeConfirmModal: true
-          }
-          _this.modalView.closeModal();
-          _this.isOpened = false;
-          _this.modalView.openModal(templateContext);
-          break;
-        case 'to-daily':
-          if (_this.taskListModel.todayTasks.length < 5) {
-            _this.currentTaskId = e.target.getAttribute('data-task-id');
-
-            _this.taskListModel.setActive(_this.currentTaskId);
-          }
+          };
+          _this.closeModal();
+          _this.openModal(templateContext);
           break;
         case 'modal-remove-tasks':
-          var tasksToDelete = _this.taskListModel.tasksToDelete;
-          _this.taskListModel.removeTasksCollection(tasksToDelete);
-
-          _this.modalView.closeModal();
-          _this.taskListView.toggleRemoveCount();
-          _this.taskListModel.tasksToDelete = [];
+          _this.closeModal();
           break;
         case 'modal-cancel-delete':
-          _this.taskListView.renderGlobalTaskList(_this.taskListModel);
-          _this.taskListView.renderDailyTaskList(_this.taskListModel);
-          _this.taskListModel.tasksToDelete = [];
-          _this.modalView.closeModal();
-          _this.taskListView.toggleRemoveCount();
+          _this.closeModal();
+          break;
       }
     } else if (target.classList.contains('screen-tint')) {
-      _this.modalView.closeModal();
+      _this.closeModal();
     }
   });
   page.addEventListener('keyup', function (e) {
-    if (e.keyCode === 27 && this.isOpened) {
-      _this.modalView.closeModal();
-      this.isOpened = false;
+    if (e.keyCode === 27 && _this.isOpened) {
+      _this.closeModal();
     }
-  })
+  });
 };
 
 ModalController.prototype.getInputsInfo = function () {
@@ -134,7 +89,7 @@ ModalController.prototype.getInputsInfo = function () {
   }
 
   return taskOptions;
-}
+};
 
 ModalController.prototype.setInputsInfo = function (taskObj) {
   var taskTitleField = document.getElementsByName('task-title')[0];
@@ -151,4 +106,14 @@ ModalController.prototype.setInputsInfo = function (taskObj) {
   categoryBtns[taskObj.categoryId - 1].checked = true;
   priorityBtns[priorityBtns.length - taskObj.priority].checked = true;
   estimationBtns[taskObj.estimation - 1].checked = true;
-}
+};
+
+ModalController.prototype.openModal = function (templateContext) {
+  this.modalView.openModal(templateContext);
+  this.isOpened = true;
+};
+
+ModalController.prototype.closeModal = function () {
+  this.modalView.closeModal();
+  this.isOpened = false;
+};

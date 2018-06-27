@@ -19,12 +19,13 @@ export var cycle = new Cycle();
 export var settings = new Settings(cycle);
 
 export var taskListView = new TaskListView();
-export var taskListModel = new TaskListModel(firebase);
+export var taskListModel = new TaskListModel();
 
 var modalView = new ModalView();
 var modalController = new ModalController(modalView, taskListModel, taskListView);
-var taskListController = new TaskListController(taskListModel, taskListView, modalView);
+var taskListController = new TaskListController(taskListModel, taskListView, modalController);
 taskListController.init();
+modalController.init();
 
 
 import {PageController} from './components/page/page-controller';

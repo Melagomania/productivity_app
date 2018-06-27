@@ -1,14 +1,11 @@
-export function TaskListController(taskListModel, taskListView, modalView) {
+export function TaskListController(taskListModel, taskListView, modalController) {
   this.taskListModel = taskListModel;
   this.taskListView = taskListView;
-  this.modalView = modalView;
-  // this.tasksToDelete = [];
+  this.modalController = modalController;
+  this.currentTaskId = null;
+  this.isDeleteMode = false;
 
-  this.removeModeStatus = 'off';
 
-  this.setRemoveBtnHandler();
-  this.setFilterHandler();
-  this.setDeleteIndicatorHandler();
 }
 
 TaskListController.prototype.init = function () {
@@ -20,7 +17,6 @@ TaskListController.prototype.init = function () {
     _this.taskListModel.sortTasksByCategories();
     _this.taskListModel.getTodayTasks();
 
-    //todo: refactor (???)
     try {
       _this.taskListView.renderGlobalTaskList(_this.taskListModel);
       _this.taskListView.renderDailyTaskList(_this.taskListModel);
@@ -29,30 +25,33 @@ TaskListController.prototype.init = function () {
     }
   });
   this.taskListModel.addObserver(this.taskListView);
+
+  this.setRemoveBtnHandler();
+  this.setFilterHandler();
+  this.setDeleteIndicatorHandler();
+  this.setModalEventListeners();
 };
 
 TaskListController.prototype.setRemoveBtnHandler = function () {
   var _this = this;
   document.getElementById('remove-mode').addEventListener('click', function () {
-    switch (_this.removeModeStatus) {
-      case 'off':
+    switch (_this.isDeleteMode) {
+      case false:
         _this.taskListView.showRemoveTaskButtons();
-        _this.removeModeStatus = 'on';
-        _this.taskListView.toggleRemoveCount();
+        _this.isDeleteMode = true;
+        _this.taskListView.removeCountOn();
         _this.taskListView.updateRemoveCount(_this.taskListModel.tasksToDelete.length);
         break;
-      case 'on':
-        if(_this.taskListModel.tasksToDelete.length === 0) {
+      case true:
+        if (_this.taskListModel.tasksToDelete.length === 0) {
           _this.taskListView.hideRemoveTaskButtons();
-          _this.taskListView.toggleRemoveCount();
-          _this.removeModeStatus = 'off';
+          _this.taskListView.removeCountOff();
+          _this.isDeleteMode = false;
         } else {
-          _this.taskListView.hideRemoveTaskButtons();
-          var templateContext = {
+          let templateContext = {
             removeConfirmModal: true
-          }
-          _this.modalView.openModal(templateContext);
-          _this.removeModeStatus = 'off';
+          };
+          _this.modalController.openModal(templateContext);
         }
         break;
       default:
@@ -60,14 +59,72 @@ TaskListController.prototype.setRemoveBtnHandler = function () {
     }
   });
 };
-TaskListController.prototype.setDeleteIndicatorHandler = function () {
+
+TaskListController.prototype.setModalEventListeners = function () {
   var _this = this;
-  document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
+
+
+  var page = document.getElementsByClassName('page')[0];
+  page.addEventListener('click', function (e) {
     var target = e.target;
+    if (target.classList.contains('modal-button')) {
+      let buttonAction = target.dataset.modalAction;
+      let inputsData;
+      switch (buttonAction) {
+        case 'modal-open-edit':
+          var templateContext = {
+            title: 'Edit task',
+            removeBtn: true,
+            submitBtn: 'edit',
+            removeConfirmModal: false
+          }
+          _this.modalController.openModal(templateContext);
+          _this.currentTaskId = e.target.getAttribute('data-task-id');
+          _this.modalController.setInputsInfo(_this.taskListModel.localDB[_this.currentTaskId]);
+          break;
+
+        case 'modal-add-task':
+          inputsData = _this.modalController.getInputsInfo();
+          _this.taskListModel.addTask(inputsData);
+          break;
+        case 'modal-edit-task':
+          inputsData = _this.modalController.getInputsInfo();
+          _this.taskListModel.editTask(_this.currentTaskId, inputsData);
+          break;
+        case 'modal-task-remove':
+          _this.taskListModel.tasksToDelete.push(_this.currentTaskId);
+          break;
+        case 'to-daily':
+          if (_this.taskListModel.todayTasks.length < 5) {
+            _this.currentTaskId = e.target.getAttribute('data-task-id');
+            _this.taskListModel.setActive(_this.currentTaskId);
+          }
+          break;
+        case 'modal-remove-tasks':
+          _this.taskListModel.removeTasksCollection();
+          _this.taskListView.removeCountOff();
+          _this.taskListView.hideRemoveTaskButtons();
+          _this.isDeleteMode = false;
+          break;
+        case 'modal-cancel-delete':
+          _this.taskListModel.tasksToDelete = [];
+          _this.taskListView.removeCountOff();
+          _this.taskListView.hideRemoveTaskButtons();
+          _this.isDeleteMode = false;
+          break;
+      }
+    }
+  });
+};
+
+TaskListController.prototype.setDeleteIndicatorHandler = function () {
+  let _this = this;
+  document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
+    let target = e.target;
     if (target.classList.contains('task-card__delete-indicator')) {
       target.classList.toggle('task-card__delete-indicator--active');
-      var taskId = target.getAttribute('data-task-id');
-      var taskPos = _this.taskListModel.tasksToDelete.indexOf(taskId);
+      let taskId = target.getAttribute('data-task-id');
+      let taskPos = _this.taskListModel.tasksToDelete.indexOf(taskId);
       if (taskPos !== -1) {
         _this.taskListModel.tasksToDelete.splice(taskPos, 1);
         _this.taskListView.updateRemoveCount(_this.taskListModel.tasksToDelete.length);
@@ -87,4 +144,4 @@ TaskListController.prototype.setFilterHandler = function () {
       _this.taskListView.filterTasksByPriority(priority);
     }
   });
-}
+};

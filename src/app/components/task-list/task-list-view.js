@@ -57,8 +57,12 @@ TaskListView.prototype.filterTasksByPriority = function(priority) {
   }
 }
 
-TaskListView.prototype.toggleRemoveCount = function() {
-  this.removeCount.classList.toggle('hidden');
+TaskListView.prototype.removeCountOff= function() {
+  this.removeCount.classList.add('hidden');
+};
+
+TaskListView.prototype.removeCountOn= function() {
+  this.removeCount.classList.remove('hidden');
 };
 
 TaskListView.prototype.updateRemoveCount = function(value) {
@@ -84,7 +88,9 @@ TaskListView.prototype.hideRemoveTaskButtons = function() {
   var taskCards = document.getElementsByClassName('task-card');
   for(let i of taskCards) {
     i.style.border = '';
-    i.getElementsByClassName('task-card__delete-indicator')[0].style.display = 'none';
+    let deleteIndicator = i.getElementsByClassName('task-card__delete-indicator')[0];
+    deleteIndicator.style.display = 'none';
+    deleteIndicator.classList.remove('task-card__delete-indicator--active');
     i.getElementsByClassName('task-card__date')[0].style.display = 'inline-block';
   }
 };
