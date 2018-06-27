@@ -16,7 +16,6 @@ export class TaskListView {
   }
 
   renderGlobalTaskList(tasks) {
-    console.log('render global list');
     let container = document.getElementById('global-list-container');
     container.innerHTML = this.templates.globalListTemplate(tasks);
   }
