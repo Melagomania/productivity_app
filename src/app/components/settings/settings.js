@@ -1,5 +1,6 @@
 export class Settings {
   constructor(cycle) {
+    this.observers = [];
     this.cycle = cycle;
 
     this.circleElements = {
@@ -40,7 +41,7 @@ export class Settings {
     };
   }
 
-  init() {
+  renderSettingsFieldsInputs() {
     let _this = this;
     this.circleElements = {
       fields: document.getElementsByClassName('pom-settings__input-wrapper'),
@@ -82,6 +83,7 @@ export class Settings {
         }
         break;
     }
+    this.notify(this.options);
   }
 
   handleClick(e) {
@@ -95,11 +97,14 @@ export class Settings {
       }
       this.modifyOption(clickedField, buttonAction);
       this.renderOption(clickedField);
-      //todo: implement with observer:
-      this.cycle.calculateOptions(this.options);
-      this.cycle.renderCycle(this.cycle.renderConfig)
-      this.cycle.renderTopCycleLabels(this.cycle.renderConfig);
-      this.cycle.renderBottomCycleLabels(this.cycle.renderConfig);
     }
+  }
+
+  notify(data) {
+    this.observers.forEach( observer => observer.update(data));
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
   }
 }

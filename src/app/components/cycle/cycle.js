@@ -1,17 +1,19 @@
 export class Cycle {
   constructor() {
-    this.cycleWrapper = document.getElementsByClassName('pom-cycle__inner-wrapper')[0];
-    this.topCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__top-labels')[0];
-    this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
+    this.cycleWrapper = null;
+    this.topCycleLabelsWrapper = null;
+    this.bottomCycleLabelsWrapper = null;
+    this.renderConfig = null;
   }
 
-  init () {
+  getCycleElements () {
     this.cycleWrapper = document.getElementsByClassName('pom-cycle__inner-wrapper')[0];
     this.topCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__top-labels')[0];
     this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
   }
 
   calculateOptions(options) {
+    console.log('calc');
     let workTime = options['work-time-option'].current;
     let workIterations = options['work-iteration-option'].current;
     let totalWorkTime = (workTime * workIterations) * 2;
@@ -32,8 +34,14 @@ export class Cycle {
     return res;
   }
 
-  renderCycle(options) {
-    this.clearWrapper(this.cycleWrapper)
+  renderCycle() {
+    this.renderCycleLine(this.renderConfig)
+    this.renderTopCycleLabels(this.renderConfig);
+    this.renderBottomCycleLabels(this.renderConfig);
+  }
+
+  renderCycleLine(options) {
+    this.clearWrapper(this.cycleWrapper);
     for(let i = 0; i < 2; i++) {
       for(let j = 0; j < options.workIterations * 2 - 1; j++) {
         let el = document.createElement('div');
@@ -128,5 +136,10 @@ export class Cycle {
     while(el.firstChild) {
       el.removeChild(el.firstChild);
     }
+  }
+
+  update(data) {
+    this.calculateOptions(data);
+    this.renderCycle();
   }
 }

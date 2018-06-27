@@ -24,6 +24,8 @@ header.setScrollListener();
 
 let cycle = new Cycle();
 let settings = new Settings(cycle);
+settings.addObserver(cycle);
+cycle.calculateOptions(settings.options);
 
 let modalView = new ModalView();
 let modalController = new ModalController(modalView);

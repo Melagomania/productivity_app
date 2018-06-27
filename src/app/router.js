@@ -110,11 +110,9 @@ function routerModule(injections) {
       injections.pageModel.setCurrentScreen('settings');
       injections.pageView.renderScreen(injections.pageModel.getCurrentScreen());
 
-      injections.settings.init(injections.settings.options);
-      injections.cycle.init();
-      injections.cycle.renderCycle(injections.cycle.calculateOptions(injections.settings.options));
-      injections.cycle.renderTopCycleLabels(injections.cycle.calculateOptions(injections.settings.options));
-      injections.cycle.renderBottomCycleLabels(injections.cycle.calculateOptions(injections.settings.options));
+      injections.settings.renderSettingsFieldsInputs();
+      injections.cycle.getCycleElements();
+      injections.cycle.renderCycle(injections.cycle.renderConfig);
     })
     .add(/task-list\/done/, function () {
       injections.header.toggleCurrentLink('task-list');
