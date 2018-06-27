@@ -1,4 +1,6 @@
 export function PageController(pageModel, pageView, router) {
+  this.pageModel = pageModel;
+  this.pageView = pageView;
   this.router = router;
   this.page = document.getElementsByClassName('page')[0];
 }
@@ -12,4 +14,9 @@ PageController.prototype.setLinksListener = function () {
       _this.router.navigate(href);
     }
   });
-}
+};
+
+PageController.prototype.init = function () {
+  this.pageModel.addObserver(this.pageView);
+  this.setLinksListener();
+};

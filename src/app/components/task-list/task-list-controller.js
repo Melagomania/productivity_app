@@ -25,7 +25,7 @@ TaskListController.prototype.init = function () {
       _this.taskListView.renderGlobalTaskList(_this.taskListModel);
       _this.taskListView.renderDailyTaskList(_this.taskListModel);
     } catch (e) {
-      // console.log('Not task list page');
+      console.log('Not task list page');
     }
   });
 };

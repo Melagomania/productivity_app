@@ -4,7 +4,6 @@ import {cycle} from './app';
 
 import {header} from './app';
 import {pageModel} from './app';
-import {pageView} from './app';
 
 import {taskListModel} from './app';
 import {taskListView} from './app';
@@ -112,17 +111,14 @@ Router
   .add(/welcome/, function () {
     header.toggleCurrentLink();
     pageModel.setCurrentScreen('welcome');
-    pageView.renderScreen(pageModel.getCurrentScreen());
   })
   .add(/settings\/categories/, function () {
     header.toggleCurrentLink('settings');
     pageModel.setCurrentScreen('settings-categories');
-    pageView.renderScreen(pageModel.getCurrentScreen());
   })
   .add(/settings/, function () {
     header.toggleCurrentLink('settings');
     pageModel.setCurrentScreen('settings');
-    pageView.renderScreen(pageModel.getCurrentScreen());
 
     settings.init(settings.options);
     cycle.init();
@@ -133,7 +129,6 @@ Router
   .add(/task-list\/done/, function () {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list-done');
-    pageView.renderScreen(pageModel.getCurrentScreen());
 
     taskListModel.getDoneTasks();
     taskListView.renderDoneTaskList(taskListModel.doneTasks);
@@ -142,24 +137,21 @@ Router
   .add(/task-list/, function () {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('task-list');
-    pageView.renderScreen(pageModel.getCurrentScreen());
 
     taskListModel.sortTasksByCategories();
     taskListModel.getTodayTasks();
 
-    taskListView.renderGlobalTaskList(taskListModel);
-    taskListView.renderDailyTaskList(taskListModel);
+    // taskListView.renderGlobalTaskList(taskListModel);
+    // taskListView.renderDailyTaskList(taskListModel);
   })
   .add(/timer/, function (e) {
     header.toggleCurrentLink('task-list');
     pageModel.setCurrentScreen('timer');
-    pageView.renderScreen(pageModel.getCurrentScreen());
     timerController.openTimer();
   })
   .add(/reports/, function () {
     header.toggleCurrentLink('reports');
     pageModel.setCurrentScreen('reports');
-    pageView.renderScreen(pageModel.getCurrentScreen());
   })
   .add(function () {
     Router.navigate('/task-list').check();

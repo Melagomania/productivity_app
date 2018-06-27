@@ -9,7 +9,7 @@ export function Settings(cycle) {
       'short-break-option': document.getElementById('short-break-input'),
       'long-break-option': document.getElementById('long-break-input')
     }
-  }
+  };
 
   _this.options = {
     'work-time-option': {
@@ -47,22 +47,22 @@ export function Settings(cycle) {
         'short-break-option': document.getElementById('short-break-input'),
         'long-break-option': document.getElementById('long-break-input')
       }
-    }
+    };
     this.renderOptions();
     for (var i = 0; i < _this.elements.fields.length; i++) {
       this.elements.fields[i].addEventListener('click', _this.handleClick);
     }
-  }
+  };
 
   _this.renderOptions = function () {
     for (let i in _this.elements.inputs) {
       _this.elements.inputs[i].value = _this.options[i].current;
     }
-  }
+  };
 
   _this.renderOption = function (field) {
     _this.elements.inputs[field].value = _this.options[field].current;
-  }
+  };
 
   _this.modifyOption = function (field, action) {
     switch (action) {
@@ -77,7 +77,7 @@ export function Settings(cycle) {
         }
         break;
     }
-  }
+  };
 
   _this.handleClick = function (e) {
     if (e.target.classList.contains('pom-settings__btn')) {
@@ -96,5 +96,5 @@ export function Settings(cycle) {
       cycle.renderTopCycleLabels(cycle.renderConfig);
       cycle.renderBottomCycleLabels(cycle.renderConfig);
     }
-  }
+  };
 }

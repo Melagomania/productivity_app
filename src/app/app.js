@@ -24,7 +24,6 @@ export var taskListView = new TaskListView();
 export var taskListModel = new TaskListModel(firebase);
 
 
-
 var modalView = new ModalView();
 var modalController = new ModalController(modalView, taskListModel, taskListView);
 var taskListController = new TaskListController(taskListModel, taskListView, modalView);
@@ -59,7 +58,7 @@ checkFirstVisit();
 
 
 var pageController = new PageController(pageModel, pageView, router);
-pageController.setLinksListener();
+pageController.init();
 
 
 function checkFirstVisit() {

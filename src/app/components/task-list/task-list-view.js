@@ -17,7 +17,6 @@ TaskListView.prototype.renderDailyTaskList = function(tasks) {
 TaskListView.prototype.renderGlobalTaskList = function(tasks) {
   var container = document.getElementById('global-list-container');
   container.innerHTML = this.templates.globalListTemplate(tasks);
-  // this.filterTasksByPriority(this.currentPriorityButton);
 };
 
 TaskListView.prototype.renderDoneTaskList = function(tasks) {

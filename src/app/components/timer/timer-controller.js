@@ -27,6 +27,7 @@ TimerController.prototype.handleTimerButtonClick = function (target) {
   var action = target.dataset.timerAction;
   switch (action) {
     case 'start-pom': {
+      //todo: clearTimeout as a separate method
       clearInterval(this.currentInterval);
       clearTimeout(this.timeLeftInterval);
       this.startTimer();
@@ -85,7 +86,7 @@ TimerController.prototype.startWork = function () {
   this.timerModel.setCurrentStage(1);
 
   this.timerModel.setTimeLeft(_this.settings['work-time-option'].current);
-  this.setTimeLeftTimer(60 * 10);
+  this.setTimeLeftTimer(1000);
 
   this.currentInterval = setTimeout(function () {
     _this.timerModel.iterationsCompleted++;
@@ -97,7 +98,7 @@ TimerController.prototype.startWork = function () {
     } else {
       _this.startTimer();
     }
-  }, _this.settings['work-time-option'].current * 60 * 10);
+  }, _this.settings['work-time-option'].current * 1000);
 };
 
 TimerController.prototype.startShortBreak = function () {
@@ -105,12 +106,12 @@ TimerController.prototype.startShortBreak = function () {
   this.timerModel.setCurrentStage(2);
 
   this.timerModel.setTimeLeft(_this.settings['short-break-option'].current);
-  this.setTimeLeftTimer(60 * 10);
+  this.setTimeLeftTimer(1000);
 
 
   this.currentInterval = setTimeout(function () {
     _this.timerModel.setCurrentStage(4);
-  }, this.settings['short-break-option'].current * 60 * 10);
+  }, this.settings['short-break-option'].current * 1000);
 };
 
 TimerController.prototype.startLongBreak = function () {
@@ -119,12 +120,12 @@ TimerController.prototype.startLongBreak = function () {
   this.timerModel.setCurrentStage(3);
 
   this.timerModel.setTimeLeft(_this.settings['long-break-option'].current);
-  this.setTimeLeftTimer(60 * 10);
+  this.setTimeLeftTimer(1000);
 
 
   this.currentInterval = setTimeout(function () {
     _this.timerModel.setCurrentStage(4);
-  }, this.settings['long-break-option'].current * 60 * 10);
+  }, this.settings['long-break-option'].current * 1000);
 };
 
 

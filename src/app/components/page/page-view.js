@@ -38,4 +38,12 @@ PageView.prototype.renderScreen = function(screen) {
       i.style.display = 'none';
     }
   }
-}
+};
+
+PageView.prototype.update = function (data) {
+  try {
+    this.renderScreen(data.currentScreen);
+  } catch(e) {
+    console.log('333');
+  }
+};

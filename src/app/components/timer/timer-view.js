@@ -59,18 +59,18 @@ TimerView.prototype.renderClock = function (data) {
   let timeIndicatorInterval;
   switch (data.currentStage) {
     case 1: {
-      time = this.settings['work-time-option'].current * 60 * 10;
+      time = this.settings['work-time-option'].current * 1000;
       timeIndicatorInterval = time / this.settings['work-time-option'].current;
       break;
     }
     case 2: {
-      time = this.settings['short-break-option'].current * 60 * 10;
-      timeIndicatorInterval = time / this.settings['short-break-option'].current * 60 * 10;
+      time = this.settings['short-break-option'].current * 1000;
+      timeIndicatorInterval = time / this.settings['short-break-option'].current ;
       break;
     }
     case 3: {
-      time = this.settings['long-break-option'].current * 60 * 10;
-      timeIndicatorInterval = time / this.settings['long-break-option'].current * 60 * 10;
+      time = this.settings['long-break-option'].current * 1000;
+      timeIndicatorInterval = time / this.settings['long-break-option'].current;
       break;
     }
     default: {
