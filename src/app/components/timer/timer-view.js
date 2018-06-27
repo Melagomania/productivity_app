@@ -37,22 +37,22 @@ TimerView.prototype.renderTimerScreen = function (data) {
 };
 
 TimerView.prototype.renderButtons = function (data) {
-  var buttonsContainer = document.getElementById('timer-buttons-container');
+  let buttonsContainer = document.getElementById('timer-buttons-container');
   buttonsContainer.innerHTML = this.templates.timerButtons(data);
 };
 
 TimerView.prototype.renderArrows = function (data) {
-  var arrowsContainer = document.getElementById('timer-arrows-container');
+  let arrowsContainer = document.getElementById('timer-arrows-container');
   arrowsContainer.innerHTML = this.templates.timerArrows(data);
 };
 
 TimerView.prototype.renderHeadings = function (data) {
-  var headingsContainer = document.getElementById('timer-headings-container');
+  let headingsContainer = document.getElementById('timer-headings-container');
   headingsContainer.innerHTML = this.templates.timerHeadings(data);
 };
 
 TimerView.prototype.renderClock = function (data) {
-  var clock = document.getElementById('timer-clock');
+  let clock = document.getElementById('timer-clock');
   clock.innerHTML = this.templates.timerClock(data);
   this.saveDOMElmenents();
   let time;
@@ -84,7 +84,7 @@ TimerView.prototype.renderClock = function (data) {
 };
 
 TimerView.prototype.renderPomodoras = function (data) {
-  var pomodorasContainer = document.getElementById('timer-iterations-container');
+  let pomodorasContainer = document.getElementById('timer-iterations-container');
   pomodorasContainer.innerHTML = this.templates.timerIterations(data);
 };
 

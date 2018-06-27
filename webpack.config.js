@@ -1,7 +1,7 @@
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CopyWebpackPlugin = require('copy-webpack-plugin');
-var handleBars = require('handlebars');
+let path = require('path');
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
+let handleBars = require('handlebars');
 
 module.exports = {
   entry: './src/app/app.js',
@@ -21,10 +21,10 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
-    loaders: [   
-      { 
-        test: /\.hbs$/, 
-        loader: "handlebars-loader" 
+    loaders: [
+      {
+        test: /\.hbs$/,
+        loader: "handlebars-loader"
       },
       {
         test: /\.js$/,
@@ -32,7 +32,7 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      },  
+      },
       {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
@@ -55,7 +55,7 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: {}  
+            options: {}
           }
         ]
       }

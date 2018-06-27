@@ -10,39 +10,39 @@ export function TaskListView() {
 }
 
 TaskListView.prototype.renderDailyTaskList = function(tasks) {
-  var container = document.getElementsByClassName('today-task')[0];
+  let container = document.getElementsByClassName('today-task')[0];
   container.innerHTML = this.templates.dailyListTemplate(tasks);
 };
 
 TaskListView.prototype.renderGlobalTaskList = function(tasks) {
-  var container = document.getElementById('global-list-container');
+  let container = document.getElementById('global-list-container');
   container.innerHTML = this.templates.globalListTemplate(tasks);
 };
 
 TaskListView.prototype.renderDoneTaskList = function(tasks) {
-  var container = document.getElementsByClassName('done-tasks')[0];
+  let container = document.getElementsByClassName('done-tasks')[0];
   container.innerHTML = this.templates.doneTasksTemplate(tasks);
 }
 
 TaskListView.prototype.filterTasksByPriority = function(priority) {
   this.changeCurrentPriorityButton(priority);
-  var globalListContainer = document.getElementsByClassName('global-list')[0];
-  var lists = globalListContainer.getElementsByClassName('task-list');
+  let globalListContainer = document.getElementsByClassName('global-list')[0];
+  let lists = globalListContainer.getElementsByClassName('task-list');
   if(priority === 'all') {
-    for(var i = 0; i < lists.length; i++) {
-      var taskCards = lists[i].getElementsByClassName('task-card');
+    for(let i = 0; i < lists.length; i++) {
+      let taskCards = lists[i].getElementsByClassName('task-card');
       lists[i].classList.remove('hidden');
-      for(var j = 0; j < taskCards.length; j++) {
+      for(let j = 0; j < taskCards.length; j++) {
           taskCards[j].classList.remove('hidden');
       }
     }
     return;
   }
 
-  for(var i = 0; i < lists.length; i++) {
-    var hidden = 0;
-    var taskCards = lists[i].getElementsByClassName('task-card');
-    for(var j = 0; j < taskCards.length; j++) {
+  for(let i = 0; i < lists.length; i++) {
+    let hidden = 0;
+    let taskCards = lists[i].getElementsByClassName('task-card');
+    for(let j = 0; j < taskCards.length; j++) {
       if(!taskCards[j].classList.contains('task-card--' + priority + '-priority')) {
         taskCards[j].classList.add('hidden');
         hidden++;
@@ -76,7 +76,7 @@ TaskListView.prototype.changeCurrentPriorityButton = function(priority) {
 };
 
 TaskListView.prototype.showRemoveTaskButtons = function() {
-  var taskCards = document.getElementsByClassName('task-card');
+  let taskCards = document.getElementsByClassName('task-card');
   for(let i of taskCards) {
     i.style.border = 'none'
     i.getElementsByClassName('task-card__delete-indicator')[0].style.display = 'inline-block';
@@ -85,7 +85,7 @@ TaskListView.prototype.showRemoveTaskButtons = function() {
 };
 
 TaskListView.prototype.hideRemoveTaskButtons = function() {
-  var taskCards = document.getElementsByClassName('task-card');
+  let taskCards = document.getElementsByClassName('task-card');
   for(let i of taskCards) {
     i.style.border = '';
     let deleteIndicator = i.getElementsByClassName('task-card__delete-indicator')[0];

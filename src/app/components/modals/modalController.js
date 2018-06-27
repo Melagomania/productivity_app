@@ -9,10 +9,10 @@ ModalController.prototype.init = function () {
 };
 
 ModalController.prototype.setButtonListeners = function () {
-  var _this = this;
-  var page = document.getElementsByClassName('page')[0];
+  let _this = this;
+  let page = document.getElementsByClassName('page')[0];
   page.addEventListener('click', function (e) {
-    var target = e.target;
+    let target = e.target;
     if (target.classList.contains('modal-button')) {
       let buttonAction = target.dataset.modalAction;
       let templateContext;
@@ -62,13 +62,13 @@ ModalController.prototype.setButtonListeners = function () {
 };
 
 ModalController.prototype.getInputsInfo = function () {
-  var taskOptions = {};
-  var taskTitleField = document.getElementsByName('task-title')[0];
-  var taskDeskriptionField = document.getElementsByName('task-description')[0];
-  var taskDeadlineField = document.getElementsByName('task-deadline')[0];
-  var categoryBtns = document.getElementsByName('task-category');
-  var priorityBtns = document.getElementsByName('task-priority');
-  var estimationBtns = document.getElementsByName('task-estimation');
+  let taskOptions = {};
+  let taskTitleField = document.getElementsByName('task-title')[0];
+  let taskDeskriptionField = document.getElementsByName('task-description')[0];
+  let taskDeadlineField = document.getElementsByName('task-deadline')[0];
+  let categoryBtns = document.getElementsByName('task-category');
+  let priorityBtns = document.getElementsByName('task-priority');
+  let estimationBtns = document.getElementsByName('task-estimation');
 
   taskOptions.title = taskTitleField.value;
   taskOptions.description = taskDeskriptionField.value;
@@ -78,7 +78,7 @@ ModalController.prototype.getInputsInfo = function () {
   taskOptions.priority = getValue(priorityBtns);
 
   function getValue(inputs) {
-    for (var i of inputs) {
+    for (let i of inputs) {
       if (i.checked) {
         return i.value;
       }
@@ -89,12 +89,12 @@ ModalController.prototype.getInputsInfo = function () {
 };
 
 ModalController.prototype.setInputsInfo = function (taskObj) {
-  var taskTitleField = document.getElementsByName('task-title')[0];
-  var taskDeskriptionField = document.getElementsByName('task-description')[0];
-  var taskDeadlineField = document.getElementsByName('task-deadline')[0];
-  var categoryBtns = document.getElementsByName('task-category');
-  var priorityBtns = document.getElementsByName('task-priority');
-  var estimationBtns = document.getElementsByName('task-estimation');
+  let taskTitleField = document.getElementsByName('task-title')[0];
+  let taskDeskriptionField = document.getElementsByName('task-description')[0];
+  let taskDeadlineField = document.getElementsByName('task-deadline')[0];
+  let categoryBtns = document.getElementsByName('task-category');
+  let priorityBtns = document.getElementsByName('task-priority');
+  let estimationBtns = document.getElementsByName('task-estimation');
 
   taskTitleField.value = taskObj.title;
   taskDeskriptionField.value = taskObj.description;

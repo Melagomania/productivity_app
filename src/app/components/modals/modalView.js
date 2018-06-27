@@ -7,8 +7,8 @@ ModalView.prototype.openModal = function(context) {
 }
 
 ModalView.prototype.closeModal = function() {
-  var screenTint = document.getElementsByClassName('screen-tint')[0];
-  var modalWin = document.getElementsByClassName('modal-win')[0];
+  let screenTint = document.getElementsByClassName('screen-tint')[0];
+  let modalWin = document.getElementsByClassName('modal-win')[0];
   modalWin.parentElement.removeChild(modalWin);
   screenTint.parentElement.removeChild(screenTint);
 }

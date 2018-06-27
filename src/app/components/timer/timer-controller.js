@@ -12,9 +12,9 @@ TimerController.prototype.init = function () {
 };
 
 TimerController.prototype.setEventListeners = function () {
-  var _this = this;
+  let _this = this;
   document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
-    var target = e.target;
+    let target = e.target;
     if (target.classList.contains('task-card__goToTimer') && !target.classList.contains('task-card__start--disabled')) {
       _this.initTask(target.dataset.taskId);
     } else if (target.classList.contains('timer-btn')) {
@@ -24,7 +24,7 @@ TimerController.prototype.setEventListeners = function () {
 };
 
 TimerController.prototype.handleTimerButtonClick = function (target) {
-  var action = target.dataset.timerAction;
+  let action = target.dataset.timerAction;
   switch (action) {
     case 'start-pom': {
       //todo: clearTimeout as a separate method
@@ -82,7 +82,7 @@ TimerController.prototype.startTimer = function () {
 };
 
 TimerController.prototype.startWork = function () {
-  var _this = this;
+  let _this = this;
   this.timerModel.setCurrentStage(1);
 
   this.timerModel.setTimeLeft(_this.settings['work-time-option'].current);
@@ -135,7 +135,7 @@ TimerController.prototype.openTimer = function () {
 
 
 TimerController.prototype.setTimeLeftTimer = function (time) {
-  var _this = this;
+  let _this = this;
   this.timeLeftInterval = setTimeout(function () {
     _this.timerModel.setTimeLeft();
     if (_this.timerModel.timeLeft === 1) {

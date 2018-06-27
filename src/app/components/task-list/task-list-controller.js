@@ -9,8 +9,8 @@ export function TaskListController(taskListModel, taskListView, modalController)
 }
 
 TaskListController.prototype.init = function () {
-  var _this = this;
-  var ref = firebase.database().ref(`tasks`);
+  let _this = this;
+  let ref = firebase.database().ref(`tasks`);
   ref.on('value', function (snapshot) {
     _this.taskListModel.localDB = snapshot.val();
 
@@ -33,7 +33,7 @@ TaskListController.prototype.init = function () {
 };
 
 TaskListController.prototype.setRemoveBtnHandler = function () {
-  var _this = this;
+  let _this = this;
   document.getElementById('remove-mode').addEventListener('click', function () {
     switch (_this.isDeleteMode) {
       case false:

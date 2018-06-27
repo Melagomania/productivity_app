@@ -6,8 +6,8 @@ export function Header() {
 }
 
 Header.prototype.toggleState = function() {
-  var _this = this;
-  var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+  let _this = this;
+  let scrolled = window.pageYOffset || document.documentElement.scrollTop;
   if(scrolled > 55) {
     _this.pageHeader.classList.add('header--sticky');
     _this.page.classList.add('page--scrolled');
@@ -18,19 +18,19 @@ Header.prototype.toggleState = function() {
 };
 
 Header.prototype.setScrollListener = function() {
-  var _this = this;
+  let _this = this;
   window.addEventListener('scroll', function() {
     _this.toggleState();
   });
 };
 
 Header.prototype.toggleCurrentLink = function(newCurrentPage) {
-  var current = document.getElementsByClassName('header__menu-link--active');
+  let current = document.getElementsByClassName('header__menu-link--active');
   if(current.length) {
     current[0].classList.remove('header__menu-link--active');
   }
   if(newCurrentPage) {
-    var newCurrentLink = document.getElementsByClassName('header__menu-link--' + newCurrentPage)[0];
+    let newCurrentLink = document.getElementsByClassName('header__menu-link--' + newCurrentPage)[0];
     newCurrentLink.classList.add('header__menu-link--active');
   }
 };

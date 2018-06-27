@@ -1,6 +1,6 @@
 export function Settings(cycle) {
   this.cycle = cycle;
-  var _this = this;
+  let _this = this;
   _this.elements = {
     fields: document.getElementsByClassName('pom-settings__input-wrapper'),
     inputs: {
@@ -49,7 +49,7 @@ export function Settings(cycle) {
       }
     };
     this.renderOptions();
-    for (var i = 0; i < _this.elements.fields.length; i++) {
+    for (let i = 0; i < _this.elements.fields.length; i++) {
       this.elements.fields[i].addEventListener('click', _this.handleClick);
     }
   };
@@ -81,8 +81,8 @@ export function Settings(cycle) {
 
   _this.handleClick = function (e) {
     if (e.target.classList.contains('pom-settings__btn')) {
-      var clickedField = e.target.parentNode.id;
-      var buttonAction;
+      let clickedField = e.target.parentNode.id;
+      let buttonAction;
       if (e.target.classList.contains('pom-settings__btn--plus')) {
         buttonAction = 'plus';
       } else if (e.target.classList.contains('pom-settings__btn--minus')) {

@@ -83,7 +83,7 @@ TaskListModel.prototype.addTask = function (taskData) {
 
 TaskListModel.prototype.editTask = function (taskId, taskData) {
   firebase.database().ref('tasks/' + taskId).update(taskData);
-  for (var i in taskData) {
+  for (let i in taskData) {
     this.localDB[taskId][i] = taskData[i];
   }
   this.getTodayTasks();
@@ -137,7 +137,7 @@ TaskListModel.prototype.removeTask = function (taskId) {
 };
 
 TaskListModel.prototype.removeTasksCollection = function () {
-  var _this = this;
+  let _this = this;
   this.tasksToDelete.forEach(function (taskId) {
     delete _this.localDB[taskId];
   });
@@ -157,7 +157,7 @@ TaskListModel.prototype.getTodayTasks = function () {
     writable: true,
     value: 0
   });
-  for (var i in this.localDB) {
+  for (let i in this.localDB) {
     if (this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
       this.todayTasks[i] = this.localDB[i];
       this.todayTasks.length++;
@@ -166,7 +166,7 @@ TaskListModel.prototype.getTodayTasks = function () {
 };
 
 TaskListModel.prototype.getDoneTasks = function () {
-  for (var i in this.localDB) {
+  for (let i in this.localDB) {
     if (this.isTaskDone(this.localDB[i])) {
       this.doneTasks[i] = this.localDB[i];
     }
@@ -175,7 +175,7 @@ TaskListModel.prototype.getDoneTasks = function () {
 
 TaskListModel.prototype.sortTasksByCategories = function () {
   this.undoneTasks = 0;
-  for (var i in this.sortedTasks) {
+  for (let i in this.sortedTasks) {
     this.sortedTasks[i] = {};
 
     this.sortedTasks[i].length = 0;
@@ -185,7 +185,7 @@ TaskListModel.prototype.sortTasksByCategories = function () {
       value: 0
     });
   }
-  for (var i in this.localDB) {
+  for (let i in this.localDB) {
     switch (this.localDB[i].categoryId) {
       case '1':
         if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
