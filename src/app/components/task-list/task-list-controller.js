@@ -61,23 +61,21 @@ TaskListController.prototype.setRemoveBtnHandler = function () {
 };
 
 TaskListController.prototype.setModalEventListeners = function () {
-  var _this = this;
-
-
-  var page = document.getElementsByClassName('page')[0];
+  let _this = this;
+  let page = document.getElementsByClassName('page')[0];
   page.addEventListener('click', function (e) {
-    var target = e.target;
+    let target = e.target;
     if (target.classList.contains('modal-button')) {
       let buttonAction = target.dataset.modalAction;
       let inputsData;
       switch (buttonAction) {
         case 'modal-open-edit':
-          var templateContext = {
+          let templateContext = {
             title: 'Edit task',
             removeBtn: true,
             submitBtn: 'edit',
             removeConfirmModal: false
-          }
+          };
           _this.modalController.openModal(templateContext);
           _this.currentTaskId = e.target.getAttribute('data-task-id');
           _this.modalController.setInputsInfo(_this.taskListModel.localDB[_this.currentTaskId]);
@@ -92,7 +90,7 @@ TaskListController.prototype.setModalEventListeners = function () {
           _this.taskListModel.editTask(_this.currentTaskId, inputsData);
           break;
         case 'modal-task-remove':
-          _this.taskListModel.tasksToDelete.push(_this.currentTaskId);
+          _this.taskListModel.tasksToDelete = [_this.currentTaskId];
           break;
         case 'to-daily':
           if (_this.taskListModel.todayTasks.length < 5) {
@@ -137,10 +135,10 @@ TaskListController.prototype.setDeleteIndicatorHandler = function () {
 };
 
 TaskListController.prototype.setFilterHandler = function () {
-  var _this = this;
+  let _this = this;
   document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
     if (e.target.classList.contains('tasks-filter-btn')) {
-      var priority = e.target.getAttribute('data-tasks-filter');
+      let priority = e.target.getAttribute('data-tasks-filter');
       _this.taskListView.filterTasksByPriority(priority);
     }
   });

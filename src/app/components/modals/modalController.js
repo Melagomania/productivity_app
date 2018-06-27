@@ -1,8 +1,5 @@
-export function ModalController(modalView, taskListModel, taskListView) {
+export function ModalController(modalView) {
   this.modalView = modalView;
-  this.taskListModel = taskListModel;
-  this.taskListView = taskListView;
-
   this.isOpened = false;
   this.currentTaskId = null;
 }

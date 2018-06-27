@@ -6,11 +6,11 @@ export function PageController(pageModel, pageView, router) {
 }
 
 PageController.prototype.setLinksListener = function () {
-  var _this = this;
+  let _this = this;
   _this.page.addEventListener('click', function(e) {
     if(e.target.classList.contains('router-link')) {
       e.preventDefault();
-      var href = e.target.getAttribute('href');
+      let href = e.target.getAttribute('href');
       _this.router.navigate(href);
     }
   });
