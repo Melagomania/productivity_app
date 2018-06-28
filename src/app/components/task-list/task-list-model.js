@@ -1,7 +1,9 @@
 export class TaskListModel {
   constructor() {
+    this.tasksLoaded = false;
+
     this.firstTaskAdded = sessionStorage.getItem('firstTaskAdded');
-    this.localDB = null;
+    this.localDB = {};
 
     this.undoneTasks = 0;
     this.tasksToDelete = [];

@@ -132,10 +132,12 @@ export class TaskListController {
     let _this = this;
     let ref = firebase.database().ref(`tasks`);
     ref.once('value', function (snapshot) {
-      _this.taskListModel.localDB = snapshot.val();
-      _this.taskListModel.sortTasksByCategories();
-      _this.taskListModel.getTodayTasks();
-
+      _this.taskListModel.tasksLoaded = true;
+      if(snapshot.val()) {
+        _this.taskListModel.localDB = snapshot.val();
+        _this.taskListModel.sortTasksByCategories();
+        _this.taskListModel.getTodayTasks();
+      }
       try {
         _this.taskListView.renderGlobalTaskList(_this.taskListModel);
         _this.taskListView.renderDailyTaskList(_this.taskListModel);
