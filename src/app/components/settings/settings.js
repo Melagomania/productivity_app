@@ -172,9 +172,13 @@ export class Settings {
         _this.tempOptions['work-iteration-option'].current = result['work-iteration-option'];
         _this.tempOptions['long-break-option'].current = result['long-break-option'];
         _this.tempOptions['short-break-option'].current = result['short-break-option'];
-
-        _this.renderOptions();
-        _this.notify(_this.options)
+        
+        try{
+          _this.renderOptions();
+          _this.notify(_this.options)
+        } catch (e) {
+          console.log('Not settings page');
+        }
       }
     });
   }
