@@ -150,10 +150,12 @@
   height: 17px;
   border-radius: 50%;
   background-color: @nepal-col;
+  cursor: pointer;
 }
 
 .task-settings-list__label-text {
   font-size: 16px;
+  cursor: pointer;
 }
 
 .task-settings-list__radio:checked + .task-settings-list__label {
@@ -205,6 +207,11 @@
   }
 }
 
+.estimation-wrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
 
 .estimation-label {
   margin-right: 9px;
@@ -212,6 +219,7 @@
   width: 21px;
   height: 19px;
   background: url("/empty-tomato.svg") no-repeat center;
+  cursor: pointer;
 }
 
 .estimation-radio {
@@ -219,6 +227,10 @@
 }
 
 .estimation-radio:checked + .estimation-label {
+  background: url("/fill tomato.svg") no-repeat center;
+}
+
+.estimation-radio:checked ~ .estimation-label {
   background: url("/fill tomato.svg") no-repeat center;
 }
 

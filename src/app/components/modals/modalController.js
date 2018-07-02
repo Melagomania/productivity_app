@@ -103,7 +103,7 @@ export class ModalController {
 
     categoryBtns[taskObj.categoryId - 1].checked = true;
     priorityBtns[priorityBtns.length - taskObj.priority].checked = true;
-    estimationBtns[taskObj.estimation - 1].checked = true;
+    estimationBtns[estimationBtns.length - taskObj.estimation].checked = true;
   };
 
   openModal(templateContext) {

@@ -86,6 +86,12 @@ export class TaskListModel {
   }
 
   editTask(taskId, taskData) {
+    taskData.pomodoras = this.localDB[taskId].pomodoras;
+    for(let i = 0; i < taskData.estimation; i++) {
+      taskData.pomodoras[i] = taskData.pomodoras[i] ? taskData.pomodoras[i] : "";
+    }
+    taskData.pomodoras.length = taskData.estimation;
+
     firebase.database().ref('tasks/' + taskId).update(taskData);
     for (let i in taskData) {
       this.localDB[taskId][i] = taskData[i];
