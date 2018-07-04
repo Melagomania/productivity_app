@@ -104,6 +104,7 @@ export class Settings {
   setEventListeners() {
     document.getElementById('page').addEventListener('click', (e) => {
       if(e.target.dataset.action === 'save-settings') {
+        console.log(this);
         this.saveSettingsToFirebase();
       }
     });
@@ -172,7 +173,7 @@ export class Settings {
         _this.tempOptions['work-iteration-option'].current = result['work-iteration-option'];
         _this.tempOptions['long-break-option'].current = result['long-break-option'];
         _this.tempOptions['short-break-option'].current = result['short-break-option'];
-        
+
         try{
           _this.renderOptions();
           _this.notify(_this.options)
