@@ -2,6 +2,7 @@ export class TaskListView {
   constructor() {
     this.currentPriorityButton = 'all';
     this.removeCount = document.getElementById('tasks-remove-count');
+    this.globalListToggler = null;
 
     this.templates = {
       dailyListTemplate: require('./task-list-daily.hbs'),
@@ -16,13 +17,15 @@ export class TaskListView {
   }
 
   renderGlobalTaskList(tasks) {
-    let container = document.getElementById('global-list-container');
-    container.innerHTML = this.templates.globalListTemplate(tasks);
+    this.globalList = document.getElementById('global-list-container');
+    this.globalList.innerHTML = this.templates.globalListTemplate(tasks);
+    this.globalListToggler = document.getElementById('global-list-toggler');
   }
 
   renderDoneTaskList(tasks) {
     let container = document.getElementsByClassName('done-tasks')[0];
     container.innerHTML = this.templates.doneTasksTemplate(tasks);
+
   }
 
   filterTasksByPriority(priority) {
@@ -70,6 +73,11 @@ export class TaskListView {
     this.removeCount.textContent = value;
   }
 
+  toggleRemoveAll() {
+    let tabsContainer = document.getElementById('delete-all-tabs');
+    tabsContainer.classList.toggle('hidden');
+  }
+
   changeCurrentPriorityButton(priority) {
     document.getElementById(this.currentPriorityButton + '-filter').classList.remove('tabs__btn--current');
     this.currentPriorityButton = priority;
@@ -96,8 +104,23 @@ export class TaskListView {
     }
   }
 
+  toggleGlobalList() {
+    this.globalListToggler.classList.toggle('task-list-screen__global-list-toggler--on');
+    let globalList = document.getElementById('global-list');
+    globalList.classList.toggle('hidden');
+  }
+
   update(data) {
-    this.renderGlobalTaskList(data);
-    this.renderDailyTaskList(data);
+    try {
+      this.renderGlobalTaskList(data);
+      this.renderDailyTaskList(data);
+    } catch(e) {
+      try {
+        this.renderDoneTaskList(data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
   }
 }

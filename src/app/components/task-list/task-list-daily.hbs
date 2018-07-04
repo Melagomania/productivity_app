@@ -1,41 +1,65 @@
 {{#if this.tasksLoaded}}
   <ul class="task-list list">
-    {{#if this.todayTasks.length}} {{#each this.todayTasks}}
-      <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}}">
-        <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
-        <section class="task-card__date">{{this.deadline}}</section>
-        <section class="task-card__task-info">
-          <h3 class="task-card__task-name">{{this.title}}</h3>
-          <p class="tasc-card__task-description">{{this.description}}</p>
-        </section>
-        <section class="task-card__buttons">
-          <section class="task-card__task-adjustsments">
-            <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"
-                    data-task-id="{{@key}}"></button>
+    <div class="today-tasks__tabs-wrapper">
+      <ul class="tabs tabs--right list">
+        <li class="tabs__item">
+          <a href="/task-list" class="tabs__btn tabs__btn--current router-link">To Do</a>
+        </li>
+        <li class="tabs__item">
+          <a href="/task-list/done" class="tabs__btn router-link">Done</a>
+        </li>
+      </ul>
+      <ul class="tabs  tabs--left tabs--remove list hidden" id="delete-all-tabs">
+        <li class="tabs__item">
+          <button class="tabs__btn  tabs__btn--current" id="select-all">Select All</button>
+        </li>
+        <li class="tabs__item">
+          <button class="tabs__btn" id="deselect-all">Deselect all</button>
+        </li>
+      </ul>
+    </div>
+    {{#if this.todayTasks.length}}
+      {{#each this.todayTasks}}
+        <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}}">
+          <section class="task-card__delete-indicator" data-task-id="{{@key}}"></section>
+          <section class="task-card__date">{{this.deadline}}</section>
+          <section class="task-card__task-info">
+            <h3 class="task-card__task-name">{{this.title}}</h3>
+            <p class="tasc-card__task-description">{{this.description}}</p>
           </section>
-          <a href='/timer' class="task-card__goToTimer router-link link" data-task-id="{{@key}}">
-            <span class="task-card__estimation-value">{{this.estimation}}</span>
-          </a>
-        </section>
-      </li>
-    {{/each}} {{else}} {{#if this.undoneTasks}}
-      <section class="message-section message-section--compact">
-        <p class="message-section__message">Task added,
-          <br> drag it to the top 5 in daily task list</p>
-        <span class="message-section__icon">&#xe901;</span>
-      </section>
-    {{else}} {{#unless this.firstTaskAdded}}
-      <section class="message-section">
-        <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
-        <p class="message-section__message">Add your first task</p>
-      </section>
+          <section class="task-card__buttons">
+            <section class="task-card__task-adjustsments">
+              <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"
+                      data-task-id="{{@key}}"></button>
+            </section>
+            <a href='/timer' class="task-card__goToTimer router-link link" data-task-id="{{@key}}">
+              <span class="task-card__estimation-value">{{this.estimation}}</span>
+            </a>
+          </section>
+        </li>
+      {{/each}}
     {{else}}
-      <section class="message-section">
-        <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
-        <p class="message-section__message">You don’t have any tasks left.
-          <br> Add new tasks to stay productive.</p>
-      </section>
-    {{/unless}} {{/if}} {{/if}}
+      {{#if this.undoneTasks}}
+        <section class="message-section message-section--compact">
+          <p class="message-section__message">Task added,
+            <br> drag it to the top 5 in daily task list</p>
+          <span class="message-section__icon">&#xe901;</span>
+        </section>
+      {{else}}
+        {{#unless this.firstTaskAdded}}
+          <section class="message-section">
+            <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+            <p class="message-section__message">Add your first task</p>
+          </section>
+        {{else}}
+          <section class="message-section">
+            <img class="message-section__img" src="/tomato-add.svg" alt="tomato">
+            <p class="message-section__message">You don’t have any tasks left.
+              <br> Add new tasks to stay productive.</p>
+          </section>
+        {{/unless}}
+      {{/if}}
+    {{/if}}
   </ul>
 {{else}}
   <div class="loader-wrapper">

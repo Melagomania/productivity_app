@@ -1,5 +1,6 @@
 .today-tasks__tabs-wrapper {
   margin-bottom: 16px ;
+  .clearfix;
 }
 
 .message-section {
@@ -421,7 +422,12 @@
     font-size: 10px;
     font-family: "Icon";
     display: inline-block;
-    content: "\e909";
+    content: "\e908";
+  }
+  &--on {
+    &::after {
+      content: "\e909";
+    }
   }
 
   &:hover {

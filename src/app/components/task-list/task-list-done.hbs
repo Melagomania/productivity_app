@@ -1,7 +1,29 @@
-{{#each this}}
+{{#if this.tasksLoaded}}
+  <div class="today-tasks__tabs-wrapper">
+
+    <ul class="tabs tabs--right list">
+      <li class="tabs__item">
+        <a href="/task-list" class="tabs__btn router-link">To Do</a>
+      </li>
+      <li class="tabs__item">
+        <a href="/task-list/done" class="tabs__btn tabs__btn--current router-link">Done</a>
+      </li>
+    </ul>
+    <ul class="tabs  tabs--left tabs--remove list hidden" id="delete-all-tabs">
+      <li class="tabs__item">
+        <button class="tabs__btn  tabs__btn--current" id="select-all">Select All</button>
+      </li>
+      <li class="tabs__item">
+        <button class="tabs__btn" id="deselect-all">Deselect all</button>
+      </li>
+    </ul>
+
+  </div>
+{{/if}}
+{{#each this.doneTasks}}
   <ul class="task-list list">
     <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}} task-card--done">
-      <section class="task-card__delete-indicator task-card__delete-indicator--active" data-task-id="{{@key}}"></section>
+      <section class="task-card__delete-indicator " data-task-id="{{@key}}"></section>
       <section class="task-card__date">{{this.deadline}}</section>
       <section class="task-card__task-info">
         <h3 class="task-card__task-name">{{this.title}}</h3>

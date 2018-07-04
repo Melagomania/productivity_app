@@ -121,7 +121,7 @@ export function routerModule(injections) {
       injections.pageView.renderScreen(injections.pageModel.getCurrentScreen());
 
       injections.taskListModel.getDoneTasks();
-      injections.taskListView.renderDoneTaskList(injections.taskListModel.doneTasks);
+      injections.taskListView.renderDoneTaskList(injections.taskListModel);
     })
 
     .add(/task-list/, function () {

@@ -15,6 +15,15 @@ export class TaskListController {
     this.setFilterHandler();
     this.setDeleteIndicatorHandler();
     this.setModalEventListeners();
+    this.setGlobalTogglerHandler();
+  }
+
+  setGlobalTogglerHandler() {
+    document.getElementById('page').addEventListener('click', (e) => {
+      if (e.target.id === 'global-list-toggler') {
+        this.taskListView.toggleGlobalList();
+      }
+    });
   }
 
   setRemoveBtnHandler() {
@@ -23,6 +32,7 @@ export class TaskListController {
       switch (_this.isDeleteMode) {
         case false:
           _this.taskListView.showRemoveTaskButtons();
+          _this.taskListView.toggleRemoveAll();
           _this.isDeleteMode = true;
           _this.taskListView.removeCountOn();
           _this.taskListView.updateRemoveCount(_this.taskListModel.tasksToDelete.length);
@@ -31,6 +41,7 @@ export class TaskListController {
           if (_this.taskListModel.tasksToDelete.length === 0) {
             _this.taskListView.hideRemoveTaskButtons();
             _this.taskListView.removeCountOff();
+            _this.taskListView.toggleRemoveAll();
             _this.isDeleteMode = false;
           } else {
             let templateContext = {
@@ -44,6 +55,7 @@ export class TaskListController {
       }
     });
   };
+
   setModalEventListeners() {
     let _this = this;
     let page = document.getElementsByClassName('page')[0];
@@ -85,6 +97,7 @@ export class TaskListController {
           case 'modal-remove-tasks':
             _this.taskListModel.removeTasksCollection();
             _this.taskListView.removeCountOff();
+            // _this.taskListView.toggleRemoveAll();
             _this.taskListView.hideRemoveTaskButtons();
             _this.isDeleteMode = false;
             break;
@@ -92,6 +105,7 @@ export class TaskListController {
             _this.taskListModel.tasksToDelete = [];
             _this.taskListView.removeCountOff();
             _this.taskListView.hideRemoveTaskButtons();
+            _this.taskListView.toggleRemoveAll();
             _this.isDeleteMode = false;
             break;
         }
@@ -114,8 +128,33 @@ export class TaskListController {
           _this.taskListModel.tasksToDelete.push(taskId);
           _this.taskListView.updateRemoveCount(_this.taskListModel.tasksToDelete.length);
         }
+      } else if (target.id === 'select-all' || target.id === 'deselect-all') {
+        _this.handleSelectClick(target.id);
       }
     });
+  }
+
+  handleSelectClick(id) {
+    let indicators = document.getElementsByClassName('task-card__delete-indicator');
+    let taskId = null;
+    if (id === 'select-all') {
+      if (!this.taskListModel.tasksToDelete.length) {
+        for (let i = 0; i < indicators.length; i++) {
+          taskId = indicators[i].dataset.taskId;
+          indicators[i].classList.add('task-card__delete-indicator--active');
+          this.taskListModel.tasksToDelete.push(taskId);
+        }
+        this.taskListView.updateRemoveCount(this.taskListModel.tasksToDelete.length);
+      }
+    } else if (id === 'deselect-all') {
+      for (let i = 0; i < indicators.length; i++) {
+        taskId = indicators[i].dataset.taskId;
+        indicators[i].classList.remove('task-card__delete-indicator--active');
+      }
+      this.taskListModel.tasksToDelete = [];
+      this.taskListView.updateRemoveCount(this.taskListModel.tasksToDelete.length);
+    }
+
   }
 
   setFilterHandler() {
@@ -133,16 +172,20 @@ export class TaskListController {
     let ref = firebase.database().ref(`tasks`);
     ref.once('value', function (snapshot) {
       _this.taskListModel.tasksLoaded = true;
-      if(snapshot.val()) {
+      if (snapshot.val()) {
         _this.taskListModel.localDB = snapshot.val();
         _this.taskListModel.sortTasksByCategories();
         _this.taskListModel.getTodayTasks();
+        _this.taskListModel.getDoneTasks();
       }
       try {
         _this.taskListView.renderGlobalTaskList(_this.taskListModel);
         _this.taskListView.renderDailyTaskList(_this.taskListModel);
       } catch (e) {
-        console.log('Not task list page');
+        try {
+          _this.taskListView.renderDoneTaskList(_this.taskListModel);
+        } catch (e) {
+        }
       }
     });
   }

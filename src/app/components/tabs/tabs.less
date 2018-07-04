@@ -6,12 +6,15 @@
 
 .tabs--right {
   float: right;
-  width: auto; 
+  width: auto;
+  .clearfix;
+
 }
 
 .tabs--left {
-  width: auto; 
+  width: auto;
   text-align: left;
+  .clearfix;
 }
 
 .tabs--upper {
@@ -21,11 +24,11 @@
 .tabs__item {
   position: relative;
   display: inline-block;
-  margin-right: 10px;  
+  margin-right: 10px;
   padding-right: 10px;
   font-size: 16px;
   font-family: 'PT Sans';
-  
+
   &::after {
     position: absolute;
     right: 0;

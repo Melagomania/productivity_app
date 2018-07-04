@@ -146,6 +146,7 @@ export class TaskListModel {
     this.tasksToDelete = [];
     this.getTodayTasks();
     this.sortTasksByCategories();
+    this.getDoneTasks();
     this.notify(this);
   }
   ;
@@ -166,6 +167,7 @@ export class TaskListModel {
   }
 
   getDoneTasks() {
+    this.doneTasks = {};
     for (let i in this.localDB) {
       if (this.isTaskDone(this.localDB[i])) {
         this.doneTasks[i] = this.localDB[i];
