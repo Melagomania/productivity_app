@@ -31,7 +31,7 @@ let cycle = new Cycle();
 let settings = new Settings(cycle);
 settings.addObserver(cycle);
 settings.init();
-cycle.calculateOptions(settings.options);
+cycle.calculateRenderConfig(settings.settings);
 
 let modalView = new ModalView();
 let modalController = new ModalController(modalView);
@@ -45,9 +45,9 @@ taskListController.init();
 modalController.init();
 
 
-let timerView = new TimerView(settings.options);
+let timerView = new TimerView(settings.settings);
 let timerModel = new TimerModel(taskListModel);
-let timerController = new TimerController(timerModel, timerView, settings.options);
+let timerController = new TimerController(timerModel, timerView, settings.settings);
 
 timerModel.addObserver(header);
 timerController.init();

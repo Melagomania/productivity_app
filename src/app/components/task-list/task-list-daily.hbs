@@ -32,7 +32,7 @@
               <button class="task-card__button task-card__button--edit modal-button" data-modal-action="modal-open-edit"
                       data-task-id="{{@key}}"></button>
             </section>
-            <a href='/timer' class="task-card__goToTimer router-link link" data-task-id="{{@key}}">
+            <a href='/timer' class="task-card__goToTimer router-link link" data-action="go-to-timer" data-task-id="{{@key}}">
               <span class="task-card__estimation-value">{{this.estimation}}</span>
             </a>
           </section>

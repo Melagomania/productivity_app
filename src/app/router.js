@@ -110,8 +110,8 @@ export function routerModule(injections) {
       injections.pageModel.setCurrentScreen('settings');
       injections.pageView.renderScreen(injections.pageModel.getCurrentScreen());
 
-      injections.settings.renderSettingsFieldsInputs();
-      injections.cycle.calculateOptions(injections.settings.options);
+      injections.settings.renderSettingsInputs();
+      injections.cycle.calculateRenderConfig(injections.settings.settings);
       injections.cycle.getCycleElements();
       injections.cycle.renderCycle(injections.cycle.renderConfig);
     })

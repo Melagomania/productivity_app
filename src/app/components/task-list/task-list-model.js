@@ -129,9 +129,12 @@ export class TaskListModel {
 
 // todo: refactor
   setTaskDone(taskId) {
+    let now = new Date();
     this.localDB[taskId].isDone = true;
+    this.localDB[taskId].finishTime = now;
     firebase.database().ref('tasks/' + taskId).update({
-      'isDone': true
+      'isDone': true,
+      'finishTime': now
     });
   }
 

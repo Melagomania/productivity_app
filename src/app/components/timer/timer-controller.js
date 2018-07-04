@@ -16,8 +16,7 @@ export class TimerController {
     let _this = this;
     document.getElementsByClassName('page')[0].addEventListener('click', function (e) {
       let target = e.target;
-      if (target.classList.contains('task-card__goToTimer') && !target.classList.contains('task-card__start--disabled')) {
-
+      if (target.dataset.action === 'go-to-timer') {
         _this.initTask(target.dataset.taskId);
       } else if (target.classList.contains('timer-btn')) {
         _this.handleTimerButtonClick(target);

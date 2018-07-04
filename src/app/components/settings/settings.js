@@ -1,68 +1,36 @@
 export class Settings {
-  constructor(cycle) {
+  constructor() {
     this.observers = [];
-    this.cycle = cycle;
-
-    this.circleElements = {
-      fields: document.getElementsByClassName('pom-settings__input-wrapper'),
-      inputs: {
-        'work-time-option': document.getElementById('work-time-input'),
-        'work-iteration-option': document.getElementById('work-iteration-input'),
-        'short-break-option': document.getElementById('short-break-input'),
-        'long-break-option': document.getElementById('long-break-input')
-      }
+    this.DOMElements = {
+      fields: null,
+      inputs: {}
     };
 
-
-    //todo: refactor:
-    this.options = {
+    this.settings = {
       'work-time-option': {
         current: 25,
+        temp: 25,
         min: 15,
         max: 35,
         step: 5
       },
       'work-iteration-option': {
         current: 5,
+        temp: 5,
         min: 2,
         max: 5,
         step: 1
       },
       'short-break-option': {
         current: 5,
+        temp: 5,
         min: 3,
         max: 5,
         step: 1
       },
       'long-break-option': {
         current: 30,
-        min: 15,
-        max: 40,
-        step: 5
-      }
-    };
-
-    this.tempOptions = {
-      'work-time-option': {
-        current: 25,
-        min: 15,
-        max: 35,
-        step: 5
-      },
-      'work-iteration-option': {
-        current: 5,
-        min: 2,
-        max: 5,
-        step: 1
-      },
-      'short-break-option': {
-        current: 5,
-        min: 3,
-        max: 5,
-        step: 1
-      },
-      'long-break-option': {
-        current: 30,
+        temp: 30,
         min: 15,
         max: 40,
         step: 5
@@ -75,65 +43,67 @@ export class Settings {
     this.setEventListeners();
   }
 
-  renderSettingsFieldsInputs() {
-    this.tempOptions['work-time-option'].current = this.options['work-time-option'].current;
-    this.tempOptions['work-iteration-option'].current = this.options['work-iteration-option'].current;
-    this.tempOptions['long-break-option'].current = this.options['long-break-option'].current;
-    this.tempOptions['short-break-option'].current = this.options['short-break-option'].current;
+  renderSettingsInputs() {
     let _this = this;
-    this.circleElements = {
-      fields: document.getElementsByClassName('pom-settings__input-wrapper'),
-      inputs: {
-        'work-time-option': document.getElementById('work-time-input'),
-        'work-iteration-option': document.getElementById('work-iteration-input'),
-        'short-break-option': document.getElementById('short-break-input'),
-        'long-break-option': document.getElementById('long-break-input')
-      }
-    };
-
-
+    this.resetTempSettings();
+    this.getDOMElements();
 
     this.renderOptions();
-    for (let i = 0; i < this.circleElements.fields.length; i++) {
-      this.circleElements.fields[i].addEventListener('click', function(e) {
+    for (let i = 0; i < this.DOMElements.fields.length; i++) {
+      this.DOMElements.fields[i].addEventListener('click', function (e) {
         _this.handleClick(e);
       });
     }
   }
 
+  resetTempSettings() {
+    this.settings['work-time-option'].temp = this.settings['work-time-option'].current;
+    this.settings['work-iteration-option'].temp = this.settings['work-iteration-option'].current;
+    this.settings['long-break-option'].temp = this.settings['long-break-option'].current;
+    this.settings['short-break-option'].temp = this.settings['short-break-option'].current;
+  }
+
+  getDOMElements() {
+    this.DOMElements.fields = document.getElementsByClassName('pom-settings__input-wrapper');
+    this.DOMElements.inputs['work-time-option'] = document.getElementById('work-time-input');
+    this.DOMElements.inputs['work-iteration-option'] = document.getElementById('work-iteration-input');
+    this.DOMElements.inputs['short-break-option'] = document.getElementById('short-break-input');
+    this.DOMElements.inputs['long-break-option'] = document.getElementById('long-break-input');
+  }
+
+
   setEventListeners() {
     document.getElementById('page').addEventListener('click', (e) => {
-      if(e.target.dataset.action === 'save-settings') {
-        console.log(this);
+      if (e.target.dataset.action === 'save-settings') {
         this.saveSettingsToFirebase();
       }
     });
   }
 
   renderOptions() {
-    for (let i in this.circleElements.inputs) {
-      this.circleElements.inputs[i].value = this.options[i].current;
+    for (let i in this.DOMElements.inputs) {
+      this.DOMElements.inputs[i].value = this.settings[i].current;
     }
   }
 
   renderOption(field) {
-    this.circleElements.inputs[field].value = this.tempOptions[field].current;
+    this.DOMElements.inputs[field].value = this.settings[field].temp;
   }
 
   modifyOption(field, action) {
     switch (action) {
       case 'plus':
-        if (this.tempOptions[field].current !== this.tempOptions[field].max) {
-          this.tempOptions[field].current += this.tempOptions[field].step;
+        if (this.settings[field].temp !== this.settings[field].max) {
+          this.settings[field].temp += this.settings[field].step;
         }
         break;
       case 'minus':
-        if (this.tempOptions[field].current !== this.tempOptions[field].min) {
-          this.tempOptions[field].current -= this.tempOptions[field].step;
+        if (this.settings[field].temp !== this.settings[field].min) {
+          this.settings[field].temp -= this.settings[field].step;
         }
         break;
     }
-    this.notify(this.tempOptions);
+    this.notify(this.settings);
   }
 
   handleClick(e) {
@@ -150,33 +120,25 @@ export class Settings {
     }
   }
 
-  notify(data) {
-    this.observers.forEach( observer => observer.update(data));
-  }
-
-  addObserver(observer) {
-    this.observers.push(observer);
-  }
-
   getSettingsFromFirebase() {
     let _this = this;
     let ref = firebase.database().ref(`settings`);
     ref.once('value', function (snapshot) {
       let result = snapshot.val();
-      if(result) {
-        _this.options['work-time-option'].current = result['work-time-option'];
-        _this.options['work-iteration-option'].current = result['work-iteration-option'];
-        _this.options['long-break-option'].current = result['long-break-option'];
-        _this.options['short-break-option'].current = result['short-break-option'];
+      if (result) {
+        _this.settings['work-time-option'].current = result['work-time-option'];
+        _this.settings['work-iteration-option'].current = result['work-iteration-option'];
+        _this.settings['long-break-option'].current = result['long-break-option'];
+        _this.settings['short-break-option'].current = result['short-break-option'];
 
-        _this.tempOptions['work-time-option'].current = result['work-time-option'];
-        _this.tempOptions['work-iteration-option'].current = result['work-iteration-option'];
-        _this.tempOptions['long-break-option'].current = result['long-break-option'];
-        _this.tempOptions['short-break-option'].current = result['short-break-option'];
+        _this.settings['work-time-option'].temp = result['work-time-option'];
+        _this.settings['work-iteration-option'].temp = result['work-iteration-option'];
+        _this.settings['long-break-option'].temp = result['long-break-option'];
+        _this.settings['short-break-option'].temp = result['short-break-option'];
 
-        try{
+        try {
           _this.renderOptions();
-          _this.notify(_this.options)
+          _this.notify(_this.settings)
         } catch (e) {
           console.log('Not settings page');
         }
@@ -185,16 +147,24 @@ export class Settings {
   }
 
   saveSettingsToFirebase() {
-    this.options['work-time-option'].current = this.tempOptions['work-time-option'].current;
-    this.options['work-iteration-option'].current = this.tempOptions['work-iteration-option'].current;
-    this.options['long-break-option'].current = this.tempOptions['long-break-option'].current;
-    this.options['short-break-option'].current = this.tempOptions['short-break-option'].current;
+    this.settings['work-time-option'].current = this.settings['work-time-option'].temp;
+    this.settings['work-iteration-option'].current = this.settings['work-iteration-option'].temp;
+    this.settings['long-break-option'].current = this.settings['long-break-option'].temp;
+    this.settings['short-break-option'].current = this.settings['short-break-option'].temp;
 
     firebase.database().ref('settings/').update({
-      'work-time-option': this.options['work-time-option'].current,
-      'work-iteration-option': this.options['work-iteration-option'].current,
-      'long-break-option': this.options['long-break-option'].current,
-      'short-break-option': this.options['short-break-option'].current
+      'work-time-option': this.settings['work-time-option'].current,
+      'work-iteration-option': this.settings['work-iteration-option'].current,
+      'long-break-option': this.settings['long-break-option'].current,
+      'short-break-option': this.settings['short-break-option'].current
     });
+  }
+
+  notify(data) {
+    this.observers.forEach(observer => observer.update(data));
+  }
+
+  addObserver(observer) {
+    this.observers.push(observer);
   }
 }

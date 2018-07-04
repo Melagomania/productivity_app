@@ -12,13 +12,13 @@ export class Cycle {
     this.bottomCycleLabelsWrapper = document.getElementsByClassName('pom-cycle__bottom-labels')[0];
   }
 
-  calculateOptions(options) {
-    let workTime = options['work-time-option'].current;
-    let workIterations = options['work-iteration-option'].current;
+  calculateRenderConfig(options) {
+    let workTime = options['work-time-option'].temp;
+    let workIterations = options['work-iteration-option'].temp;
     let totalWorkTime = (workTime * workIterations) * 2;
-    let shortBreakTime = options['short-break-option'].current;
+    let shortBreakTime = options['short-break-option'].temp;
     let totalShortBreakTime = (shortBreakTime * (workIterations - 1)) * 2;
-    let longBreakTime = options['long-break-option'].current;
+    let longBreakTime = options['long-break-option'].temp;
     let totalTime = totalWorkTime + totalShortBreakTime + longBreakTime;
     let res = {
       longBreakTime: longBreakTime,
@@ -28,7 +28,7 @@ export class Cycle {
       workTimePercentage: workTime / totalTime * 100,
       longBreakPercentage: longBreakTime / totalTime * 100,
       workIterations: workIterations,
-    }
+    };
     this.renderConfig = res;
     return res;
   }
@@ -66,7 +66,7 @@ export class Cycle {
     }
   }
 
-  renderTopCycleLabels(options) {
+  renderTopCycleLabels(renderConfig) {
     this.clearWrapper(this.topCycleLabelsWrapper);
     for(let i = 0; i < 3; i++) {
       let label = document.createElement('div');
@@ -80,12 +80,12 @@ export class Cycle {
           labelText.textContent = '0m';
           break;
         case 1:
-          label.style.left = `calc(${50 + options.longBreakPercentage / 2}%  - 3px)`;
-          labelText.textContent = this.convertTime(options.totalTime / 2 + options.longBreakTime / 2);
+          label.style.left = `calc(${50 + renderConfig.longBreakPercentage / 2}%  - 3px)`;
+          labelText.textContent = this.convertTime(renderConfig.totalTime / 2 + renderConfig.longBreakTime / 2);
           break;
         case 2:
           label.style.right = '0';
-          labelText.textContent = this.convertTime(options.totalTime);
+          labelText.textContent = this.convertTime(renderConfig.totalTime);
           break;
 
       }
@@ -138,7 +138,7 @@ export class Cycle {
   }
 
   update(data) {
-    this.calculateOptions(data);
+    this.calculateRenderConfig(data);
     this.renderCycle();
   }
 }
