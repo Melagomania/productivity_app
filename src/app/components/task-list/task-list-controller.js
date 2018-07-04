@@ -97,7 +97,6 @@ export class TaskListController {
           case 'modal-remove-tasks':
             _this.taskListModel.removeTasksCollection();
             _this.taskListView.removeCountOff();
-            // _this.taskListView.toggleRemoveAll();
             _this.taskListView.hideRemoveTaskButtons();
             _this.isDeleteMode = false;
             break;
@@ -110,6 +109,17 @@ export class TaskListController {
             break;
         }
       }
+    });
+
+    //fixme:
+    page.addEventListener('keyup', function (e) {
+      // if(_this.modalController.isOpened) {
+      //   if(e.keyCode === 13) {
+      //     console.log(_this);
+      //   } else if(e.keyCode === 27) {
+      //     console.log(_this);
+      //   }
+      // }
     });
   };
 

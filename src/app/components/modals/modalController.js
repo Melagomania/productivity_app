@@ -2,7 +2,6 @@ export class ModalController {
   constructor(modalView) {
     this.modalView = modalView;
     this.isOpened = false;
-    this.currentTaskId = null;
   }
 
   init() {
@@ -19,18 +18,20 @@ export class ModalController {
         let templateContext;
         switch (buttonAction) {
           case 'modal-open-add':
-            templateContext = {
-              title: 'Add task',
-              removeBtn: false,
-              submitBtn: 'add'
-            }
+            if(!_this.isOpened) {
+              templateContext = {
+                title: 'Add task',
+                removeBtn: false,
+                submitBtn: 'add'
+              };
             _this.openModal(templateContext);
+            }
             break;
           case 'modal-close':
             _this.closeModal();
             break;
 
-          //choose what type of action perfom on a task
+          //choose what type of action perform on a task
           case 'modal-add-task':
             _this.closeModal();
             break;
@@ -55,9 +56,15 @@ export class ModalController {
         _this.closeModal();
       }
     });
+
+    //fixme:
     page.addEventListener('keyup', function (e) {
-      if (e.keyCode === 27 && _this.isOpened) {
-        _this.closeModal();
+      if (_this.isOpened) {
+        if (e.keyCode === 27) {
+          _this.closeModal();
+        } else if(e.keyCode === 13) {
+          _this.closeModal();
+        }
       }
     });
   };

@@ -19,7 +19,7 @@
     </ul>
 
   </div>
-{{/if}}
+
 {{#each this.doneTasks}}
   <ul class="task-list list">
     <li class="task-card task-card--{{getCategory this.categoryId}} task-card--{{getPriority this.priority}} task-card--done">
@@ -37,3 +37,14 @@
     </li>
   </ul>
 {{/each}}
+{{else}}
+  <div class="loader-wrapper">
+    <span class="loader-text">Loading</span>
+    <div class="spinner">
+      <div class="cube1"></div>
+      <div class="cube2"></div>
+    </div>
+  </div>
+
+{{/if}}
+
