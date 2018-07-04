@@ -13,6 +13,9 @@ import {Cycle} from './components/cycle/cycle';
 import {TimerModel} from './components/timer/timer-model';
 import {TimerController} from './components/timer/timer-controller';
 import {TimerView} from './components/timer/timer-view';
+import {ReportsView} from './components/reports/reports-view';
+import {ReportsController} from './components/reports/reports-controller';
+import {ReportsModel} from './components/reports/reports-model';
 import {routerModule} from './router';
 
 
@@ -49,6 +52,10 @@ let timerController = new TimerController(timerModel, timerView, settings.option
 timerModel.addObserver(header);
 timerController.init();
 
+let reportsView = new ReportsView();
+let reportsModel = new ReportsModel();
+let reportsController = new ReportsController(reportsModel, reportsView);
+
 
 let pageModel = new PageModel();
 let pageView = new PageView();
@@ -62,7 +69,8 @@ let router = routerModule({
   pageView: pageView,
   taskListModel: taskListModel,
   taskListView: taskListView,
-  timerController: timerController
+  timerController: timerController,
+  reportsController: reportsController
 });
 
 

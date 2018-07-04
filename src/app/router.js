@@ -145,6 +145,7 @@ export function routerModule(injections) {
       injections.header.toggleCurrentLink('reports');
       injections.pageModel.setCurrentScreen('reports');
       injections.pageView.renderScreen(injections.pageModel.getCurrentScreen());
+      injections.reportsController.openReports();
 
     })
     .add(function () {
