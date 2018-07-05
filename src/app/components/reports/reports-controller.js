@@ -5,6 +5,7 @@ export class ReportsController {
   }
 
   openReports() {
+    this.model.sortTasksByTime();
     this.view.renderReports();
   }
 }

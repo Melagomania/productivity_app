@@ -53,7 +53,7 @@ timerModel.addObserver(header);
 timerController.init();
 
 let reportsView = new ReportsView();
-let reportsModel = new ReportsModel();
+let reportsModel = new ReportsModel(taskListModel);
 let reportsController = new ReportsController(reportsModel, reportsView);
 
 

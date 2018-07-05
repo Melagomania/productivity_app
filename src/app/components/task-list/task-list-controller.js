@@ -182,7 +182,6 @@ export class TaskListController {
     let ref = firebase.database().ref(`tasks`);
     ref.once('value', function (snapshot) {
       _this.taskListModel.tasksLoaded = true;
-      console.log(_this);
       if (snapshot.val()) {
         _this.taskListModel.localDB = snapshot.val();
         _this.taskListModel.sortTasksByCategories();
