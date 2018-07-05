@@ -9,7 +9,7 @@ export class TaskListModel {
     this.tasksToDelete = [];
     this.todayTasks = {};
     this.doneTasks = {};
-    this.sortedTasks = {
+    this.timeSortedTasks = {
       1: {},
       2: {},
       3: {},
@@ -23,31 +23,31 @@ export class TaskListModel {
       value: 0
     });
 
-    Object.defineProperty(this.sortedTasks[1], 'length', {
+    Object.defineProperty(this.timeSortedTasks[1], 'length', {
       enumerable: false,
       writable: true,
       value: 0
     });
 
-    Object.defineProperty(this.sortedTasks[2], 'length', {
+    Object.defineProperty(this.timeSortedTasks[2], 'length', {
       enumerable: false,
       writable: true,
       value: 0
     });
 
-    Object.defineProperty(this.sortedTasks[3], 'length', {
+    Object.defineProperty(this.timeSortedTasks[3], 'length', {
       enumerable: false,
       writable: true,
       value: 0
     });
 
-    Object.defineProperty(this.sortedTasks[4], 'length', {
+    Object.defineProperty(this.timeSortedTasks[4], 'length', {
       enumerable: false,
       writable: true,
       value: 0
     });
 
-    Object.defineProperty(this.sortedTasks[5], 'length', {
+    Object.defineProperty(this.timeSortedTasks[5], 'length', {
       enumerable: false,
       writable: true,
       value: 0
@@ -180,11 +180,11 @@ export class TaskListModel {
 
   sortTasksByCategories() {
     this.undoneTasks = 0;
-    for (let i in this.sortedTasks) {
-      this.sortedTasks[i] = {};
+    for (let i in this.timeSortedTasks) {
+      this.timeSortedTasks[i] = {};
 
-      this.sortedTasks[i].length = 0;
-      Object.defineProperty(this.sortedTasks[i], 'length', {
+      this.timeSortedTasks[i].length = 0;
+      Object.defineProperty(this.timeSortedTasks[i], 'length', {
         enumerable: false,
         writable: true,
         value: 0
@@ -194,8 +194,8 @@ export class TaskListModel {
       switch (this.localDB[i].categoryId) {
         case '1':
           if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
-            this.sortedTasks[1][i] = this.localDB[i];
-            this.sortedTasks[1].length++;
+            this.timeSortedTasks[1][i] = this.localDB[i];
+            this.timeSortedTasks[1].length++;
             this.undoneTasks++;
             this.firstTaskAdded = true;
             sessionStorage.setItem('firstTaskAdded', true);
@@ -203,8 +203,8 @@ export class TaskListModel {
           break;
         case '2':
           if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
-            this.sortedTasks[2][i] = this.localDB[i];
-            this.sortedTasks[2].length++;
+            this.timeSortedTasks[2][i] = this.localDB[i];
+            this.timeSortedTasks[2].length++;
             this.undoneTasks++;
             this.firstTaskAdded = true;
             sessionStorage.setItem('firstTaskAdded', true);
@@ -212,8 +212,8 @@ export class TaskListModel {
           break;
         case '3':
           if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
-            this.sortedTasks[3][i] = this.localDB[i];
-            this.sortedTasks[3].length++;
+            this.timeSortedTasks[3][i] = this.localDB[i];
+            this.timeSortedTasks[3].length++;
             this.undoneTasks++;
             this.firstTaskAdded = true;
             sessionStorage.setItem('firstTaskAdded', true);
@@ -221,8 +221,8 @@ export class TaskListModel {
           break;
         case '4':
           if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
-            this.sortedTasks[4][i] = this.localDB[i];
-            this.sortedTasks[4].length++;
+            this.timeSortedTasks[4][i] = this.localDB[i];
+            this.timeSortedTasks[4].length++;
             this.undoneTasks++;
             this.firstTaskAdded = true;
             sessionStorage.setItem('firstTaskAdded', true);
@@ -230,8 +230,8 @@ export class TaskListModel {
           break;
         case '5':
           if (!this.localDB[i].isActive && !this.isTaskDone(this.localDB[i])) {
-            this.sortedTasks[5][i] = this.localDB[i];
-            this.sortedTasks[5].length++;
+            this.timeSortedTasks[5][i] = this.localDB[i];
+            this.timeSortedTasks[5].length++;
             this.undoneTasks++;
             this.firstTaskAdded = true;
             sessionStorage.setItem('firstTaskAdded', true);
