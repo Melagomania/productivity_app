@@ -23,7 +23,6 @@ export class ReportsModel {
         this.dayTasks.push((doneTasks[i]));
       }
     }
-    console.log('d', this.dayTasks);
   }
 
   getWeekTasks() {
@@ -37,7 +36,6 @@ export class ReportsModel {
         this.weekTasks.push((doneTasks[i]));
       }
     }
-    console.log('w', this.weekTasks);
   }
 
   getMonthTasks() {
@@ -51,6 +49,37 @@ export class ReportsModel {
         this.monthTasks.push((doneTasks[i]));
       }
     }
-    console.log('m', this.monthTasks);
+  }
+
+  getPomodorasAmount(taskList) {
+    let pomodoras = {
+      '4': {
+        failed: 0,
+        done: 0
+      },
+      '3': {
+        failed: 0,
+        done: 0
+      },
+      '2': {
+        failed: 0,
+        done: 0
+      },
+      '1': {
+        failed: 0,
+        done: 0
+      }
+    };
+
+    taskList.forEach( task => {
+      task.pomodoras.forEach( pomodora => {
+        if(pomodora) {
+          pomodoras[task.priority][pomodora]++;
+        }
+      });
+    });
+
+    console.log(taskList);
+    console.log(pomodoras);
   }
 }
