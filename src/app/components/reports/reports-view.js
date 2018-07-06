@@ -14,6 +14,7 @@ export class ReportsView {
   }
 
   renderDayReports(data) {
+    console.log(data);
     let myChart = highcharts.chart('day-container', {
       chart: {
         type: 'column'
