@@ -14,7 +14,6 @@ export class ReportsView {
   }
 
   renderDayReports(data) {
-    console.log(data);
     let myChart = highcharts.chart('day-container', {
       chart: {
         type: 'column'
@@ -73,6 +72,7 @@ export class ReportsView {
   }
 
   renderWeekReports(data) {
+    console.log('week-reps', data);
     let myChart = highcharts.chart('week-container', {
       chart: {
         type: 'column'
@@ -107,23 +107,23 @@ export class ReportsView {
       },
       series: [
         {
-          name: 'Urgent',
+          name: 'Mon',
           data: [data['4']]
         },
         {
-          name: 'High',
+          name: 'Tue',
           data: [data['3']]
         },
         {
-          name: 'Middle',
+          name: 'Wen ',
           data: [data['2']]
         },
         {
-          name: 'Low',
+          name: 'Thu',
           data: [data['1']]
         },
         {
-          name: 'Failed',
+          name: 'Fri',
           data: [data.failed]
         }
       ]

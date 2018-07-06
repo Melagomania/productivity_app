@@ -1,6 +1,7 @@
 export class ReportsModel {
   constructor(taskList) {
     this.taskList = taskList;
+
     this.timeSortedTasks = {};
 
     this.pomodorosSortedTasks = {
@@ -50,8 +51,8 @@ export class ReportsModel {
   }
 
   getWeekTasks() {
-    this.timeSortedTasks.weekTasks = [];
     let doneTasks = this.taskList.doneTasks;
+    this.timeSortedTasks.weekTasks = [];
     let now = new Date();
     let taskDate;
     for (let i in doneTasks) {
@@ -91,6 +92,5 @@ export class ReportsModel {
         });
       });
     }
-
   }
 }
